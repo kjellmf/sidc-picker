@@ -1,18 +1,20 @@
 <template>
-  <div class="home">
-    <img src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <sidc-picker v-model="sidc" />
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import MilSymbol from "@/components//MilSymbol.vue";
+import SidcPicker from "@/components/SidcPicker.vue";
 
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
+  name: "HelloWorld",
+  components: { MilSymbol, SidcPicker },
+  data: () => ({
+    sidc:"10031004001211000000"
+  }),
+  props: {
+    msg: String
   }
-}
+};
 </script>
