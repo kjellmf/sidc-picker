@@ -1,3 +1,5 @@
 # Military symbol identification code picker
 
-Experiment
+Se live demo at https://kjellmf.github.io/sidc-picker/#/
+
+

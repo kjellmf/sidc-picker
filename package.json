@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "deploy": "vue-cli-ghpages"
   },
   "dependencies": {
     "milstd": "^0.1.6",
