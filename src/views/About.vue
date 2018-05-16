@@ -3,7 +3,6 @@
     <v-layout align-center>
       <v-flex>
         <h1 class="display-4">SIDC picker</h1>
-        <!--<span class="subheading">Version 1.0</span>-->
         <v-divider class="my-3"></v-divider>
 
         <h2>About</h2>
@@ -14,10 +13,10 @@
         <h2>Technical details</h2>
         <p>Some of the tools, frameworks and libraries used:</p>
         <ul>
-          <li>Vue.js</li>
-          <li>Vuetify</li>
-          <li>Vue-router</li>
-          <li>Vuex</li>
+          <li><a href="https://github.com/spatialillusions/milsymbol">milsymbol</a></li>
+          <li><a href="https://github.com/spatialillusions/milstd">milstd</a></li>
+          <li><a href="https://vuejs.org/">Vue.js</a></li>
+          <li><a href="https://vuetifyjs.com/en/">Vuetify</a></li>
         </ul>
 
       </v-flex>
