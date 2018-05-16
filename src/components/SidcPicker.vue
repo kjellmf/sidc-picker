@@ -1,86 +1,71 @@
 <template>
-  <div>
-    <v-text-field
-      :label="label"
-      mask="##-##-##-#-#-##-##-##-##-##-##"
-      v-model="myValue"
-      :hint="hint"
-      :required="required"
-      append-icon="more_horiz"
-      :append-icon-cb="() => {isOpen=true}"
-      editable
-      :rules="rules"
-    />
-    
-      <v-card>
-        <v-toolbar flat color="transparent">
-          <v-toolbar-title class="title">
-            <span><strong>SIDC</strong> {{csidc}}</span>
-          </v-toolbar-title>
-          <v-spacer/>
-          <v-btn @click="close" icon>
-            <v-icon>close</v-icon>
-          </v-btn>
-        </v-toolbar>
-        <v-card-text>
-          <v-layout>
-            <v-flex>
-              <sidc-picker-select
-                :items="symbolSets"
-                label="Symbol set"
-                v-model="symbolSetValue"
-              />
-              <sidc-picker-select
-                :items="statusValues"
-                label="Status"
-                v-model="statusValue"
-              />
-              <sidc-picker-select
-                :items="hqTfDummy"
-                v-model="hqTfDummyValue"
-                label="Headquarters/Task force/Dummy"
-                autocomplete
-              />
-              <sidc-picker-select
-                :items="emtValues"
-                v-model="emtValue"
-                label="Echelon/Mobility/Towed array"
-                autocomplete
-              />
-              <sidc-picker-select
-                :items="icons"
-                label="Main icon"
-                v-model="iconValue"
-                autocomplete
-              />
+  <v-card>
+    <v-toolbar flat color="transparent">
+      <v-toolbar-title class="title">
+        <span><strong>SIDC</strong> {{csidc}}</span>
+      </v-toolbar-title>
+      <v-spacer/>
+      <v-btn @click="close" icon>
+        <v-icon>close</v-icon>
+      </v-btn>
+    </v-toolbar>
+    <v-card-text>
+      <v-layout>
+        <v-flex>
+          <sidc-picker-select
+            :items="symbolSets"
+            label="Symbol set"
+            v-model="symbolSetValue"
+          />
+          <sidc-picker-select
+            :items="statusValues"
+            label="Status"
+            v-model="statusValue"
+          />
+          <sidc-picker-select
+            :items="hqTfDummy"
+            v-model="hqTfDummyValue"
+            label="Headquarters/Task force/Dummy"
+            autocomplete
+          />
+          <sidc-picker-select
+            :items="emtValues"
+            v-model="emtValue"
+            label="Echelon/Mobility/Towed array"
+            autocomplete
+          />
+          <sidc-picker-select
+            :items="icons"
+            label="Main icon"
+            v-model="iconValue"
+            autocomplete
+          />
 
-              <sidc-picker-select
-                :items="modifierOne"
-                label="Modifier 1"
-                autocomplete
-                v-model="mod1"
-              />
-              <sidc-picker-select
-                :items="modifierTwo"
-                label="Modifier 2"
-                autocomplete
-                v-model="mod2"
-              />
-            </v-flex>
-            <v-flex xs3 text-xs-center>
-              <mil-symbol class="pl-3" :sidc="csidc" :size="50"/>
-            </v-flex>
-          </v-layout>
-        </v-card-text>
+          <sidc-picker-select
+            :items="modifierOne"
+            label="Modifier 1"
+            autocomplete
+            v-model="mod1"
+          />
+          <sidc-picker-select
+            :items="modifierTwo"
+            label="Modifier 2"
+            autocomplete
+            v-model="mod2"
+          />
+        </v-flex>
+        <v-flex xs3 text-xs-center>
+          <mil-symbol class="pl-3" :sidc="csidc" :size="50"/>
+        </v-flex>
+      </v-layout>
+    </v-card-text>
 
-        <v-card-actions>
-          <v-spacer/>
-          <v-btn color="primary" type="submit" @click="submit">Save</v-btn>
-          <v-btn @click="reset">Reset</v-btn>
-        </v-card-actions>
-      </v-card>
-    
-  </div>
+    <v-card-actions>
+      <v-spacer/>
+      <!--<v-btn color="primary" type="submit" @click="submit">Save</v-btn>-->
+      <v-btn @click="reset">Reset</v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>

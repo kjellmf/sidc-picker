@@ -4,7 +4,29 @@
       v-model="drawer"
       fixed
       app
-    />
+    >
+      
+      <v-list>
+        <v-subheader>Navigation</v-subheader>
+        <v-list-tile to="/">
+          <v-list-tile-action>
+            <v-icon>home</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Home</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile to="/about/">
+          <v-list-tile-action>
+            <v-icon>info_outline</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>About</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-subheader>Settings</v-subheader>
+    </v-list>
+    </v-navigation-drawer>
     <v-toolbar dense fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>SIDC picker</v-toolbar-title>
