@@ -2,7 +2,8 @@
   <v-card>
     <v-toolbar flat color="transparent">
       <v-toolbar-title class="title">
-        <span><strong>SIDC</strong> {{csidc}}</span>
+        <span>
+          <strong>SIDC</strong> {{csidc}}</span>
       </v-toolbar-title>
       <v-spacer/>
       <v-btn @click="close" icon>
@@ -12,50 +13,16 @@
     <v-card-text>
       <v-layout>
         <v-flex>
-          <sidc-picker-select
-            :items="symbolSets"
-            label="Symbol set"
-            v-model="symbolSetValue"
-          />
-          <sidc-picker-select
-            :items="statusValues"
-            label="Status"
-            v-model="statusValue"
-          />
-          <sidc-picker-select
-            :items="hqTfDummy"
-            v-model="hqTfDummyValue"
-            label="Headquarters/Task force/Dummy"
-            autocomplete
-          />
-          <sidc-picker-select
-            :items="emtValues"
-            v-model="emtValue"
-            label="Echelon/Mobility/Towed array"
-            autocomplete
-          />
-          <sidc-picker-select
-            :items="icons"
-            label="Main icon"
-            v-model="iconValue"
-            autocomplete
-          />
-
-          <sidc-picker-select
-            :items="modifierOne"
-            label="Modifier 1"
-            autocomplete
-            v-model="mod1"
-          />
-          <sidc-picker-select
-            :items="modifierTwo"
-            label="Modifier 2"
-            autocomplete
-            v-model="mod2"
-          />
+          <sidc-picker-select :items="symbolSets" label="Symbol set" v-model="symbolSetValue" />
+          <sidc-picker-select :items="statusValues" label="Status" v-model="statusValue" />
+          <sidc-picker-select :items="hqTfDummy" v-model="hqTfDummyValue" label="Headquarters/Task force/Dummy" autocomplete />
+          <sidc-picker-select :items="emtValues" v-model="emtValue" label="Echelon/Mobility/Towed array" autocomplete />
+          <sidc-picker-select :items="icons" label="Main icon" v-model="iconValue" autocomplete />
+          <sidc-picker-select :items="modifierOne" label="Modifier 1" autocomplete v-model="mod1" />
+          <sidc-picker-select :items="modifierTwo" label="Modifier 2" autocomplete v-model="mod2" />
         </v-flex>
         <v-flex xs3 text-xs-center>
-          <mil-symbol class="pl-3" :sidc="csidc" :size="50"/>
+          <mil-symbol class="pl-3" :sidc="csidc" :size="50" />
         </v-flex>
       </v-layout>
     </v-card-text>
@@ -70,34 +37,35 @@
 
 <script>
 import Vue from "vue";
-import {app6d} from "milstd";
+import { app6d } from "milstd";
 import MilSymbol from "./MilSymbol.vue";
-import {Sidc} from "../symbology/sidc";
+import { Sidc } from "../symbology/sidc";
 import SidcPickerSelect from "./SidcPickerSelect.vue";
 import {
   DISMOUNTED_SYMBOLSET_VALUE,
   EQUIPMENT_SYMBOLSET_VALUE,
   HQTFDummyValues,
-  statusValues, SUBSURFACE_SYMBOLSET_VALUE, SURFACE_SYMBOLSET_VALUE,
+  statusValues,
+  SUBSURFACE_SYMBOLSET_VALUE,
+  SURFACE_SYMBOLSET_VALUE,
   UNIT_SYMBOLSET_VALUE
 } from "../symbology/values";
 import * as symbValues from "../symbology/values";
 
-
-export default Vue.extend({
+export default {
   name: "SidcPicker",
   components: {
     MilSymbol,
-    SidcPickerSelect,
-  },
-  props: {
-    value: String,
-    required: {type: Boolean, default: false},
-    label: {type: String, default: "SIDC"},
-    hint: {type: String, default: "Symbol identification code"},
-    rules: {type:Array},
+    SidcPickerSelect
   },
 
+  props: {
+    value: String,
+    required: { type: Boolean, default: false },
+    label: { type: String, default: "SIDC" },
+    hint: { type: String, default: "Symbol identification code" },
+    rules: { type: Array }
+  },
 
   data() {
     return {
@@ -110,8 +78,8 @@ export default Vue.extend({
       emtValue: null,
       iconValue: null,
       mod1: null,
-      mod2: null,
-    }
+      mod2: null
+    };
   },
 
   created() {
@@ -136,7 +104,6 @@ export default Vue.extend({
     value(val) {
       this.myValue = val;
     }
-
   },
 
   computed: {
@@ -155,21 +122,31 @@ export default Vue.extend({
 
     symbolSet() {
       return app6d[this.symbolSetValue]["main icon"] || [];
-
     },
 
     statusValues() {
       return statusValues.map(e => ({
         ...e,
-        sidc: "100" + this.sidValue + this.symbolSetValue + e.value + "0000000000000"
-      }))
+        sidc:
+          "100" +
+          this.sidValue +
+          this.symbolSetValue +
+          e.value +
+          "0000000000000"
+      }));
     },
 
     hqTfDummy() {
       return HQTFDummyValues.map(e => ({
         ...e,
-        sidc: "100" + this.sidValue + this.symbolSetValue + "0" + e.value + "000000000000"
-      }))
+        sidc:
+          "100" +
+          this.sidValue +
+          this.symbolSetValue +
+          "0" +
+          e.value +
+          "000000000000"
+      }));
     },
 
     emtValues() {
@@ -189,13 +166,18 @@ export default Vue.extend({
           values = symbValues.towedArrayValues;
           break;
         default:
-          values = [{value: "00", text: "Unspecified"}]
+          values = [{ value: "00", text: "Unspecified" }];
       }
       return values.map(e => ({
         ...e,
-        sidc: "100" + this.sidValue + this.symbolSetValue + "00" + e.value + "0000000000"
-      }))
-
+        sidc:
+          "100" +
+          this.sidValue +
+          this.symbolSetValue +
+          "00" +
+          e.value +
+          "0000000000"
+      }));
     },
 
     icons() {
@@ -207,31 +189,45 @@ export default Vue.extend({
         return {
           value: mi.code,
           text,
-          sidc: "100" + this.sidValue + this.symbolSetValue + "0000" + mi.code + "0000"
-        }
-      })
+          sidc:
+            "100" +
+            this.sidValue +
+            this.symbolSetValue +
+            "0000" +
+            mi.code +
+            "0000"
+        };
+      });
     },
 
     modifierOne() {
       let mod1s = app6d[this.symbolSetValue]["modifier 1"] || [];
-      return mod1s.map(mod1 => (
-        {
-          value: mod1.code,
-          text: mod1.modifier,
-          sidc: "100" + this.sidValue + this.symbolSetValue + "0000000000" + mod1.code + "00"
-        }
-      ));
+      return mod1s.map(mod1 => ({
+        value: mod1.code,
+        text: mod1.modifier,
+        sidc:
+          "100" +
+          this.sidValue +
+          this.symbolSetValue +
+          "0000000000" +
+          mod1.code +
+          "00"
+      }));
     },
 
     modifierTwo() {
       let mod2s = app6d[this.symbolSetValue]["modifier 2"] || [];
-      return mod2s.map(mod2 => (
-        {
-          value: mod2.code,
-          text: mod2.modifier,
-          sidc: "100" + this.sidValue + this.symbolSetValue + "0000000000" + "00" + mod2.code
-        }
-      ));
+      return mod2s.map(mod2 => ({
+        value: mod2.code,
+        text: mod2.modifier,
+        sidc:
+          "100" +
+          this.sidValue +
+          this.symbolSetValue +
+          "0000000000" +
+          "00" +
+          mod2.code
+      }));
     },
 
     csidc() {
@@ -240,7 +236,6 @@ export default Vue.extend({
     }
   },
 
-
   methods: {
     close() {
       this.isOpen = false;
@@ -248,7 +243,6 @@ export default Vue.extend({
 
     reset() {
       this.updateFromSidc(this.oldValue);
-      // console.log(app6d[this.symbolSetValue]);
     },
 
     updateFromSidc(value) {
@@ -282,12 +276,10 @@ export default Vue.extend({
       this.setSidc();
       this.$emit("input", this.sidc.toString());
       this.isOpen = false;
-
-    },
+    }
   }
-})
+};
 </script>
 
 <style scoped>
-
 </style>

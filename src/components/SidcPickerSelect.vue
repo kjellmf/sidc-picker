@@ -1,10 +1,5 @@
 <template>
-  <v-select
-    :items="items"
-    :label="label"
-    v-model="myValue"
-    autocomplete
-  >
+  <v-select :items="items" :label="label" v-model="myValue" autocomplete>
     <template slot="item" slot-scope="data">
       <v-list-tile-avatar>
         <mil-symbol :size="20" :sidc="data.item.sidc"></mil-symbol>
@@ -17,15 +12,15 @@
 <script>
 import MilSymbol from "./MilSymbol.vue";
 
-
 export default {
   name: "SidcPickerSelect",
-  components: {MilSymbol},
+  components: { MilSymbol },
   props: {
-    items: {type: Array, required: true},
+    items: { type: Array, required: true },
     label: String,
-    value: String,
+    value: String
   },
+
   data: () => ({
     myValue: null
   }),
@@ -43,11 +38,8 @@ export default {
       this.myValue = value;
     }
   }
-
-
-}
+};
 </script>
 
 <style scoped>
-
 </style>

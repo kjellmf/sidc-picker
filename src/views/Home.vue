@@ -1,5 +1,5 @@
 <template>
-    <sidc-picker v-model="sidc" />
+  <sidc-picker v-model="sidc" />
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
   name: "HelloWorld",
   components: { MilSymbol, SidcPicker },
   data: () => ({
-    sidc:"10031004001211000000"
+    sidc: "10031004001211000000"
   }),
   props: {
     msg: String

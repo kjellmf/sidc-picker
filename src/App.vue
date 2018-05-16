@@ -4,8 +4,7 @@
       v-model="drawer"
       fixed
       app
-    >
-      
+    >   
       <v-list>
         <v-subheader>Navigation</v-subheader>
         <v-list-tile to="/">
@@ -42,6 +41,7 @@
     </v-content>
   </v-app>
 </template>
+
 <script>
 export default {
   data: () => ({
