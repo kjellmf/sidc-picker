@@ -234,7 +234,9 @@ export default {
 
     csidc() {
       this.setSidc();
-      return this.sidc.toString();
+      let sidcString = this.sidc.toString()
+      this.$emit("input", sidcString);
+      return sidcString;
     }
   },
 

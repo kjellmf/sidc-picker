@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     autocomplete: true,
     simpleStatusModifier: false,
+    sidc: "10031000001211000000"
   },
 
   mutations: {
@@ -16,6 +17,10 @@ export default new Vuex.Store({
 
     setSimpleStatusModifier (state, value) {
       state.simpleStatusModifier = value;
+    },
+
+    setSidc (state, value) {
+      state.sidc = value;
     }
 
   },

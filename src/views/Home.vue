@@ -1,5 +1,5 @@
 <template>
-  <sidc-picker v-model="sidc" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier"/>
+  <sidc-picker v-model="sidc" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier" />
 </template>
 
 <script>
@@ -10,9 +10,7 @@ import SidcPicker from "@/components/SidcPicker.vue";
 export default {
   name: "HelloWorld",
   components: { MilSymbol, SidcPicker },
-  data: () => ({
-    sidc: "10031004001211000000"
-  }),
+  data: () => ({}),
 
   props: {
     msg: String
@@ -25,6 +23,16 @@ export default {
 
     simpleStatusModifier() {
       return this.$store.state.simpleStatusModifier;
+    },
+
+    sidc: {
+      get() {
+        return this.$store.state.sidc;
+      },
+
+      set(v) {
+        this.$store.commit("setSidc", v);
+      }
     }
   }
 };
