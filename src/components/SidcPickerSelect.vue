@@ -2,7 +2,7 @@
   <v-select :items="items" :label="label" v-model="myValue" :autocomplete="autocomplete">
     <template slot="item" slot-scope="data">
       <v-list-tile-avatar>
-        <mil-symbol :size="20" :sidc="data.item.sidc"></mil-symbol>
+        <mil-symbol :size="20" :sidc="data.item.sidc" :simple-status-modifier="simpleStatusModifier"></mil-symbol>
       </v-list-tile-avatar>
       <v-list-tile-content v-text="data.item.text"></v-list-tile-content>
     </template>
@@ -19,7 +19,8 @@ export default {
     items: { type: Array, required: true },
     autocomplete: { type: Boolean, default: false },
     label: String,
-    value: String
+    value: String,
+    simpleStatusModifier: null,
   },
 
   data: () => ({

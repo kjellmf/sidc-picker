@@ -9,10 +9,17 @@ export default {
   name: "MilSymbol",
   props: {
     sidc: String,
+    
     size: {
       type: Number,
       default: 15
     },
+
+    simpleStatusModifier: {
+      type: Boolean,
+      default: false
+    },
+
     modifiers: {
       type: Object
     }
@@ -26,7 +33,7 @@ export default {
     setSymbol() {
       let symb = new ms.Symbol(
         this.sidc,
-        { size: this.size, simpleStatusModifier: true },
+        { size: this.size, simpleStatusModifier: this.simpleStatusModifier },
         this.modifiers || {}
       );
       this.$el.innerHTML = symb.asSVG();

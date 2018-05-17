@@ -1,5 +1,5 @@
 <template>
-  <sidc-picker v-model="sidc" :autocomplete="autocomplete" />
+  <sidc-picker v-model="sidc" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier"/>
 </template>
 
 <script>
@@ -21,6 +21,10 @@ export default {
   computed: {
     autocomplete() {
       return this.$store.state.autocomplete;
+    },
+
+    simpleStatusModifier() {
+      return this.$store.state.simpleStatusModifier;
     }
   }
 };

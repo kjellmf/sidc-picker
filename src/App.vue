@@ -20,6 +20,14 @@
           </v-list-tile-content>
         </v-list-tile>
         <v-subheader>Settings</v-subheader>
+        <v-list-tile @click="simpleStatusModifier=!simpleStatusModifier">
+          <v-list-tile-action>
+            <v-switch @click.stop v-model="simpleStatusModifier" />
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Use simple status modifier</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
         <v-list-tile @click="autocomplete=!autocomplete">
           <v-list-tile-action>
             <v-switch @click.stop v-model="autocomplete" />
@@ -28,6 +36,7 @@
             <v-list-tile-title>Autocomplete</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+
 
       </v-list>
     </v-navigation-drawer>
@@ -60,6 +69,15 @@ export default {
       },
       set(v) {
         this.$store.commit("setAutocomplete", v);
+      }
+    },
+
+    simpleStatusModifier: {
+      get() {
+        return this.$store.state.simpleStatusModifier;
+      },
+      set(v) {
+        this.$store.commit("setSimpleStatusModifier", v);
       }
     }
   }

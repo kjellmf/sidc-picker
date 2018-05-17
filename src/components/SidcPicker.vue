@@ -14,7 +14,7 @@
       <v-layout>
         <v-flex>
           <sidc-picker-select :items="symbolSets" label="Symbol set" v-model="symbolSetValue" :autocomplete="autocomplete" />
-          <sidc-picker-select :items="statusValues" label="Status" v-model="statusValue" :autocomplete="autocomplete" />
+          <sidc-picker-select :items="statusValues" label="Status" v-model="statusValue" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier"/>
           <sidc-picker-select :items="hqTfDummy" v-model="hqTfDummyValue" label="Headquarters/Task force/Dummy" :autocomplete="autocomplete" />
           <sidc-picker-select :items="emtValues" v-model="emtValue" label="Echelon/Mobility/Towed array" :autocomplete="autocomplete" />
           <sidc-picker-select :items="icons" label="Main icon" v-model="iconValue" :autocomplete="autocomplete" />
@@ -22,7 +22,7 @@
           <sidc-picker-select :items="modifierTwo" label="Modifier 2" :autocomplete="autocomplete" v-model="mod2" />
         </v-flex>
         <v-flex xs3 text-xs-center>
-          <mil-symbol class="pl-3" :sidc="csidc" :size="50" />
+          <mil-symbol class="pl-3" :sidc="csidc" :size="50" :simple-status-modifier="simpleStatusModifier"/>
         </v-flex>
       </v-layout>
     </v-card-text>
@@ -65,7 +65,8 @@ export default {
     label: { type: String, default: "SIDC" },
     hint: { type: String, default: "Symbol identification code" },
     rules: { type: Array },
-    autocomplete: { type: Boolean, default: true }
+    autocomplete: { type: Boolean, default: true },
+    simpleStatusModifier: { type: Boolean, default: false },
   },
 
   data() {
