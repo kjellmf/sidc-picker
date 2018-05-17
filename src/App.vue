@@ -48,7 +48,7 @@
       <v-container>
         <v-layout>
           <v-flex>
-            <router-view :key="autocomplete"></router-view>
+            <router-view :key="autocomplete ^ simpleStatusModifier"></router-view>
           </v-flex>
         </v-layout>
       </v-container>
