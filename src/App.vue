@@ -1,10 +1,6 @@
 <template>
   <v-app id="app">
-    <v-navigation-drawer 
-      v-model="drawer"
-      fixed
-      app
-    >   
+    <v-navigation-drawer v-model="drawer" fixed app>
       <v-list>
         <v-subheader>Navigation</v-subheader>
         <v-list-tile to="/">
@@ -24,7 +20,16 @@
           </v-list-tile-content>
         </v-list-tile>
         <v-subheader>Settings</v-subheader>
-    </v-list>
+        <v-list-tile @click="autocomplete=!autocomplete">
+          <v-list-tile-action>
+            <v-switch @click.stop v-model="autocomplete" />
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Autocomplete</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+
+      </v-list>
     </v-navigation-drawer>
     <v-toolbar dense fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -34,7 +39,7 @@
       <v-container>
         <v-layout>
           <v-flex>
-            <router-view></router-view>
+            <router-view :key="autocomplete"></router-view>
           </v-flex>
         </v-layout>
       </v-container>
@@ -46,7 +51,18 @@
 export default {
   data: () => ({
     drawer: null
-  })
+  }),
+
+  computed: {
+    autocomplete: {
+      get() {
+        return this.$store.state.autocomplete;
+      },
+      set(v) {
+        this.$store.commit("setAutocomplete", v);
+      }
+    }
+  }
 };
 </script>
 

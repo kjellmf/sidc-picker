@@ -1,5 +1,5 @@
 <template>
-  <sidc-picker v-model="sidc" />
+  <sidc-picker v-model="sidc" :autocomplete="autocomplete" />
 </template>
 
 <script>
@@ -13,8 +13,15 @@ export default {
   data: () => ({
     sidc: "10031004001211000000"
   }),
+
   props: {
     msg: String
+  },
+
+  computed: {
+    autocomplete() {
+      return this.$store.state.autocomplete;
+    }
   }
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <v-select :items="items" :label="label" v-model="myValue" autocomplete>
+  <v-select :items="items" :label="label" v-model="myValue" :autocomplete="autocomplete">
     <template slot="item" slot-scope="data">
       <v-list-tile-avatar>
         <mil-symbol :size="20" :sidc="data.item.sidc"></mil-symbol>
@@ -17,6 +17,7 @@ export default {
   components: { MilSymbol },
   props: {
     items: { type: Array, required: true },
+    autocomplete: { type: Boolean, default: false },
     label: String,
     value: String
   },

@@ -13,13 +13,13 @@
     <v-card-text>
       <v-layout>
         <v-flex>
-          <sidc-picker-select :items="symbolSets" label="Symbol set" v-model="symbolSetValue" />
-          <sidc-picker-select :items="statusValues" label="Status" v-model="statusValue" />
-          <sidc-picker-select :items="hqTfDummy" v-model="hqTfDummyValue" label="Headquarters/Task force/Dummy" autocomplete />
-          <sidc-picker-select :items="emtValues" v-model="emtValue" label="Echelon/Mobility/Towed array" autocomplete />
-          <sidc-picker-select :items="icons" label="Main icon" v-model="iconValue" autocomplete />
-          <sidc-picker-select :items="modifierOne" label="Modifier 1" autocomplete v-model="mod1" />
-          <sidc-picker-select :items="modifierTwo" label="Modifier 2" autocomplete v-model="mod2" />
+          <sidc-picker-select :items="symbolSets" label="Symbol set" v-model="symbolSetValue" :autocomplete="autocomplete" />
+          <sidc-picker-select :items="statusValues" label="Status" v-model="statusValue" :autocomplete="autocomplete" />
+          <sidc-picker-select :items="hqTfDummy" v-model="hqTfDummyValue" label="Headquarters/Task force/Dummy" :autocomplete="autocomplete" />
+          <sidc-picker-select :items="emtValues" v-model="emtValue" label="Echelon/Mobility/Towed array" :autocomplete="autocomplete" />
+          <sidc-picker-select :items="icons" label="Main icon" v-model="iconValue" :autocomplete="autocomplete" />
+          <sidc-picker-select :items="modifierOne" label="Modifier 1" :autocomplete="autocomplete" v-model="mod1" />
+          <sidc-picker-select :items="modifierTwo" label="Modifier 2" :autocomplete="autocomplete" v-model="mod2" />
         </v-flex>
         <v-flex xs3 text-xs-center>
           <mil-symbol class="pl-3" :sidc="csidc" :size="50" />
@@ -64,7 +64,8 @@ export default {
     required: { type: Boolean, default: false },
     label: { type: String, default: "SIDC" },
     hint: { type: String, default: "Symbol identification code" },
-    rules: { type: Array }
+    rules: { type: Array },
+    autocomplete: { type: Boolean, default: true }
   },
 
   data() {
