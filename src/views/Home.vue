@@ -1,24 +1,19 @@
 <template>
-  <v-card>
-    <v-toolbar relative flat color="transparent">
-      <v-toolbar-title class="title">
-        <span>
-          <strong>SIDC</strong> {{sidc}}</span>
-      </v-toolbar-title>
-      <v-spacer/>
-    </v-toolbar>
-    <v-card-text>
-      <v-layout v-bind="binding">
-        <v-flex text-xs-center xs12 md3 order-md2 >
-          <mil-symbol class="symbol-test" :sidc="sidc" :size="50" :simple-status-modifier="simpleStatusModifier" />
-        </v-flex>
-        <v-flex>
-          <sidc-picker v-model="sidc" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier" />
-        </v-flex>
+  <v-container >
+    <v-flex xs12 class="pb-3">
+      <span class="title">
+        <strong class="hidden-sm-and-down">SIDC</strong> {{sidc}}</span>
+    </v-flex>
+    <v-layout v-bind="binding">
+      <v-flex text-xs-center xs12 md3 order-md2 class="symbol-test">
+        <mil-symbol class="symbol-test" :sidc="sidc" :size="50" :simple-status-modifier="simpleStatusModifier" />
+      </v-flex>
+      <v-flex>
+        <sidc-picker v-model="sidc" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier" />
+      </v-flex>
+    </v-layout>
 
-      </v-layout>
-    </v-card-text>
-  </v-card>
+  </v-container>
 
 </template>
 
@@ -67,7 +62,9 @@ export default {
 </script>
 <style scoped>
 .symbol-test {
-  position:sticky; 
-  top:60px;
+  position: sticky;
+  top: 50px;
+  background: #fafafa;
+  z-index: 4;
 }
 </style>
