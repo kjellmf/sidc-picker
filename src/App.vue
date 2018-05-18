@@ -19,6 +19,14 @@
             <v-list-tile-title>About</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+        <v-list-tile href="https://github.com/kjellmf/sidc-picker">
+          <v-list-tile-action>
+            <v-icon>code</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>GitHub repo</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
         <v-subheader>Settings</v-subheader>
         <v-list-tile @click="simpleStatusModifier=!simpleStatusModifier">
           <v-list-tile-action>
