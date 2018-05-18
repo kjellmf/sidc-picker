@@ -1,5 +1,7 @@
 <template>
   <div>
+    <sidc-picker-select :items="contextValues" label="Context" v-model="contextValue" :autocomplete="autocomplete" />
+    <sidc-picker-select :items="sidValues" label="Standard identity" v-model="sidValue" :autocomplete="autocomplete" />
     <sidc-picker-select :items="symbolSets" label="Symbol set" v-model="symbolSetValue" :autocomplete="autocomplete" />
     <sidc-picker-select :items="statusValues" label="Status" v-model="statusValue" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier" />
     <sidc-picker-select :items="hqTfDummy" v-model="hqTfDummyValue" label="Headquarters/Task force/Dummy" :autocomplete="autocomplete" />
@@ -20,6 +22,8 @@ import {
   DISMOUNTED_SYMBOLSET_VALUE,
   EQUIPMENT_SYMBOLSET_VALUE,
   HQTFDummyValues,
+  contextValues,
+  sidValues,
   statusValues,
   SUBSURFACE_SYMBOLSET_VALUE,
   SURFACE_SYMBOLSET_VALUE,
@@ -48,6 +52,7 @@ export default {
     return {
       myValue: null,
       isOpen: false,
+      contextValue: null,
       sidValue: null,
       symbolSetValue: null,
       statusValue: null,
@@ -80,11 +85,38 @@ export default {
         ssets.push({
           value: key,
           text: app6d[key].name,
-          sidc: "100" + this.sidValue + key + "00000000000000"
+          sidc:
+            "10" + this.contextValue + this.sidValue + key + "00000000000000"
         });
       }
       ssets.sort((a, b) => a.value - b.value);
       return ssets;
+    },
+
+    contextValues() {
+      return contextValues.map(e => ({
+        ...e,
+        sidc:
+          "10" +
+          e.value +
+          this.sidValue +
+          this.symbolSetValue +
+          this.statusValue +
+          "0000000000000"
+      }));
+    },
+
+    sidValues() {
+      return sidValues.map(e => ({
+        ...e,
+        sidc:
+          "10" +
+          this.contextValue +
+          e.value +
+          this.symbolSetValue +
+          this.statusValue +
+          "0000000000000"
+      }));
     },
 
     symbolSet() {
@@ -95,7 +127,8 @@ export default {
       return statusValues.map(e => ({
         ...e,
         sidc:
-          "100" +
+          "10" +
+          this.contextValue +
           this.sidValue +
           this.symbolSetValue +
           e.value +
@@ -107,7 +140,8 @@ export default {
       return HQTFDummyValues.map(e => ({
         ...e,
         sidc:
-          "100" +
+          "10" +
+          this.contextValue +
           this.sidValue +
           this.symbolSetValue +
           "0" +
@@ -138,7 +172,8 @@ export default {
       return values.map(e => ({
         ...e,
         sidc:
-          "100" +
+          "10" +
+          this.contextValue +
           this.sidValue +
           this.symbolSetValue +
           "00" +
@@ -157,7 +192,8 @@ export default {
           value: mi.code,
           text,
           sidc:
-            "100" +
+            "10" +
+            this.contextValue +
             this.sidValue +
             this.symbolSetValue +
             "0000" +
@@ -173,7 +209,8 @@ export default {
         value: mod1.code,
         text: mod1.modifier,
         sidc:
-          "100" +
+          "10" +
+          this.contextValue +
           this.sidValue +
           this.symbolSetValue +
           "0000000000" +
@@ -188,7 +225,8 @@ export default {
         value: mod2.code,
         text: mod2.modifier,
         sidc:
-          "100" +
+          "10" +
+          this.contextValue +
           this.sidValue +
           this.symbolSetValue +
           "0000000000" +
@@ -200,8 +238,10 @@ export default {
     sidc: {
       get() {
         if (!this.myValue) return;
-        
-        let sidc = new Sidc(this.myValue);        
+
+        let sidc = new Sidc(this.myValue);
+        sidc.context = this.contextValue;
+        sidc.standardIdentity = this.sidValue;
         sidc.symbolSet = this.symbolSetValue;
         sidc.status = this.statusValue;
         sidc.hqtfd = this.hqTfDummyValue;
@@ -218,6 +258,7 @@ export default {
       set(value) {
         this.myValue = value;
         let sidc = new Sidc(value);
+        this.contextValue = sidc.context;
         this.sidValue = sidc.standardIdentity;
         this.symbolSetValue = sidc.symbolSet;
         this.statusValue = sidc.status;
@@ -230,9 +271,7 @@ export default {
     }
   },
 
-  methods: {
-    
-  }
+  methods: {}
 };
 </script>
 
