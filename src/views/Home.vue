@@ -1,6 +1,6 @@
 <template>
-<v-card>
-    <v-toolbar flat color="transparent">
+  <v-card>
+    <v-toolbar relative flat color="transparent">
       <v-toolbar-title class="title">
         <span>
           <strong>SIDC</strong> {{sidc}}</span>
@@ -8,17 +8,18 @@
       <v-spacer/>
     </v-toolbar>
     <v-card-text>
-      <v-layout>
+      <v-layout v-bind="binding">
+        <v-flex text-xs-center xs12 md3 order-md2 >
+          <mil-symbol class="symbol-test" :sidc="sidc" :size="50" :simple-status-modifier="simpleStatusModifier" />
+        </v-flex>
         <v-flex>
           <sidc-picker v-model="sidc" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier" />
         </v-flex>
-        <v-flex xs3 text-xs-center>
-          <mil-symbol class="pl-3" :sidc="sidc" :size="50" :simple-status-modifier="simpleStatusModifier" />
-        </v-flex>
+
       </v-layout>
-    </v-card-text>  
+    </v-card-text>
   </v-card>
-  
+
 </template>
 
 <script>
@@ -52,7 +53,21 @@ export default {
       set(v) {
         this.$store.commit("setSidc", v);
       }
+    },
+
+    binding() {
+      const binding = {};
+
+      if (this.$vuetify.breakpoint.smAndDown) binding.column = true;
+
+      return binding;
     }
   }
 };
 </script>
+<style scoped>
+.symbol-test {
+  position:sticky; 
+  top:60px;
+}
+</style>
