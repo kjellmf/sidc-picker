@@ -1,38 +1,13 @@
 <template>
-  <v-card>
-    <v-toolbar flat color="transparent">
-      <v-toolbar-title class="title">
-        <span>
-          <strong>SIDC</strong> {{csidc}}</span>
-      </v-toolbar-title>
-      <v-spacer/>
-      <v-btn @click="close" icon>
-        <v-icon>close</v-icon>
-      </v-btn>
-    </v-toolbar>
-    <v-card-text>
-      <v-layout>
-        <v-flex>
-          <sidc-picker-select :items="symbolSets" label="Symbol set" v-model="symbolSetValue" :autocomplete="autocomplete" />
-          <sidc-picker-select :items="statusValues" label="Status" v-model="statusValue" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier"/>
-          <sidc-picker-select :items="hqTfDummy" v-model="hqTfDummyValue" label="Headquarters/Task force/Dummy" :autocomplete="autocomplete" />
-          <sidc-picker-select :items="emtValues" v-model="emtValue" label="Echelon/Mobility/Towed array" :autocomplete="autocomplete" />
-          <sidc-picker-select :items="icons" label="Main icon" v-model="iconValue" :autocomplete="autocomplete" />
-          <sidc-picker-select :items="modifierOne" label="Modifier 1" :autocomplete="autocomplete" v-model="mod1" />
-          <sidc-picker-select :items="modifierTwo" label="Modifier 2" :autocomplete="autocomplete" v-model="mod2" />
-        </v-flex>
-        <v-flex xs3 text-xs-center>
-          <mil-symbol class="pl-3" :sidc="csidc" :size="50" :simple-status-modifier="simpleStatusModifier"/>
-        </v-flex>
-      </v-layout>
-    </v-card-text>
-
-    <v-card-actions>
-      <v-spacer/>
-      <!--<v-btn color="primary" type="submit" @click="submit">Save</v-btn>-->
-      <v-btn @click="reset">Reset</v-btn>
-    </v-card-actions>
-  </v-card>
+  <div>
+    <sidc-picker-select :items="symbolSets" label="Symbol set" v-model="symbolSetValue" :autocomplete="autocomplete" />
+    <sidc-picker-select :items="statusValues" label="Status" v-model="statusValue" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier" />
+    <sidc-picker-select :items="hqTfDummy" v-model="hqTfDummyValue" label="Headquarters/Task force/Dummy" :autocomplete="autocomplete" />
+    <sidc-picker-select :items="emtValues" v-model="emtValue" label="Echelon/Mobility/Towed array" :autocomplete="autocomplete" />
+    <sidc-picker-select :items="icons" label="Main icon" v-model="iconValue" :autocomplete="autocomplete" />
+    <sidc-picker-select :items="modifierOne" label="Modifier 1" :autocomplete="autocomplete" v-model="mod1" />
+    <sidc-picker-select :items="modifierTwo" label="Modifier 2" :autocomplete="autocomplete" v-model="mod2" />
+  </div>
 </template>
 
 <script>
@@ -66,7 +41,7 @@ export default {
     hint: { type: String, default: "Symbol identification code" },
     rules: { type: Array },
     autocomplete: { type: Boolean, default: true },
-    simpleStatusModifier: { type: Boolean, default: false },
+    simpleStatusModifier: { type: Boolean, default: false }
   },
 
   data() {
@@ -85,26 +60,16 @@ export default {
   },
 
   created() {
-    this.myValue = this.value;
-    this.oldValue = this.value;
-    this.updateFromSidc(this.value);
+    this.sidc = this.value;
   },
 
   watch: {
-    myValue(value) {
+    value(v) {
+      this.sidc = v;
+    },
+
+    sidc(value) {
       this.$emit("input", value);
-    },
-
-    isOpen(value) {
-      if (value) {
-        this.oldValue = this.value;
-        this.myValue = this.value;
-        this.updateFromSidc(this.value);
-      }
-    },
-
-    value(val) {
-      this.myValue = val;
     }
   },
 
@@ -232,55 +197,41 @@ export default {
       }));
     },
 
-    csidc() {
-      this.setSidc();
-      let sidcString = this.sidc.toString()
-      this.$emit("input", sidcString);
-      return sidcString;
+    sidc: {
+      get() {
+        if (!this.myValue) return;
+        
+        let sidc = new Sidc(this.myValue);        
+        sidc.symbolSet = this.symbolSetValue;
+        sidc.status = this.statusValue;
+        sidc.hqtfd = this.hqTfDummyValue;
+        sidc.amplifier = this.emtValue[0];
+        sidc.amplifierDescriptor = this.emtValue[1];
+        sidc.entity = this.iconValue.substr(0, 2);
+        sidc.entityType = this.iconValue.substr(2, 2);
+        sidc.entitySubType = this.iconValue.substr(4, 2);
+        sidc.modifierOne = this.mod1;
+        sidc.modifierTwo = this.mod2;
+        return sidc.toString();
+      },
+
+      set(value) {
+        this.myValue = value;
+        let sidc = new Sidc(value);
+        this.sidValue = sidc.standardIdentity;
+        this.symbolSetValue = sidc.symbolSet;
+        this.statusValue = sidc.status;
+        this.hqTfDummyValue = sidc.hqtfd;
+        this.emtValue = sidc.amplifier + sidc.amplifierDescriptor;
+        this.iconValue = sidc.entity + sidc.entityType + sidc.entitySubType;
+        this.mod1 = sidc.modifierOne;
+        this.mod2 = sidc.modifierTwo;
+      }
     }
   },
 
   methods: {
-    close() {
-      this.isOpen = false;
-    },
-
-    reset() {
-      this.updateFromSidc(this.oldValue);
-    },
-
-    updateFromSidc(value) {
-      let sidc = new Sidc(value);
-      this.sidc = sidc;
-      this.sidValue = sidc.standardIdentity;
-      this.symbolSetValue = sidc.symbolSet;
-      this.statusValue = sidc.status;
-      this.hqTfDummyValue = sidc.hqtfd;
-      this.emtValue = sidc.amplifier + sidc.amplifierDescriptor;
-      this.iconValue = sidc.entity + sidc.entityType + sidc.entitySubType;
-      this.mod1 = sidc.modifierOne;
-      this.mod2 = sidc.modifierTwo;
-    },
-
-    setSidc() {
-      let sidc = this.sidc;
-      sidc.symbolSet = this.symbolSetValue;
-      sidc.status = this.statusValue;
-      sidc.hqtfd = this.hqTfDummyValue;
-      sidc.amplifier = this.emtValue[0];
-      sidc.amplifierDescriptor = this.emtValue[1];
-      sidc.entity = this.iconValue.substr(0, 2);
-      sidc.entityType = this.iconValue.substr(2, 2);
-      sidc.entitySubType = this.iconValue.substr(4, 2);
-      sidc.modifierOne = this.mod1;
-      sidc.modifierTwo = this.mod2;
-    },
-
-    submit() {
-      this.setSidc();
-      this.$emit("input", this.sidc.toString());
-      this.isOpen = false;
-    }
+    
   }
 };
 </script>
