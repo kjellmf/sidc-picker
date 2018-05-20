@@ -30,8 +30,6 @@ export default {
   computed: {
     allIcons() {
       let tmp = [];
-      console.log("jalla")
-
       this.ssv.forEach(ssValue => {
         let ss = app6d[ssValue]["main icon"] || [];
         let mm = ss.map(mi => {
