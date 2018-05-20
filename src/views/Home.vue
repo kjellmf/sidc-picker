@@ -9,6 +9,7 @@
         <mil-symbol class="symbol-test" :sidc="sidc" :size="50" :simple-status-modifier="simpleStatusModifier" />
       </v-flex>
       <v-flex>
+        <search-symbols @input="updateFromSearch" />
         <sidc-picker v-model="sidc" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier" />
       </v-flex>
     </v-layout>
@@ -18,14 +19,17 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import MilSymbol from "@/components//MilSymbol.vue";
 import SidcPicker from "@/components/SidcPicker.vue";
+import SearchSymbols from "@/components/SearchSymbols.vue";
+import { Sidc } from '../symbology/sidc';
 
 export default {
   name: "SymbolPicker",
-  components: { MilSymbol, SidcPicker },
-  data: () => ({}),
+  components: { MilSymbol, SidcPicker, SearchSymbols },
+  data: () => ({
+    searchSIDC: null
+  }),
 
   props: {
     msg: String
@@ -57,7 +61,21 @@ export default {
 
       return binding;
     }
+  },
+
+  methods: {
+    updateFromSearch(value) {
+      if (!value) return;
+      let oldSIDC = new Sidc(this.sidc);
+      let newSIDC = new Sidc(value);
+      oldSIDC.symbolSet = newSIDC.symbolSet;
+      oldSIDC.entity = newSIDC.entity;
+      oldSIDC.entityType = newSIDC.entityType;
+      oldSIDC.entitySubType = newSIDC.entitySubType;
+      this.sidc = oldSIDC.toString();
+    }
   }
+
 };
 </script>
 <style scoped>
