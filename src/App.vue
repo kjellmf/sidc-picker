@@ -44,8 +44,6 @@
             <v-list-tile-title>Autocomplete</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-
-
       </v-list>
     </v-navigation-drawer>
     <v-toolbar dense fixed app>
@@ -53,13 +51,7 @@
       <v-toolbar-title>SIDC picker</v-toolbar-title>
     </v-toolbar>
     <v-content>
-      <v-container>
-        <v-layout>
-          <v-flex>
             <router-view :key="autocomplete ^ simpleStatusModifier"></router-view>
-          </v-flex>
-        </v-layout>
-      </v-container>
     </v-content>
   </v-app>
 </template>
