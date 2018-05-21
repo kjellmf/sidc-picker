@@ -6,6 +6,9 @@ import router from './router';
 import store from './store';
 
 import 'vuetify/dist/vuetify.min.css';
+import VueClipboard from 'vue-clipboard2'
+
+Vue.use(VueClipboard);
 Vue.use(Vuetify);
 
 Vue.config.productionTip = false;
