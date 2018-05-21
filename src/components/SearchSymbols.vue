@@ -1,6 +1,12 @@
 <template>
-    <v-select :items="allIcons" label="Search" class="mb-3" v-model="myValue" autocomplete prepend-icon="search" solo>
-    <template slot="item" slot-scope="data">
+    <v-select 
+     accesskey="s" 
+     :items="allIcons" label="Search" class="mb-3" 
+     v-model="myValue" 
+     autocomplete 
+     prepend-icon="search" solo
+    >
+    <template slot="item" slot-scope="data">  
       <v-list-tile-avatar>
         <mil-symbol :size="20" :sidc="data.item.value"></mil-symbol>
       </v-list-tile-avatar>
@@ -16,8 +22,7 @@ import MilSymbol from "./MilSymbol.vue";
 export default {
   name: "SearchSymbols",
   components: {
-    MilSymbol,
-    
+    MilSymbol
   },
   data: () => ({
     myValue: null
