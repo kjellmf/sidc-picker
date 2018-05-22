@@ -1,10 +1,12 @@
 <template>
-  <v-container >
+  <v-container>
     <v-flex xs12 class="pb-3">
       <span class="title">
         <strong class="hidden-sm-and-down">SIDC</strong> {{sidc}}
-        </span> 
-        <v-btn @click="doCopy" icon flat title="Copy SIDC to clipboard"><v-icon>assignment</v-icon></v-btn>
+      </span>
+      <v-btn @click="doCopy" icon flat title="Copy SIDC to clipboard">
+        <v-icon>assignment</v-icon>
+      </v-btn>
     </v-flex>
     <v-layout v-bind="binding">
       <v-flex text-xs-center xs12 md3 order-md2 class="symbol-test">
@@ -15,7 +17,7 @@
         <sidc-picker v-model="sidc" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier" />
       </v-flex>
     </v-layout>
-
+    <router-view name="dialogs"></router-view>
   </v-container>
 
 </template>

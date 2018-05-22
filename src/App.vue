@@ -27,6 +27,14 @@
             <v-list-tile-title>GitHub repo</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+        <v-list-tile :to="{name:'keyboardShortcuts'}">
+          <v-list-tile-action>
+            <v-icon>help_outline</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Keyboard shortcuts</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
         <v-subheader>Settings</v-subheader>
         <v-list-tile @click="simpleStatusModifier=!simpleStatusModifier">
           <v-list-tile-action>
@@ -51,7 +59,7 @@
       <v-toolbar-title>SIDC picker</v-toolbar-title>
     </v-toolbar>
     <v-content>
-            <router-view :key="autocomplete ^ simpleStatusModifier"></router-view>
+      <router-view :key="autocomplete ^ simpleStatusModifier"></router-view>
     </v-content>
   </v-app>
 </template>
