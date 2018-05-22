@@ -4,7 +4,7 @@
       <span class="title">
         <strong class="hidden-sm-and-down">SIDC</strong> {{sidc}}
       </span>
-      <v-btn @click="doCopy" icon flat title="Copy SIDC to clipboard">
+      <v-btn @click="doCopy" v-shortkey="['alt', 'c']" @shortkey="doCopy" icon flat title="Copy SIDC to clipboard">
         <v-icon>assignment</v-icon>
       </v-btn>
     </v-flex>
@@ -18,6 +18,7 @@
       </v-flex>
     </v-layout>
     <router-view name="dialogs"></router-view>
+    <v-snackbar :timeout="3000" bottom left v-model="snackbar">{{snackbarText}}<v-btn dark flat @click.native="snackbar = false">Close</v-btn></v-snackbar>
   </v-container>
 
 </template>
@@ -32,7 +33,9 @@ export default {
   name: "SymbolPicker",
   components: { MilSymbol, SidcPicker, SearchSymbols },
   data: () => ({
-    searchSIDC: null
+    searchSIDC: null,
+    snackbarText: "",
+    snackbar: false
   }),
 
   props: {
@@ -80,9 +83,15 @@ export default {
     },
 
     doCopy() {
-      this.$copyText(this.sidc).catch(e => {
-        console.warning("Failed to copy SIDC to clipboard");
-      });
+      this.$copyText(this.sidc)
+        .then(e => {
+          console.log("Copy")
+          this.snackbarText = "SIDC copied to clipboard";
+          this.snackbar = true;
+        })
+        .catch(e => {
+          console.warning("Failed to copy SIDC to clipboard");
+        });
     }
   }
 };

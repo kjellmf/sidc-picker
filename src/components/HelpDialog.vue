@@ -4,7 +4,13 @@
       <v-card-title class="headline">Keyboard shortcuts</v-card-title>
       <v-card-text>
         <kbd>Alt</kbd>&nbsp;
-        <kbd>s</kbd> Go to search box</v-card-text>
+        <kbd>s</kbd> Go to search box
+      </v-card-text>
+      <v-card-text>
+        <kbd>Alt</kbd>&nbsp;
+        <kbd>c</kbd> Copy SIDC to clipboard
+      </v-card-text>
+
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="green darken-1" flat @click.native="close">Close</v-btn>
