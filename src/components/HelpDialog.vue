@@ -10,6 +10,10 @@
         <kbd>Alt</kbd>&nbsp;
         <kbd>c</kbd> Copy SIDC to clipboard
       </v-card-text>
+      <v-card-text>
+        <kbd>Alt</kbd>&nbsp;
+        <kbd>x</kbd> Clear
+      </v-card-text>
 
       <v-card-actions>
         <v-spacer></v-spacer>
