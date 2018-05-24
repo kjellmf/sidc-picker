@@ -1,5 +1,6 @@
 <template>
-    <v-select 
+    <v-select
+    autofocus  
      accesskey="s" 
      :items="allIcons" label="Search" class="mb-3" 
      v-model="myValue" 

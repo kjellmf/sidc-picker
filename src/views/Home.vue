@@ -1,12 +1,21 @@
 <template>
   <v-container>
-    <v-flex xs12 class="pb-3">
-      <span class="title">
-        <strong class="hidden-sm-and-down">SIDC</strong> {{sidc}}
-      </span>
+    <v-flex xs12 md9 class="pb-3 mx-0">
+      <v-layout row>
+      <v-flex>
+        <v-text-field class="sidc-field"
+        label="SIDC" 
+        mask="##-#-#-##-#-#-##-######-##-##"
+        permament 
+        v-model="sidc"
+        />
+      </v-flex>
+      <v-flex xs1>
       <v-btn @click="doCopy" v-shortkey="['alt', 'c']" @shortkey="doCopy" icon flat title="Copy SIDC to clipboard">
         <v-icon>assignment</v-icon>
       </v-btn>
+      </v-flex>
+      </v-layout>
     </v-flex>
     <v-layout v-bind="binding">
       <v-flex text-xs-center xs12 md3 order-md2 class="symbol-test">
@@ -18,7 +27,9 @@
       </v-flex>
     </v-layout>
     <router-view name="dialogs"></router-view>
-    <v-snackbar :timeout="3000" bottom left v-model="snackbar">{{snackbarText}}<v-btn dark flat @click.native="snackbar = false">Close</v-btn></v-snackbar>
+    <v-snackbar :timeout="3000" bottom left v-model="snackbar">{{snackbarText}}
+      <v-btn dark flat @click.native="snackbar = false">Close</v-btn>
+    </v-snackbar>
   </v-container>
 
 </template>
@@ -35,7 +46,8 @@ export default {
   data: () => ({
     searchSIDC: null,
     snackbarText: "",
-    snackbar: false
+    snackbar: false,
+    editSIDC: true,
   }),
 
   props: {
@@ -85,14 +97,19 @@ export default {
     doCopy() {
       this.$copyText(this.sidc)
         .then(e => {
-          console.log("Copy")
           this.snackbarText = "SIDC copied to clipboard";
           this.snackbar = true;
         })
         .catch(e => {
           console.warning("Failed to copy SIDC to clipboard");
         });
+    },
+
+    test() {
+      console.log("Test");
+      this.editSIDC = !this.editSIDC;
     }
+
   }
 };
 </script>
@@ -102,5 +119,9 @@ export default {
   top: 50px;
   background: #fafafa;
   z-index: 4;
+}
+
+.sidc-field {
+  font-weight: bolder;
 }
 </style>
