@@ -7,25 +7,38 @@ export default new Vuex.Store({
   state: {
     autocomplete: true,
     simpleStatusModifier: false,
-    sidc: "10031000001211000000"
+    sidc: "10031000001211000000",
+    snackbarText: "",
+    snackbar: false
   },
 
   mutations: {
-    setAutocomplete (state, value) {
+    setAutocomplete(state, value) {
       state.autocomplete = value;
     },
 
-    setSimpleStatusModifier (state, value) {
+    setSimpleStatusModifier(state, value) {
       state.simpleStatusModifier = value;
     },
 
-    setSidc (state, value) {
+    setSidc(state, value) {
       state.sidc = value;
+    },
+
+    setSnackbarText(state, value) {
+      state.snackbarText = value;
+    },
+
+    setSnackbar(state, value) {
+      state.snackbar = value;
     }
 
   },
-  
-  actions: {
 
+  actions: {
+    showMessage({ commit, state }, message) {
+      commit('setSnackbarText', message);
+      commit('setSnackbar', true);
+    }
   }
 })

@@ -2,6 +2,9 @@
   <v-app id="app">
     <v-navigation-drawer v-model="drawer" fixed app>
       <v-list>
+        <v-toolbar prominent flat class="transparent">
+          <v-toolbar-title>Military symbology picker</v-toolbar-title>
+        </v-toolbar>
         <v-subheader>Navigation</v-subheader>
         <v-list-tile to="/">
           <v-list-tile-action>
@@ -56,16 +59,21 @@
     </v-navigation-drawer>
     <v-toolbar dense fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>SIDC picker</v-toolbar-title>
+      <router-view name="toolbar"></router-view>  
     </v-toolbar>
     <v-content>
       <router-view :key="autocomplete ^ simpleStatusModifier"></router-view>
+      <snack-message/>
     </v-content>
   </v-app>
 </template>
 
 <script>
+
+import SnackMessage from "@/components/SnackMessage.vue";
+
 export default {
+  components: {SnackMessage},
   data: () => ({
     drawer: null
   }),

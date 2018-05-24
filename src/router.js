@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
 import HelpDialog from './components/HelpDialog.vue';
-
+import HomeToolbar from './views/HomeToolbar.vue';
 Vue.use(Router)
 
 export default new Router({
@@ -11,12 +11,15 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
+      components: {
+        default: Home,
+        toolbar: HomeToolbar
+      },
       children: [{
         path: 'help',
         name: 'keyboardShortcuts',
         components: {
-          dialogs: HelpDialog
+          dialogs: HelpDialog,
         },
       },]
     },
