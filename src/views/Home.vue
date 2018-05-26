@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-flex xs12 md9 class="mx-0">
+    <v-flex xs12 md9>
       <v-form v-model="valid">
         <v-text-field class="sidc-field" label="SIDC" mask="##-#-#-##-#-#-##-######-##-##" 
         permament 
@@ -12,7 +12,7 @@
       <v-flex text-xs-center xs12 md3 order-md2 class="symbol-test">
         <mil-symbol class="symbol-test" :sidc="sidc" :size="50" :simple-status-modifier="simpleStatusModifier" />
       </v-flex>
-      <v-flex>
+      <v-flex xs12>
         <search-symbols @input="updateFromSearch" />
         <sidc-picker v-model="sidc" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier" />
       </v-flex>

@@ -1,5 +1,15 @@
 <template>
   <div>
+    <!--
+    <v-layout row wrap>
+      <v-flex xs12 md5>
+        <sidc-picker-select :items="contextValues" label="Context" v-model="contextValue" :autocomplete="autocomplete" />
+      </v-flex>
+      <v-flex xs12 md7>
+        <sidc-picker-select :items="sidValues" label="Standard identity" v-model="sidValue" :autocomplete="autocomplete" />
+      </v-flex>
+    </v-layout>
+    -->
     <sidc-picker-select :items="contextValues" label="Context" v-model="contextValue" :autocomplete="autocomplete" />
     <sidc-picker-select :items="sidValues" label="Standard identity" v-model="sidValue" :autocomplete="autocomplete" />
     <sidc-picker-select :items="symbolSets" label="Symbol set" v-model="symbolSetValue" :autocomplete="autocomplete" />
