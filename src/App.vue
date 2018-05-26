@@ -65,6 +65,9 @@
       <router-view :key="autocomplete ^ simpleStatusModifier"></router-view>
       <snack-message/>
     </v-content>
+    <div style="display:none">
+      <a v-shortkey="{a: ['shift', '?'], b: ['?']}" @shortkey="showHelp"></a>
+    </div>
   </v-app>
 </template>
 
@@ -101,6 +104,12 @@ export default {
   mounted() {
     if (this.$vuetify.breakpoint.smAndDown) {
       this.autocomplete = false;
+    }
+  },
+
+  methods: {
+    showHelp() {
+      this.$router.push({name: "keyboardShortcuts"})
     }
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="isOpen" max-width="40%" @keydown.esc="close">
+  <v-dialog v-model="isOpen" max-width="500px" @keydown.esc="close">
     <v-card>
       <v-card-title class="headline">Keyboard shortcuts</v-card-title>
       <v-card-text>
@@ -14,7 +14,9 @@
         <kbd>Alt</kbd>&nbsp;
         <kbd>x</kbd> Clear
       </v-card-text>
-
+      <v-card-text>
+        <kbd>?</kbd> Show help
+      </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="green darken-1" flat @click.native="close">Close</v-btn>
