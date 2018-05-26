@@ -1,7 +1,12 @@
 <template>
   <v-container>
-    <v-flex xs12 md9 class="pb-3 mx-0">
-      <v-text-field class="sidc-field" label="SIDC" mask="##-#-#-##-#-#-##-######-##-##" permament v-model="sidc" />
+    <v-flex xs12 md9 class="mx-0">
+      <v-form v-model="valid">
+        <v-text-field class="sidc-field" label="SIDC" mask="##-#-#-##-#-#-##-######-##-##" 
+        permament 
+        v-model="inputSidc" 
+        :rules="sidcRules" />
+      </v-form>
     </v-flex>
     <v-layout v-bind="binding">
       <v-flex text-xs-center xs12 md3 order-md2 class="symbol-test">
@@ -29,7 +34,13 @@ export default {
   components: { MilSymbol, SidcPicker, SearchSymbols },
   data: () => ({
     searchSIDC: null,
-    editSIDC: true
+    editSIDC: true,
+    inputSidc: null,
+    valid: false,
+    sidcRules: [
+        v => !!v || 'Required',
+        v => (v && v.length > 10) || 'Invalid SIDC'
+      ],
   }),
 
   computed: {
@@ -48,6 +59,7 @@ export default {
 
       set(v) {
         this.$store.commit("setSidc", v);
+        this.inputSidc = v;
       }
     },
 
@@ -55,6 +67,14 @@ export default {
       const binding = {};
       if (this.$vuetify.breakpoint.smAndDown) binding.column = true;
       return binding;
+    }
+  },
+
+  watch: {
+    inputSidc(newValue, oldValue) {
+      if (this.valid && newValue) {
+        this.sidc = newValue;
+      }
     }
   },
 
