@@ -96,6 +96,12 @@ export default {
         this.$store.commit("setSimpleStatusModifier", v);
       }
     }
+  },
+
+  mounted() {
+    if (this.$vuetify.breakpoint.smAndDown) {
+      this.autocomplete = false;
+    }
   }
 };
 </script>
