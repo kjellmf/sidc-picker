@@ -6,8 +6,12 @@ import router from './router';
 import store from './store';
 
 /* 
-For offline fonts 
+For offline fonts you can install 
+
+npm install --save-dev material-design-icons typeface-roboto
+
 Move fonts folder to css/fonts
+
 
 */
 // import 'material-design-icons/iconfont/material-icons.css';

@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "deploy": "vue-cli-ghpages"
+    "deploy": "vue-cli-ghpages --CNAME=sidc.milsymb.net"
   },
   "dependencies": {
     "milstd": "^0.1.6",
