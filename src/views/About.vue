@@ -9,6 +9,14 @@
 
         <p>This project is similar to an earlier experiment, 
           <a href="https://github.com/kjellmf/military-symbology-explorer">Joint Military Symbology Explorer</a>.
+
+        <h2>Tips and tricks</h2>
+
+        <p>Use the keyboard shortcuts for faster navigation. Press <kbd>?</kbd> to see the available shortcuts.
+
+        <p>The material design theme I've used may feel a bit too spacious, especially on lower resolution screens.
+          A quick solution is to use the zoom functionality of your browser typically <kbd>Ctrl +</kbd> and <kbd>Ctrl -</kbd>.
+          This will bring padding and font sizes down to more sane values. 
           
 
         <h2>Credits</h2>
