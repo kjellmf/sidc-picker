@@ -1,6 +1,6 @@
 # Military symbol identification code picker
 
-See live demo at https://kjellmf.github.io/sidc-picker/#/
+See live demo at https://sidc.milsymb.net/
 
 A MILSTD 2525/APP6 symbol identification code picker experiment. Based on a previous project https://github.com/kjellmf/military-symbology-explorer. Also inspired by [Måns Beckman's](https://spatialillusions.com/) [unit symbol generator](https://spatialillusions.com/unitgenerator/).
 
