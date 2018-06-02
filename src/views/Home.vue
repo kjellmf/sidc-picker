@@ -14,7 +14,16 @@
       </v-flex>
       <v-flex xs12>
         <search-symbols @input="updateFromSearch" />
-        <sidc-picker v-model="sidc" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier" />
+        <v-tabs fixed-tabs v-model="activeTab">
+          <v-tab href="#tab-symbol" ripple>Symbol</v-tab>
+          <v-tab href="#tab-amplifiers" ripple>Text amplifiers</v-tab>
+          <v-tab-item id="tab-symbol">
+            <sidc-picker v-model="sidc" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier" />
+          </v-tab-item>
+          <v-tab-item id="tab-amplifiers">
+            <text-amplifiers />
+          </v-tab-item>
+        </v-tabs>
       </v-flex>
     </v-layout>
     <router-view name="dialogs"></router-view>
@@ -26,21 +35,23 @@
 import MilSymbol from "@/components//MilSymbol.vue";
 import SidcPicker from "@/components/SidcPicker.vue";
 import SearchSymbols from "@/components/SearchSymbols.vue";
+import TextAmplifiers from "@/components/TextAmplifiers.vue";
 
 import { Sidc } from "../symbology/sidc";
 
 export default {
   name: "SymbolPicker",
-  components: { MilSymbol, SidcPicker, SearchSymbols },
+  components: { MilSymbol, SidcPicker, SearchSymbols, TextAmplifiers },
   data: () => ({
     searchSIDC: null,
     editSIDC: true,
     inputSidc: null,
+    activeTab: null,
     valid: false,
     sidcRules: [
-        v => !!v || 'Required',
-        v => (v && v.length > 10) || 'Invalid SIDC'
-      ],
+      v => !!v || "Required",
+      v => (v && v.length > 10) || "Invalid SIDC"
+    ]
   }),
 
   computed: {
