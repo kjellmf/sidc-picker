@@ -14,7 +14,7 @@
       </v-flex>
       <v-flex xs12>
         <search-symbols @input="updateFromSearch" />
-        <v-tabs fixed-tabs v-model="activeTab">
+        <v-tabs fixed-tabs v-model="activeTab" v-shortkey="['alt', 't']" @shortkey.native="toggleTab">
           <v-tab href="#tab-symbol" ripple>Symbol</v-tab>
           <v-tab href="#tab-amplifiers" ripple>Text amplifiers</v-tab>
           <v-tab-item id="tab-symbol">
@@ -99,6 +99,13 @@ export default {
       oldSIDC.entityType = newSIDC.entityType;
       oldSIDC.entitySubType = newSIDC.entitySubType;
       this.sidc = oldSIDC.toString();
+    },
+    toggleTab(value) {
+      if (this.activeTab == "tab-amplifiers") {
+        this.activeTab = "tab-symbol"
+      } else {
+        this.activeTab = "tab-amplifiers"
+      }
     }
   }
 };

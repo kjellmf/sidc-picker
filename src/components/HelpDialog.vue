@@ -15,6 +15,10 @@
         <kbd>x</kbd> Clear
       </v-card-text>
       <v-card-text>
+        <kbd>Alt</kbd>&nbsp;
+        <kbd>t</kbd> Switch tab
+      </v-card-text>
+      <v-card-text>
         <kbd>?</kbd> Show help
       </v-card-text>
       <v-card-actions>
