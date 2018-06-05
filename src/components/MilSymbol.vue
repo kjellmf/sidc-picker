@@ -20,7 +20,7 @@ export default {
       default: false
     },
 
-    modifiers: {
+    amplifiers: {
       type: Object
     }
   },
@@ -34,7 +34,7 @@ export default {
       let symb = new ms.Symbol(
         this.sidc,
         { size: this.size, simpleStatusModifier: this.simpleStatusModifier },
-        this.modifiers || {}
+        this.amplifiers || {}
       );
       this.$el.innerHTML = symb.asSVG();
     }
@@ -44,7 +44,12 @@ export default {
     sidc: function(v) {
       this.setSymbol();
     },
+
     size: function(v) {
+      this.setSymbol();
+    },
+    
+    amplifiers: function(v) {
       this.setSymbol();
     }
   },
