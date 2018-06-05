@@ -8,6 +8,7 @@ export default new Vuex.Store({
     autocomplete: true,
     simpleStatusModifier: false,
     sidc: "10031000001211000000",
+    amplifiers: {},
     snackbarText: "",
     snackbar: false
   },
@@ -23,6 +24,10 @@ export default new Vuex.Store({
 
     setSidc(state, value) {
       state.sidc = value;
+    },
+
+    setAmplifiers(state, value) {
+      state.amplifiers = value;
     },
 
     setSnackbarText(state, value) {

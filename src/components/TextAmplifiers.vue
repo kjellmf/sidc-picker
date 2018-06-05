@@ -1,12 +1,52 @@
 <template>
-    <v-card>
-      <v-card-text>TODO</v-card-text>
-    </v-card>
+  <v-container fluid grid-list-xs >
+    <v-layout row wrap justify-space-between>
+      <v-flex v-for="field in fields" :key="field.amplifierId" xs12 sm6 md6 lg4>
+      <v-text-field  :hint="field.description" :label="`${field.field}–${field.label}`" v-model="amps[field.amplifierId]" @input="update" />
+      </v-flex>
+    </v-layout>  
+   </v-container>
 </template>
 
 <script>
+import { AMPLIFIERS } from "@/symbology/amplifiers";
 export default {
-  name: "TextAmplifiers"
+  name: "TextAmplifiers",
+  data: () => ({
+    amps: {}
+  }),
+
+  props: {
+    value: Object
+  },
+
+  computed: {
+    fields() {
+      // TODO: Filter according to the current symbolset
+      return AMPLIFIERS;
+    }
+  },
+
+  methods: {
+    update() {
+      let updatedCopy = Object.assign({}, this.value, this.amps);
+      this.$emit("input", updatedCopy);
+    },
+
+    updateForm() {
+      this.amps = Object.assign({}, this.value);
+    }
+  },
+
+  created() {
+    this.updateForm();
+  },
+
+  watch: {
+    value(val) {
+      this.updateForm();
+    }
+  }
 };
 </script>
 

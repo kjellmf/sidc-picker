@@ -10,7 +10,7 @@
     </v-flex>
     <v-layout v-bind="binding">
       <v-flex text-xs-center xs12 md3 order-md2 class="symbol-test">
-        <mil-symbol class="symbol-test" :sidc="sidc" :size="50" :simple-status-modifier="simpleStatusModifier" />
+        <mil-symbol class="symbol-test" :sidc="sidc" :size="50" :amplifiers="amplifiers" :simple-status-modifier="simpleStatusModifier" />
       </v-flex>
       <v-flex xs12>
         <search-symbols @input="updateFromSearch" />
@@ -21,7 +21,8 @@
             <sidc-picker v-model="sidc" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier" />
           </v-tab-item>
           <v-tab-item id="tab-amplifiers">
-            <text-amplifiers />
+            <text-amplifiers v-model="amplifiers" />
+            <v-btn @click="clearAmplifiers">clear</v-btn>
           </v-tab-item>
         </v-tabs>
       </v-flex>
@@ -74,6 +75,16 @@ export default {
       }
     },
 
+    amplifiers: {
+      get() {
+        return this.$store.state.amplifiers;
+      },
+
+      set(value) {
+        this.$store.commit("setAmplifiers", value);
+      }
+    },
+
     binding() {
       const binding = {};
       if (this.$vuetify.breakpoint.smAndDown) binding.column = true;
@@ -100,12 +111,17 @@ export default {
       oldSIDC.entitySubType = newSIDC.entitySubType;
       this.sidc = oldSIDC.toString();
     },
+    
     toggleTab(value) {
       if (this.activeTab == "tab-amplifiers") {
         this.activeTab = "tab-symbol"
       } else {
         this.activeTab = "tab-amplifiers"
       }
+    },
+
+    clearAmplifiers() {
+      this.amplifiers = {};
     }
   }
 };
