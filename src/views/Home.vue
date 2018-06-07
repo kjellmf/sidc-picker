@@ -3,9 +3,9 @@
     <v-flex xs12 md9>
       <v-form v-model="valid">
         <v-text-field class="sidc-field" label="SIDC" mask="##-#-#-##-#-#-##-######-##-##"
-          permament
-          v-model="inputSidc"
-          :rules="sidcRules" />
+                      permament
+                      v-model="inputSidc"
+                      :rules="sidcRules"/>
       </v-form>
     </v-flex>
     <v-layout v-bind="binding">
@@ -22,7 +22,7 @@
             <sidc-picker v-model="sidc" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier"/>
           </v-tab-item>
           <v-tab-item id="tab-amplifiers">
-            <text-amplifiers v-model="amplifiers"/>
+            <text-amplifiers :symbolset="symbolset" v-model="amplifiers"/>
             <v-btn @click="clearAmplifiers">clear</v-btn>
           </v-tab-item>
         </v-tabs>
@@ -74,6 +74,10 @@ export default {
         this.$store.commit("setSidc", v);
         this.inputSidc = v;
       }
+    },
+
+    symbolset() {
+      return this.sidc.substr(4, 2);
     },
 
     amplifiers: {

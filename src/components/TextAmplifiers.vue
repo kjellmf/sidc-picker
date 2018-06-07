@@ -11,6 +11,7 @@
 
 <script>
 import {AMPLIFIERS} from "@/symbology/amplifiers";
+import {AMPLIFIERS_IN_SYMBOLSET} from "@/symbology/amplifiers";
 
 export default {
   name: "TextAmplifiers",
@@ -19,12 +20,16 @@ export default {
   }),
 
   props: {
-    value: Object
+    value: Object,
+    symbolset: String,
   },
 
   computed: {
     fields() {
-      // TODO: Filter according to the current symbolset
+      let afields = AMPLIFIERS_IN_SYMBOLSET[this.symbolset];
+      if (afields) {
+        return AMPLIFIERS.filter(field => afields[field.field])
+      }
       return AMPLIFIERS;
     }
   },

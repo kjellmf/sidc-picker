@@ -1,9 +1,18 @@
 // Values based on code from https://github.com/spatialillusions/milsymbol-generator
 
+export const AIR_SYMBOLSET_VALUE = '01';
+export const MISSILE_SYMBOLSET_VALUE = '02';
+export const SPACE_SYMBOLSET_VALUE = '05';
 export const UNIT_SYMBOLSET_VALUE = '10';
+export const CIVILIAN_SYMBOLSET_VALUE = '11';
+export const EQUIPMENT_SYMBOLSET_VALUE = '15';
+export const INSTALLATION_SYMBOLSET_VALUE = '20';
+export const CONTROLMEASURE_SYMBOLSET_VALUE = '25';
 export const DISMOUNTED_SYMBOLSET_VALUE = '27';
 export const SURFACE_SYMBOLSET_VALUE = '30';
 export const SUBSURFACE_SYMBOLSET_VALUE = '35';
+export const MINE_SYMBOLSET_VALUE = '36';
+export const ACTIVITY_SYMBOLSET_VALUE = '40';
 
 export const contextValues = [
   {value: '0', text: 'Reality'},
@@ -59,7 +68,6 @@ export const echelonValues = [
   {value: '26', text: 'Command'}
 ];
 
-export const EQUIPMENT_SYMBOLSET_VALUE = '15';
 export const mobilityValues = [
   {value: '00', text: 'Unspecified'},
   {value: '31', text: 'Wheeled limited cross country'},
