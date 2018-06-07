@@ -1,6 +1,7 @@
 <template>
   <div>
-    <v-btn @click="doCopy" class="mx-0" v-shortkey="['alt', 'c']" @shortkey="doCopy" icon title="Copy SIDC to clipboard">
+    <v-btn @click="doCopy" class="mx-0" v-shortkey="['alt', 'c']" @shortkey="doCopy" icon
+           title="Copy SIDC to clipboard">
       <v-icon>assignment</v-icon>
     </v-btn>
     <v-btn class="mx-0" icon title="Clear" @click="clear" v-shortkey="['alt', 'x']" @shortkey="clear">
@@ -9,7 +10,7 @@
     <v-btn class="mx-0 px-0" flat title="Download symbol as PNG" @click="downloadPNG" href="download" download="nn.png">
       <v-icon>save_alt</v-icon>&nbsp; PNG
     </v-btn>
-    <v-btn class="mx-0 px-0"  flat title="Download symbol as SVG" @click="downloadSVG" href="download" download="nn.svg">
+    <v-btn class="mx-0 px-0" flat title="Download symbol as SVG" @click="downloadSVG" href="download" download="nn.svg">
       <v-icon>save_alt</v-icon>&nbsp; SVG
     </v-btn>
   </div>
@@ -17,14 +18,12 @@
 </template>
 
 <script>
-import { Sidc } from "../symbology/sidc";
+import {Sidc} from "../symbology/sidc";
 import * as ms from "milsymbol";
 
 export default {
   name: "HomeToolbar",
-  data: () => ({
-    
-  }),
+  data: () => ({}),
   computed: {
     sidc: {
       get() {
@@ -35,7 +34,7 @@ export default {
         this.$store.commit("setSidc", v);
       }
     },
-    amplifiers(){
+    amplifiers() {
       return this.$store.state.amplifiers;
     }
   },

@@ -2,26 +2,27 @@
   <v-container>
     <v-flex xs12 md9>
       <v-form v-model="valid">
-        <v-text-field class="sidc-field" label="SIDC" mask="##-#-#-##-#-#-##-######-##-##" 
-        permament 
-        v-model="inputSidc" 
-        :rules="sidcRules" />
+        <v-text-field class="sidc-field" label="SIDC" mask="##-#-#-##-#-#-##-######-##-##"
+          permament
+          v-model="inputSidc"
+          :rules="sidcRules" />
       </v-form>
     </v-flex>
     <v-layout v-bind="binding">
       <v-flex text-xs-center xs12 md3 order-md2 class="symbol-test">
-        <mil-symbol class="symbol-test" :sidc="sidc" :size="50" :amplifiers="amplifiers" :simple-status-modifier="simpleStatusModifier" />
+        <mil-symbol class="symbol-test" :sidc="sidc" :size="50" :amplifiers="amplifiers"
+                    :simple-status-modifier="simpleStatusModifier"/>
       </v-flex>
       <v-flex xs12>
-        <search-symbols @input="updateFromSearch" />
+        <search-symbols @input="updateFromSearch"/>
         <v-tabs fixed-tabs v-model="activeTab" v-shortkey="['alt', 't']" @shortkey.native="toggleTab">
           <v-tab href="#tab-symbol" ripple>Symbol</v-tab>
           <v-tab href="#tab-amplifiers" ripple>Text amplifiers</v-tab>
           <v-tab-item id="tab-symbol">
-            <sidc-picker v-model="sidc" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier" />
+            <sidc-picker v-model="sidc" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier"/>
           </v-tab-item>
           <v-tab-item id="tab-amplifiers">
-            <text-amplifiers v-model="amplifiers" />
+            <text-amplifiers v-model="amplifiers"/>
             <v-btn @click="clearAmplifiers">clear</v-btn>
           </v-tab-item>
         </v-tabs>
@@ -38,11 +39,11 @@ import SidcPicker from "@/components/SidcPicker.vue";
 import SearchSymbols from "@/components/SearchSymbols.vue";
 import TextAmplifiers from "@/components/TextAmplifiers.vue";
 
-import { Sidc } from "../symbology/sidc";
+import {Sidc} from "../symbology/sidc";
 
 export default {
   name: "SymbolPicker",
-  components: { MilSymbol, SidcPicker, SearchSymbols, TextAmplifiers },
+  components: {MilSymbol, SidcPicker, SearchSymbols, TextAmplifiers},
   data: () => ({
     searchSIDC: null,
     editSIDC: true,
@@ -111,7 +112,7 @@ export default {
       oldSIDC.entitySubType = newSIDC.entitySubType;
       this.sidc = oldSIDC.toString();
     },
-    
+
     toggleTab(value) {
       if (this.activeTab == "tab-amplifiers") {
         this.activeTab = "tab-symbol"
@@ -127,14 +128,14 @@ export default {
 };
 </script>
 <style scoped>
-.symbol-test {
-  position: sticky;
-  top: 50px;
-  background: #fafafa;
-  z-index: 4;
-}
+  .symbol-test {
+    position: sticky;
+    top: 50px;
+    background: #fafafa;
+    z-index: 4;
+  }
 
-.sidc-field {
-  font-weight: bolder;
-}
+  .sidc-field {
+    font-weight: bolder;
+  }
 </style>

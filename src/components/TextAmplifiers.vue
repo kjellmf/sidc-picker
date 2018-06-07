@@ -1,15 +1,17 @@
 <template>
-  <v-container fluid grid-list-xs >
+  <v-container fluid grid-list-xs>
     <v-layout row wrap justify-space-between>
       <v-flex v-for="field in fields" :key="field.amplifierId" xs12 sm6 md6 lg4>
-      <v-text-field  :hint="field.description" :label="`${field.field}–${field.label}`" v-model="amps[field.amplifierId]" @input="update" />
+        <v-text-field :hint="field.description" :label="`${field.field}–${field.label}`"
+                      v-model="amps[field.amplifierId]" @input="update"/>
       </v-flex>
-    </v-layout>  
-   </v-container>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
-import { AMPLIFIERS } from "@/symbology/amplifiers";
+import {AMPLIFIERS} from "@/symbology/amplifiers";
+
 export default {
   name: "TextAmplifiers",
   data: () => ({

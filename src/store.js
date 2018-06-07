@@ -41,7 +41,7 @@ export default new Vuex.Store({
   },
 
   actions: {
-    showMessage({ commit, state }, message) {
+    showMessage({commit, state}, message) {
       commit('setSnackbarText', message);
       commit('setSnackbar', true);
     }

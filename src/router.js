@@ -4,7 +4,8 @@ import Home from './views/Home.vue'
 import About from './views/About.vue'
 import HelpDialog from './components/HelpDialog.vue';
 import HomeToolbar from './views/HomeToolbar.vue';
-Vue.use(Router)
+
+Vue.use(Router);
 
 export default new Router({
   routes: [

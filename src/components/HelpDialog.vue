@@ -33,7 +33,7 @@
 export default {
   name: "help-dialog",
   data() {
-    return { isOpen: false };
+    return {isOpen: false};
   },
   mounted() {
     this.isOpen = true;

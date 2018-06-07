@@ -14,10 +14,10 @@ import MilSymbol from "./MilSymbol.vue";
 
 export default {
   name: "SidcPickerSelect",
-  components: { MilSymbol },
+  components: {MilSymbol},
   props: {
-    items: { type: Array, required: true },
-    autocomplete: { type: Boolean, default: false },
+    items: {type: Array, required: true},
+    autocomplete: {type: Boolean, default: false},
     label: String,
     value: String,
     simpleStatusModifier: null,

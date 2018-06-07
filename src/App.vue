@@ -41,7 +41,7 @@
         <v-subheader>Settings</v-subheader>
         <v-list-tile @click="simpleStatusModifier=!simpleStatusModifier">
           <v-list-tile-action>
-            <v-switch @click.stop v-model="simpleStatusModifier" />
+            <v-switch @click.stop v-model="simpleStatusModifier"/>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>Use simple status modifier</v-list-tile-title>
@@ -49,7 +49,7 @@
         </v-list-tile>
         <v-list-tile @click="autocomplete=!autocomplete">
           <v-list-tile-action>
-            <v-switch @click.stop v-model="autocomplete" />
+            <v-switch @click.stop v-model="autocomplete"/>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>Autocomplete</v-list-tile-title>
@@ -59,7 +59,7 @@
     </v-navigation-drawer>
     <v-toolbar dense fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <router-view name="toolbar"></router-view>  
+      <router-view name="toolbar"></router-view>
     </v-toolbar>
     <v-content>
       <router-view :key="autocomplete ^ simpleStatusModifier"></router-view>

@@ -9,7 +9,7 @@ export default {
   name: "MilSymbol",
   props: {
     sidc: String,
-    
+
     size: {
       type: Number,
       default: 15
@@ -33,7 +33,7 @@ export default {
     setSymbol() {
       let symb = new ms.Symbol(
         this.sidc,
-        { size: this.size, simpleStatusModifier: this.simpleStatusModifier },
+        {size: this.size, simpleStatusModifier: this.simpleStatusModifier},
         this.amplifiers || {}
       );
       this.$el.innerHTML = symb.asSVG();
@@ -41,21 +41,21 @@ export default {
   },
 
   watch: {
-    sidc: function(v) {
+    sidc: function (v) {
       this.setSymbol();
     },
 
-    size: function(v) {
+    size: function (v) {
       this.setSymbol();
     },
-    
-    amplifiers: function(v) {
+
+    amplifiers: function (v) {
       this.setSymbol();
     }
   },
 
   render(h) {
-    return h("span", { attrs: { class: "milsymbol" } });
+    return h("span", {attrs: {class: "milsymbol"}});
   }
 };
 

@@ -1,13 +1,13 @@
 <template>
-    <v-select
-    autofocus  
-     accesskey="s" 
-     :items="allIcons" label="Search" class="mb-3" 
-     v-model="myValue" 
-     autocomplete 
-     prepend-icon="search" solo
-    >
-    <template slot="item" slot-scope="data">  
+  <v-select
+    autofocus
+    accesskey="s"
+    :items="allIcons" label="Search" class="mb-3"
+    v-model="myValue"
+    autocomplete
+    prepend-icon="search" solo
+  >
+    <template slot="item" slot-scope="data">
       <v-list-tile-avatar>
         <mil-symbol :size="20" :sidc="data.item.value"></mil-symbol>
       </v-list-tile-avatar>
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { app6d } from "milstd";
+import {app6d} from "milstd";
 import MilSymbol from "./MilSymbol.vue";
 
 export default {

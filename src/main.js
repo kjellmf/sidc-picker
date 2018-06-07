@@ -5,8 +5,8 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-/* 
-For offline fonts you can install 
+/*
+For offline fonts you can install
 
 npm install --save-dev material-design-icons typeface-roboto
 
@@ -21,7 +21,6 @@ Move fonts folder to css/fonts
 import 'vuetify/dist/vuetify.min.css';
 import VueClipboard from 'vue-clipboard2';
 import vshortkey from 'vue-shortkey';
-
 
 
 Vue.use(VueClipboard);
