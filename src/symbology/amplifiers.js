@@ -6,8 +6,6 @@ export const AMPLIFIERS = [
     field: "H",
     maxLength: 20
   },
-
-
   {
     amplifierId: "altitudeDepth",
     label: "Altitude/depth",
@@ -15,7 +13,6 @@ export const AMPLIFIERS = [
     field: "X",
     maxLength: 14
   },
-
   {
     amplifierId: "combatEffectiveness",
     label: "Combat Effectiveness",
@@ -26,6 +23,12 @@ export const AMPLIFIERS = [
   {
     amplifierId: "commonIdentifier", label: "Common Identifier", description: "Example: \"Hawk\" for Hawk SAM system.",
     field: "AF"
+  },
+  {
+    amplifierId: "direction",
+    label: "Direction of Movement",
+    description: "A graphic amplifier that identifies the direction of movement or intended movement of an object",
+    field: "Q",
   },
   /*
   {
@@ -88,11 +91,35 @@ export const AMPLIFIERS = [
     field: "AD"
   },
   {
+    amplifierId: "quantity",
+    label: "Quantity",
+    description: "A text modifier in an equipment symbol that identifies the number of items present",
+    field: "C"
+  },
+  {
     amplifierId: "reinforcedReduced",
     label: "Reinforced or Reduced",
     description: "A text amplifier in a unit symbol that displays (+) for reinforced, (-) for reduced, (±) reinforced and reduced.",
     field: "F"
   },
+  {
+    amplifierId: "signatureEquipment",
+    label: "Signature Equipment",
+    description: "Identifies a detectable electronic signature \"!\" for hostile equipment",
+    field: "L"
+  },
+  {
+    amplifierId: "specialHeadquarters",
+    label: "Special Headquarters",
+    description: " A named command such as SHAPE, PACOM, and joint, multinational, or coalition commands such as CJTF, JTF, MJTF",
+    field: "AA"
+  },
+  // {
+  //   amplifierId: "sigint",
+  //   label: "Reinforced or Reduced",
+  //   description: "A text amplifier in a unit symbol that displays (+) for reinforced, (-) for reduced, (±) reinforced and reduced.",
+  //   field: "R2"
+  // },
   {
     amplifierId: "speed",
     label: "Speed",
@@ -106,15 +133,16 @@ export const AMPLIFIERS = [
     field: "G"
   },
   {
+    amplifierId: "type",
+    label: "Type",
+    description: "A text modifier for equipment that indicates types of equipment",
+    field: "V"
+  },
+  {
     amplifierId: "uniqueDesignation",
-    label: "Staff Comments",
+    label: "Unique Designation",
     description: "A text amplifier for units, equipment and installations that uniquely identifies a particular symbol or track number",
     field: "T"
   },
-  {
-    amplifierId: "type", label: "Type", description: "A text amplifier for equipment that indicates types of equipment",
-    field: "V"
-  },
 
-
-]
+];

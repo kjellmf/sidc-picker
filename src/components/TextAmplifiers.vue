@@ -2,7 +2,7 @@
   <v-container fluid grid-list-xs>
     <v-layout row wrap justify-space-between>
       <v-flex v-for="field in fields" :key="field.amplifierId" xs12 sm6 md6 lg4>
-        <v-text-field :hint="field.description" :label="`${field.field}–${field.label}`"
+        <v-text-field :hint="field.description" :label="field.label"
                       v-model="amps[field.amplifierId]" @input="update"/>
       </v-flex>
     </v-layout>
