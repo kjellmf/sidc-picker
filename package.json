@@ -15,7 +15,8 @@
     "vue-router": "^3.0.1",
     "vue-shortkey": "^3.1.4",
     "vuetify": "^1.0.18",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.10",

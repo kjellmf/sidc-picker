@@ -121,7 +121,7 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('changeStandard', "APP6");
+    this.$store.dispatch('changeStandard', this.$store.state.standard);
   },
 
   mounted() {

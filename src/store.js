@@ -1,10 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from "vuex-persistedstate";
+
 import * as ms from 'milsymbol';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  plugins: [createPersistedState({key: "SIDC", paths: ["standard", "simpleStatusModifier"]})],
   state: {
     autocomplete: true,
     simpleStatusModifier: false,
@@ -55,7 +58,6 @@ export default new Vuex.Store({
     changeStandard({commit, state}, standard) {
       commit('setStandard', standard);
       ms.setStandard(state.standard);
-
     }
   }
 })
