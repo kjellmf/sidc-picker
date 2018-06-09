@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import {app6d} from "milstd";
+import {app6d, ms2525d} from "milstd";
 import MilSymbol from "./MilSymbol.vue";
 
 export default {
@@ -29,15 +29,22 @@ export default {
     myValue: null
   }),
 
-  created() {
-    this.ssv = Object.keys(app6d).sort();
-  },
-
   computed: {
+    standard() {
+      if (this.$store.state.standard == "APP6") {
+        return app6d;
+      }
+      return ms2525d;
+    },
+
+    ssv() {
+      return Object.keys(this.standard).sort();
+    },
+
     allIcons() {
       let tmp = [];
       this.ssv.forEach(ssValue => {
-        let ss = app6d[ssValue]["main icon"] || [];
+        let ss = this.standard[ssValue]["main icon"] || [];
         let mm = ss.map(mi => {
           let text = mi.entity;
           if (mi["entity type"]) text += " - " + mi["entity type"];

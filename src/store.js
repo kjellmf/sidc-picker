@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import * as ms from 'milsymbol';
 
 Vue.use(Vuex);
 
@@ -10,7 +11,8 @@ export default new Vuex.Store({
     sidc: "10031000001211000000",
     amplifiers: {},
     snackbarText: "",
-    snackbar: false
+    snackbar: false,
+    standard: "APP6"
   },
 
   mutations: {
@@ -36,6 +38,10 @@ export default new Vuex.Store({
 
     setSnackbar(state, value) {
       state.snackbar = value;
+    },
+
+    setStandard(state, value) {
+      state.standard = value;
     }
 
   },
@@ -44,6 +50,12 @@ export default new Vuex.Store({
     showMessage({commit, state}, message) {
       commit('setSnackbarText', message);
       commit('setSnackbar', true);
+    },
+
+    changeStandard({commit, state}, standard) {
+      commit('setStandard', standard);
+      ms.setStandard(state.standard);
+
     }
   }
 })

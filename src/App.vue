@@ -55,6 +55,14 @@
             <v-list-tile-title>Autocomplete</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+        <v-list-tile two-line>
+          <v-list-tile-content>
+            <v-radio-group v-model="standard" row>
+              <v-radio label="APP6-D" value="APP6"/>
+              <v-radio label="2525-D" value="2525"/>
+            </v-radio-group>
+          </v-list-tile-content>
+        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar dense fixed app>
@@ -78,7 +86,7 @@ import SnackMessage from "@/components/SnackMessage.vue";
 export default {
   components: {SnackMessage},
   data: () => ({
-    drawer: null
+    drawer: null,
   }),
 
   computed: {
@@ -86,6 +94,7 @@ export default {
       get() {
         return this.$store.state.autocomplete;
       },
+
       set(v) {
         this.$store.commit("setAutocomplete", v);
       }
@@ -98,7 +107,21 @@ export default {
       set(v) {
         this.$store.commit("setSimpleStatusModifier", v);
       }
+    },
+
+    standard: {
+      get() {
+        return this.$store.state.standard;
+      },
+
+      set(value) {
+        return this.$store.dispatch('changeStandard', value);
+      }
     }
+  },
+
+  created() {
+    this.$store.dispatch('changeStandard', "APP6");
   },
 
   mounted() {

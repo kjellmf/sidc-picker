@@ -27,7 +27,7 @@
 
 <script>
 import Vue from "vue";
-import {app6d} from "milstd";
+import {app6d, ms2525d} from "milstd";
 import MilSymbol from "./MilSymbol.vue";
 import {Sidc} from "../symbology/sidc";
 import SidcPickerSelect from "./SidcPickerSelect.vue";
@@ -92,12 +92,21 @@ export default {
   },
 
   computed: {
+    standard() {
+      if (this.$store.state.standard == "APP6") {
+        return app6d;
+      } else {
+        return ms2525d;
+      }
+    },
+
     symbolSets() {
       let ssets = [];
-      for (let key in app6d) {
+      let standard = this.standard;
+      for (let key in standard) {
         ssets.push({
           value: key,
-          text: app6d[key].name,
+          text: standard[key].name,
           sidc:
           "10" + this.contextValue + this.sidValue + key + "00000000000000"
         });
@@ -133,7 +142,7 @@ export default {
     },
 
     symbolSet() {
-      return app6d[this.symbolSetValue]["main icon"] || [];
+      return this.standard[this.symbolSetValue]["main icon"] || [];
     },
 
     statusValues() {
@@ -217,7 +226,7 @@ export default {
     },
 
     modifierOne() {
-      let mod1s = app6d[this.symbolSetValue]["modifier 1"] || [];
+      let mod1s = this.standard[this.symbolSetValue]["modifier 1"] || [];
       return mod1s.map(mod1 => ({
         value: mod1.code,
         text: mod1.modifier,
@@ -233,7 +242,7 @@ export default {
     },
 
     modifierTwo() {
-      let mod2s = app6d[this.symbolSetValue]["modifier 2"] || [];
+      let mod2s = this.standard[this.symbolSetValue]["modifier 2"] || [];
       return mod2s.map(mod2 => ({
         value: mod2.code,
         text: mod2.modifier,
