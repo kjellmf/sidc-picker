@@ -9,8 +9,8 @@
       </v-form>
     </v-flex>
     <v-layout v-bind="binding">
-      <v-flex text-xs-center xs12 md3 order-md2 class="symbol-test">
-        <mil-symbol class="symbol-test" :sidc="sidc" :size="50" :amplifiers="amplifiers"
+      <v-flex text-xs-center xs12 md3 order-md2 class="symbol-sticky">
+        <mil-symbol class="symbol-sticky" :sidc="sidc" :size="50" :amplifiers="amplifiers"
                     :simple-status-modifier="simpleStatusModifier"/>
       </v-flex>
       <v-flex xs12>
@@ -132,11 +132,11 @@ export default {
 };
 </script>
 <style scoped>
-  .symbol-test {
+  .symbol-sticky {
     position: sticky;
     top: 50px;
     background: #fafafa;
-    z-index: 4;
+    z-index: 1;
   }
 
   .sidc-field {
