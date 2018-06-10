@@ -22,59 +22,12 @@
 <script>
 import {Sidc} from "../symbology/sidc";
 import * as ms from "milsymbol";
+import {ActionMixins} from "./mixins";
 
 export default {
   name: "HomeToolbar",
+  mixins: [ActionMixins],
   data: () => ({}),
-  computed: {
-    sidc: {
-      get() {
-        return this.$store.state.sidc;
-      },
-
-      set(v) {
-        this.$store.commit("setSidc", v);
-      }
-    },
-    amplifiers() {
-      return this.$store.state.amplifiers;
-    }
-  },
-  methods: {
-    doCopy() {
-      this.$copyText(this.sidc)
-        .then(e => {
-          console.log("Dispatch");
-          this.$store.dispatch("showMessage", "SIDC copied to clipboard");
-        })
-        .catch(e => {
-          console.warning("Failed to copy SIDC to clipboard");
-        });
-    },
-
-    clear() {
-      let oldSIDC = new Sidc(this.sidc);
-      oldSIDC.hqtfd = "0";
-      oldSIDC.amplifier = "0";
-      oldSIDC.amplifierDescriptor = "0";
-
-      this.sidc = oldSIDC.toString();
-    },
-
-    downloadPNG(ev) {
-      let downloadSymbol = new ms.Symbol(this.sidc, this.amplifiers);
-      let a = ev.currentTarget;
-      a.setAttribute("href", downloadSymbol.asCanvas().toDataURL())
-      a.setAttribute("download", this.sidc + ".png");
-    },
-
-    downloadSVG(ev) {
-      let downloadSymbol = new ms.Symbol(this.sidc, this.amplifiers);
-      let a = ev.currentTarget;
-      a.setAttribute("href", downloadSymbol.toDataURL())
-      a.setAttribute("download", this.sidc + ".svg");
-    }
-  }
 };
 </script>
 
