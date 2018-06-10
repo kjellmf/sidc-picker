@@ -10,7 +10,7 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/:sidc(\\d+)?',
       name: 'home',
       components: {
         default: Home,
@@ -29,5 +29,6 @@ export default new Router({
       name: 'about',
       component: About
     },
+
   ]
 })

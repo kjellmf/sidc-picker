@@ -102,10 +102,25 @@ export default {
       if (this.valid && newValue) {
         this.sidc = newValue;
       }
+    },
+
+    '$route'(to, from) {
+      this.updateSidcFromRoute();
     }
   },
 
+  created() {
+    this.updateSidcFromRoute();
+  },
+
   methods: {
+    updateSidcFromRoute() {
+      let sidc = this.$route.params.sidc;
+      if (sidc && sidc !== this.sidc) {
+        this.sidc = sidc;
+      }
+    },
+
     updateFromSearch(value) {
       if (!value) return;
       let oldSIDC = new Sidc(this.sidc);

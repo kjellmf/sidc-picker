@@ -13,8 +13,10 @@
     <v-btn class="mx-0 px-0" flat title="Download symbol as SVG" @click="downloadSVG" href="download" download="nn.svg">
       <v-icon>save_alt</v-icon>&nbsp; SVG
     </v-btn>
+    <v-btn class="mx-0 px-0" icon title="Permalink" :to="sidc">
+      <v-icon>link</v-icon>
+    </v-btn>
   </div>
-
 </template>
 
 <script>
