@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import About from './views/About.vue'
 import HelpDialog from './components/HelpDialog.vue';
 import HomeToolbar from './views/HomeToolbar.vue';
+import HomeDrawer from './views/HomeDrawer.vue';
 
 Vue.use(Router);
 
@@ -14,7 +15,8 @@ export default new Router({
       name: 'home',
       components: {
         default: Home,
-        toolbar: HomeToolbar
+        toolbar: HomeToolbar,
+        drawer: HomeDrawer,
       },
       children: [{
         path: 'help',

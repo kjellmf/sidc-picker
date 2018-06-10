@@ -38,31 +38,7 @@
             <v-list-tile-title>Keyboard shortcuts</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-subheader>Settings</v-subheader>
-        <v-list-tile @click="simpleStatusModifier=!simpleStatusModifier">
-          <v-list-tile-action>
-            <v-switch @click.stop v-model="simpleStatusModifier"/>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Use simple status modifier</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile @click="autocomplete=!autocomplete">
-          <v-list-tile-action>
-            <v-switch @click.stop v-model="autocomplete"/>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Autocomplete</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile two-line>
-          <v-list-tile-content>
-            <v-radio-group v-model="standard" row>
-              <v-radio label="APP6-D" value="APP6"/>
-              <v-radio label="2525-D" value="2525"/>
-            </v-radio-group>
-          </v-list-tile-content>
-        </v-list-tile>
+        <router-view name="drawer"></router-view>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar dense fixed app>
@@ -82,43 +58,14 @@
 <script>
 
 import SnackMessage from "@/components/SnackMessage.vue";
+import {SettingsMixins} from "./views/mixins";
 
 export default {
   components: {SnackMessage},
+  mixins: [SettingsMixins],
   data: () => ({
     drawer: null,
   }),
-
-  computed: {
-    autocomplete: {
-      get() {
-        return this.$store.state.autocomplete;
-      },
-
-      set(v) {
-        this.$store.commit("setAutocomplete", v);
-      }
-    },
-
-    simpleStatusModifier: {
-      get() {
-        return this.$store.state.simpleStatusModifier;
-      },
-      set(v) {
-        this.$store.commit("setSimpleStatusModifier", v);
-      }
-    },
-
-    standard: {
-      get() {
-        return this.$store.state.standard;
-      },
-
-      set(value) {
-        return this.$store.dispatch('changeStandard', value);
-      }
-    }
-  },
 
   created() {
     this.$store.dispatch('changeStandard', this.$store.state.standard);
