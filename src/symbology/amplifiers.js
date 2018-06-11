@@ -45,12 +45,6 @@ export const AMPLIFIERS = [
     description: "A graphic amplifier that identifies the direction of movement or intended movement of an object",
     field: "Q",
   },
-  /*
-  {
-    amplifierId: "direction", label: "Direction", description: "Example: \"Hawk\" for Hawk SAM system.",
-    field: "AF"
-  }
-  */
   {
     amplifierId: "dtg",
     label: "Date-Time Group",
@@ -161,7 +155,7 @@ export const AMPLIFIERS = [
   },
 ];
 
-const AIR_VALUES = {AL: 1, AO: 1, A: 1, G: 1, H: 1, P: 1, T: 1, V: 1, X: 1, Z: 1};
+const AIR_VALUES = {AL: 1, AO: 1, A: 1, G: 1, H: 1, P: 1, Q: 1, T: 1, V: 1, X: 1, Z: 1};
 const LAND_VALUES = {
   AA: 1, AB: 1, AC: 1, AD: 1, AE: 1, AF: 1, AL: 1, AO: 1, AR: 1,
   A: 1, B: 1, C: 1, D: 1, F: 1, G: 1, H: 1, J: 1, K: 1, L: 1, M: 1, N: 1,
@@ -170,7 +164,7 @@ const LAND_VALUES = {
 
 const SEA_VALUES = {
   AL: 1, AO: 1, AQ: 1, AR: 1,
-  G: 1, H: 1, T: 1, V: 1, X: 1
+  G: 1, H: 1, Q:1, T: 1, V: 1, X: 1
 };
 
 
