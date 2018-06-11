@@ -21,8 +21,6 @@
 </template>
 
 <script>
-import {Sidc} from "../symbology/sidc";
-import * as ms from "milsymbol";
 import {ActionMixins} from "./mixins";
 
 export default {

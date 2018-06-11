@@ -46,7 +46,7 @@
       <router-view name="toolbar"></router-view>
     </v-toolbar>
     <v-content>
-      <router-view :key="autocomplete ^ simpleStatusModifier"></router-view>
+      <router-view :key="autocomplete ^ simpleStatusModifier ^ standard"/>
       <snack-message/>
     </v-content>
     <div style="display:none">
