@@ -14,7 +14,7 @@
            download="nn.svg">
       <v-icon>save_alt</v-icon>&nbsp; SVG
     </v-btn>
-    <v-btn class="mx-0 px-0" icon title="Permalink" :to="sidc">
+    <v-btn class="mx-0 px-0" icon title="Permalink" :to="permalink">
       <v-icon>link</v-icon>
     </v-btn>
   </div>

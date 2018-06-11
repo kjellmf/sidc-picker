@@ -1,5 +1,6 @@
 import * as ms from 'milsymbol';
 import {Sidc} from "../symbology/sidc";
+import {AMPLIFIERS, AMPLIFIERS_IN_SYMBOLSET} from "../symbology/amplifiers";
 
 export var SettingsMixins = {
   computed: {
@@ -47,6 +48,27 @@ export const ActionMixins = {
     },
     amplifiers() {
       return this.$store.state.amplifiers;
+    },
+    symbolset() {
+      return this.sidc.substr(4, 2);
+    },
+
+    permalink() {
+      let amps = AMPLIFIERS;
+      let afields = AMPLIFIERS_IN_SYMBOLSET[this.symbolset];
+      if (afields) {
+        amps = AMPLIFIERS.filter(field => afields[field.field])
+      }
+
+      let amplifiers = {};
+      amps.forEach(f => {
+        if (this.amplifiers[f.amplifierId]) {
+          amplifiers[f.amplifierId] = this.amplifiers[f.amplifierId]
+        }
+      });
+
+      return this.sidc + "?" + Object.keys(amplifiers).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(amplifiers[k])}`).join('&');
+
     }
   },
   methods: {

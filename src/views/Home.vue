@@ -119,6 +119,7 @@ export default {
       if (sidc && sidc !== this.sidc) {
         this.sidc = sidc;
       }
+      this.amplifiers = Object.assign(this.amplifiers, this.$route.query);
     },
 
     updateFromSearch(value) {
@@ -133,7 +134,7 @@ export default {
     },
 
     toggleTab(value) {
-      if (this.activeTab == "tab-amplifiers") {
+      if (this.activeTab === "tab-amplifiers") {
         this.activeTab = "tab-symbol"
       } else {
         this.activeTab = "tab-amplifiers"

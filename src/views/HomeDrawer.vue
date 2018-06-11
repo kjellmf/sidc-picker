@@ -33,7 +33,7 @@
         <v-list-tile-title>Download symbol as SVG</v-list-tile-title>
       </v-list-tile-content>
     </v-list-tile>
-    <v-list-tile :to="sidc">
+    <v-list-tile :to="permalink">
       <v-list-tile-action>
         <v-icon>link</v-icon>
       </v-list-tile-action>
