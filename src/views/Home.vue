@@ -14,12 +14,17 @@
                     :simple-status-modifier="simpleStatusModifier"/>
       </v-flex>
       <v-flex xs12>
-        <search-symbols @input="updateFromSearch"/>
+        <search-symbols @input="updateFromSearch" :standard="standard"/>
         <v-tabs fixed-tabs v-model="activeTab" v-shortkey="['alt', 't']" @shortkey.native="toggleTab">
           <v-tab href="#tab-symbol" ripple>Symbol</v-tab>
           <v-tab href="#tab-amplifiers" ripple>Text amplifiers</v-tab>
           <v-tab-item id="tab-symbol">
-            <sidc-picker v-model="sidc" :autocomplete="autocomplete" :simple-status-modifier="simpleStatusModifier"/>
+            <sidc-picker
+              v-model="sidc"
+              :autocomplete="autocomplete"
+              :simple-status-modifier="simpleStatusModifier"
+              :standard="standard"
+            />
           </v-tab-item>
           <v-tab-item id="tab-amplifiers">
             <text-amplifiers :symbolset="symbolset" v-model="amplifiers"/>
@@ -88,6 +93,10 @@ export default {
       set(value) {
         this.$store.commit("setAmplifiers", value);
       }
+    },
+
+    standard() {
+      return this.$store.state.standard;
     },
 
     binding() {

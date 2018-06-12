@@ -58,7 +58,8 @@ export default {
     hint: {type: String, default: "Symbol identification code"},
     rules: {type: Array},
     autocomplete: {type: Boolean, default: true},
-    simpleStatusModifier: {type: Boolean, default: false}
+    simpleStatusModifier: {type: Boolean, default: false},
+    standard: {type:String, default: "APP6"}
   },
 
   data() {
@@ -92,8 +93,8 @@ export default {
   },
 
   computed: {
-    standard() {
-      if (this.$store.state.standard == "APP6") {
+    cstandard() {
+      if (this.standard == "APP6") {
         return app6d;
       } else {
         return ms2525d;
@@ -102,7 +103,7 @@ export default {
 
     symbolSets() {
       let ssets = [];
-      let standard = this.standard;
+      let standard = this.cstandard;
       for (let key in standard) {
         ssets.push({
           value: key,
@@ -142,7 +143,7 @@ export default {
     },
 
     symbolSet() {
-      return this.standard[this.symbolSetValue]["main icon"] || [];
+      return this.cstandard[this.symbolSetValue]["main icon"] || [];
     },
 
     statusValues() {
@@ -226,7 +227,7 @@ export default {
     },
 
     modifierOne() {
-      let mod1s = this.standard[this.symbolSetValue]["modifier 1"] || [];
+      let mod1s = this.cstandard[this.symbolSetValue]["modifier 1"] || [];
       return mod1s.map(mod1 => ({
         value: mod1.code,
         text: mod1.modifier,
@@ -242,7 +243,7 @@ export default {
     },
 
     modifierTwo() {
-      let mod2s = this.standard[this.symbolSetValue]["modifier 2"] || [];
+      let mod2s = this.cstandard[this.symbolSetValue]["modifier 2"] || [];
       return mod2s.map(mod2 => ({
         value: mod2.code,
         text: mod2.modifier,

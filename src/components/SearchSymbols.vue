@@ -25,26 +25,29 @@ export default {
   components: {
     MilSymbol
   },
+  props: {
+    standard: {type: String, default: "APP6"}
+  },
   data: () => ({
     myValue: null
   }),
 
   computed: {
-    standard() {
-      if (this.$store.state.standard == "APP6") {
+    cstandard() {
+      if (this.standard == "APP6") {
         return app6d;
       }
       return ms2525d;
     },
 
     ssv() {
-      return Object.keys(this.standard).sort();
+      return Object.keys(this.cstandard).sort();
     },
 
     allIcons() {
       let tmp = [];
       this.ssv.forEach(ssValue => {
-        let ss = this.standard[ssValue]["main icon"] || [];
+        let ss = this.cstandard[ssValue]["main icon"] || [];
         let mm = ss.map(mi => {
           let text = mi.entity;
           if (mi["entity type"]) text += " - " + mi["entity type"];
