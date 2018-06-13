@@ -94,7 +94,7 @@ export default {
 
   computed: {
     cstandard() {
-      if (this.standard == "APP6") {
+      if (this.standard === "APP6") {
         return app6d;
       } else {
         return ms2525d;

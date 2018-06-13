@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import {ActionMixins} from "./mixins";
+import {ActionMixins, SettingsMixins} from "./mixins";
 
 export default {
   name: "HomeToolbar",
-  mixins: [ActionMixins],
+  mixins: [SettingsMixins, ActionMixins],
   data: () => ({}),
 };
 </script>

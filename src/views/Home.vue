@@ -2,15 +2,17 @@
   <v-container>
     <v-flex xs12 md9>
       <v-form v-model="valid">
-        <v-text-field class="sidc-field" label="SIDC" mask="##-#-#-##-#-#-##-######-##-##"
-                      permament
-                      v-model="inputSidc"
-                      :rules="sidcRules"/>
+        <v-text-field
+          class="sidc-field" label="SIDC"
+          mask="##-#-#-##-#-#-##-######-##-##"
+          permament
+          v-model="inputSidc"
+          :rules="sidcRules"/>
       </v-form>
     </v-flex>
     <v-layout v-bind="binding">
       <v-flex text-xs-center xs12 md3 order-md2 class="symbol-sticky">
-        <mil-symbol class="symbol-sticky" :sidc="sidc" :size="50" :amplifiers="amplifiers"
+        <mil-symbol :key="standard" class="symbol-sticky" :sidc="sidc" :size="50" :amplifiers="amplifiers"
                     :simple-status-modifier="simpleStatusModifier"/>
       </v-flex>
       <v-flex xs12>
@@ -49,12 +51,14 @@ import {Sidc} from "../symbology/sidc";
 export default {
   name: "SymbolPicker",
   components: {MilSymbol, SidcPicker, SearchSymbols, TextAmplifiers},
+
   data: () => ({
     searchSIDC: null,
     editSIDC: true,
     inputSidc: null,
     activeTab: null,
     valid: false,
+    standard: "APP6",
     sidcRules: [
       v => !!v || "Required",
       v => (v && v.length > 10) || "Invalid SIDC"
@@ -95,10 +99,6 @@ export default {
       }
     },
 
-    standard() {
-      return this.$store.state.standard;
-    },
-
     binding() {
       const binding = {};
       if (this.$vuetify.breakpoint.smAndDown) binding.column = true;
@@ -129,6 +129,7 @@ export default {
         this.sidc = sidc;
       }
       this.amplifiers = Object.assign(this.amplifiers, this.$route.query);
+      this.standard = this.$route.params.standard || "APP6";
     },
 
     updateFromSearch(value) {

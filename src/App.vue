@@ -6,7 +6,7 @@
           <v-toolbar-title>Military symbology picker</v-toolbar-title>
         </v-toolbar>
         <v-subheader>Navigation</v-subheader>
-        <v-list-tile to="/">
+        <v-list-tile :to="homelocation">
           <v-list-tile-action>
             <v-icon>home</v-icon>
           </v-list-tile-action>
@@ -46,7 +46,7 @@
       <router-view name="toolbar"></router-view>
     </v-toolbar>
     <v-content>
-      <router-view :key="autocomplete ^ simpleStatusModifier ^ standard"/>
+      <router-view :key="autocomplete ^ simpleStatusModifier"/>
       <snack-message/>
     </v-content>
     <div style="display:none">
@@ -74,6 +74,13 @@ export default {
   mounted() {
     if (this.$vuetify.breakpoint.smAndDown) {
       this.autocomplete = false;
+    }
+
+  },
+
+  computed: {
+    homelocation() {
+      return {name: "home", params: {standard: this.$store.state.standard}}
     }
   },
 

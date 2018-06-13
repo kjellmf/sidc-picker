@@ -29,7 +29,8 @@ export var SettingsMixins = {
       },
 
       set(value) {
-        return this.$store.dispatch('changeStandard', value);
+        this.$store.dispatch('changeStandard', value);
+        this.$router.push({name:"home", params: {standard:value}});
       }
     }
   }
@@ -66,8 +67,9 @@ export const ActionMixins = {
           amplifiers[f.amplifierId] = this.amplifiers[f.amplifierId]
         }
       });
+      return {name: 'home', params: {standard:this.standard || "APP6", sidc:this.sidc}, query:amplifiers};
 
-      return this.sidc + "?" + Object.keys(amplifiers).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(amplifiers[k])}`).join('&');
+      //return this.sidc + "?" + Object.keys(amplifiers).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(amplifiers[k])}`).join('&');
 
     }
   },

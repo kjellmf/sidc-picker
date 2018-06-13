@@ -5,13 +5,14 @@ import About from './views/About.vue'
 import HelpDialog from './components/HelpDialog.vue';
 import HomeToolbar from './views/HomeToolbar.vue';
 import HomeDrawer from './views/HomeDrawer.vue';
+import store from "./store.js"
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: '/:sidc(\\d+)?',
+      path: '/:standard/:sidc(\\d+)?',
       name: 'home',
       components: {
         default: Home,
@@ -31,6 +32,9 @@ export default new Router({
       name: 'about',
       component: About
     },
+    {
+      path: '/', redirect: {name:'home', params:{standard:store.state.standard}}
+    }
 
   ]
 })
