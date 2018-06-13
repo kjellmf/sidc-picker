@@ -12,6 +12,11 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
+      path: '/about',
+      name: 'about',
+      component: About
+    },
+    {
       path: '/:standard/:sidc(\\d+)?',
       name: 'home',
       components: {
@@ -26,11 +31,6 @@ export default new Router({
           dialogs: HelpDialog,
         },
       },]
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: About
     },
     {
       path: '/', redirect: {name:'home', params:{standard:store.state.standard}}
