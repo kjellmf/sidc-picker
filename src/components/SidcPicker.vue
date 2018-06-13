@@ -14,7 +14,7 @@
     <sidc-picker-select :items="sidValues" label="Standard identity" v-model="sidValue" :autocomplete="autocomplete"/>
     <sidc-picker-select :items="symbolSets" label="Symbol set" v-model="symbolSetValue" :autocomplete="autocomplete"/>
     <sidc-picker-select :items="statusValues" label="Status" v-model="statusValue" :autocomplete="autocomplete"
-                        :simple-status-modifier="simpleStatusModifier"/>
+                        :simple-status-modifier="simpleStatusModifier" :key="simpleStatusModifier"/>
     <sidc-picker-select :items="hqTfDummy" v-model="hqTfDummyValue" label="Headquarters/Task force/Dummy"
                         :autocomplete="autocomplete"/>
     <sidc-picker-select :items="emtValues" v-model="emtValue" label="Echelon/Mobility/Towed array"
@@ -124,8 +124,7 @@ export default {
         e.value +
         this.sidValue +
         this.symbolSetValue +
-        this.statusValue +
-        "0000000000000"
+        "00000000000000"
       }));
     },
 
@@ -137,8 +136,7 @@ export default {
         this.contextValue +
         e.value +
         this.symbolSetValue +
-        this.statusValue +
-        "0000000000000"
+        "00000000000000"
       }));
     },
 

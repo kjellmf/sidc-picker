@@ -12,7 +12,7 @@
     </v-flex>
     <v-layout v-bind="binding">
       <v-flex text-xs-center xs12 md3 order-md2 class="symbol-sticky">
-        <mil-symbol :key="standard" class="symbol-sticky" :sidc="sidc" :size="50" :amplifiers="amplifiers"
+        <mil-symbol :key="standard ^ simpleStatusModifier" class="symbol-sticky" :sidc="sidc" :size="50" :amplifiers="amplifiers"
                     :simple-status-modifier="simpleStatusModifier"/>
       </v-flex>
       <v-flex xs12>
