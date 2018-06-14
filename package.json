@@ -14,7 +14,7 @@
     "vue-clipboard2": "^0.1.1",
     "vue-router": "^3.0.1",
     "vue-shortkey": "^3.1.4",
-    "vuetify": "^1.0.18",
+    "vuetify": "^1.0.19",
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.4"
   },
