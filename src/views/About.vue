@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-layout>
-      <v-flex>
+      <v-flex xs12 md10 lg8>
         <h1 class="display-2">SIDC picker</h1>
         <v-divider class="my-3"></v-divider>
 

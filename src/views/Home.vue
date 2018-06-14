@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-flex xs12 md9>
+    <v-flex xs12 md7>
       <v-form v-model="valid">
         <v-text-field
           class="sidc-field" label="SIDC"
@@ -11,7 +11,7 @@
       </v-form>
     </v-flex>
     <v-layout v-bind="binding">
-      <v-flex text-xs-center xs12 md3 order-md2 class="symbol-sticky">
+      <v-flex text-xs-center xs12 md5 order-md2 class="symbol-sticky">
         <mil-symbol :key="standard ^ simpleStatusModifier" class="symbol-sticky" :sidc="sidc" :size="50" :amplifiers="amplifiers"
                     :simple-status-modifier="simpleStatusModifier"/>
       </v-flex>
