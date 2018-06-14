@@ -8,6 +8,9 @@ A MILSTD 2525/APP6 symbol identification code picker experiment. Based on a prev
 
 Thanks to [Måns Beckman](https://spatialillusions.com/) for creating the fantastic [milsymbol](https://spatialillusions.com/milsymbol/index.html) and [milstd](https://github.com/spatialillusions/milstd) libraries! 
 
+![alt text](images/screenshot1.png "Example 1")
+
+![alt text](images/screenshot2.png "Works on mobile")
 
 ## Getting started
 
