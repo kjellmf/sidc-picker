@@ -99,6 +99,16 @@ export default {
       }
     },
 
+     sstandard: {
+      get() {
+        return this.$store.state.standard;
+      },
+
+      set(value) {
+        this.$store.dispatch('changeStandard', value);
+      }
+    },
+
     binding() {
       const binding = {};
       if (this.$vuetify.breakpoint.smAndDown) binding.column = true;
@@ -130,6 +140,9 @@ export default {
       }
       this.amplifiers = Object.assign(this.amplifiers, this.$route.query);
       this.standard = this.$route.params.standard || "APP6";
+      if (this.sstandard !== this.standard) {
+         this.sstandard = this.standard;
+      }
     },
 
     updateFromSearch(value) {
