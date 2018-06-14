@@ -43,5 +43,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+  .menu__content a.list__tile {
+    min-height: 48px;
+    height: auto;
+  }
 </style>
