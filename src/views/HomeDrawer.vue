@@ -1,5 +1,13 @@
 <template>
   <div>
+    <v-list-tile :to="{name:'keyboardShortcuts'}">
+      <v-list-tile-action>
+        <v-icon>help_outline</v-icon>
+      </v-list-tile-action>
+      <v-list-tile-content>
+        <v-list-tile-title>Keyboard shortcuts</v-list-tile-title>
+      </v-list-tile-content>
+    </v-list-tile>
     <v-subheader>Actions</v-subheader>
     <v-list-tile @click="doCopy">
       <v-list-tile-action>
@@ -42,6 +50,14 @@
       </v-list-tile-content>
     </v-list-tile>
     <v-subheader>Settings</v-subheader>
+    <v-list-tile>
+      <v-list-tile-content>
+        <v-radio-group v-model="standard" row class="pt-0">
+          <v-radio label="APP6-D" value="APP6"/>
+          <v-radio label="2525-D" value="2525"/>
+        </v-radio-group>
+      </v-list-tile-content>
+    </v-list-tile>
     <v-list-tile @click="simpleStatusModifier=!simpleStatusModifier">
       <v-list-tile-action>
         <v-switch @click.stop v-model="simpleStatusModifier"/>
@@ -58,14 +74,9 @@
         <v-list-tile-title>Autocomplete</v-list-tile-title>
       </v-list-tile-content>
     </v-list-tile>
-    <v-list-tile two-line>
-      <v-list-tile-content>
-        <v-radio-group v-model="standard" row>
-          <v-radio label="APP6-D" value="APP6"/>
-          <v-radio label="2525-D" value="2525"/>
-        </v-radio-group>
-      </v-list-tile-content>
-    </v-list-tile>
+    <div style="display:none">
+      <a v-shortkey="{a: ['shift', '?'], b: ['?']}" @shortkey="showHelp"></a>
+    </div>
   </div>
 </template>
 
@@ -73,7 +84,12 @@
 import {ActionMixins, SettingsMixins} from "./mixins";
 
 export default {
-  mixins: [SettingsMixins, ActionMixins]
+  mixins: [SettingsMixins, ActionMixins],
+  methods: {
+    showHelp() {
+      this.$router.push({name: "keyboardShortcuts"})
+    }
+  }
 };
 </script>
 

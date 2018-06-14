@@ -30,14 +30,6 @@
             <v-list-tile-title>GitHub repo</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile :to="{name:'keyboardShortcuts'}">
-          <v-list-tile-action>
-            <v-icon>help_outline</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Keyboard shortcuts</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
         <router-view name="drawer"></router-view>
       </v-list>
     </v-navigation-drawer>
@@ -49,9 +41,6 @@
       <router-view :key="autocomplete"/>
       <snack-message/>
     </v-content>
-    <div style="display:none">
-      <a v-shortkey="{a: ['shift', '?'], b: ['?']}" @shortkey="showHelp"></a>
-    </div>
   </v-app>
 </template>
 
@@ -75,7 +64,6 @@ export default {
     if (this.$vuetify.breakpoint.smAndDown) {
       this.autocomplete = false;
     }
-
   },
 
   computed: {
@@ -83,12 +71,6 @@ export default {
       return {name: "home", params: {standard: this.$store.state.standard}}
     }
   },
-
-  methods: {
-    showHelp() {
-      this.$router.push({name: "keyboardShortcuts"})
-    }
-  }
 };
 </script>
 
