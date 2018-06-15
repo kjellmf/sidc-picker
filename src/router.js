@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import About from './views/About.vue'
 import HelpDialog from './components/HelpDialog.vue';
 import HomeToolbar from './views/HomeToolbar.vue';
+import AboutToolbar from './views/AboutToolbar';
 import HomeDrawer from './views/HomeDrawer.vue';
 import store from "./store.js"
 
@@ -14,7 +15,10 @@ export default new Router({
     {
       path: '/about',
       name: 'about',
-      component: About
+      components: {
+        default: About,
+        toolbar: AboutToolbar,
+      }
     },
     {
       path: '/:standard/:sidc(\\d+)?',
