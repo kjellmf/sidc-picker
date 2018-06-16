@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar dense>
+    <v-toolbar class="sticky" dense>
       <v-btn icon @click="toggleAll" title="Select/unselect all">
         <v-icon>done_all</v-icon>
       </v-btn>
@@ -100,5 +100,9 @@ export default {
 </script>
 
 <style scoped>
-
+  .sticky {
+    position: sticky;
+    top: 0px;
+    z-index: 1
+  }
 </style>
