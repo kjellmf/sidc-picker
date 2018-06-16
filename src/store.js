@@ -70,7 +70,6 @@ export default new Vuex.Store({
     },
 
     saveSymbol({commit, state}, symbolInfo) {
-      console.log(symbolInfo);
       commit('addSavedSymbol', symbolInfo);
     },
 

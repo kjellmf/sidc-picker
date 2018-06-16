@@ -138,7 +138,7 @@ export default {
       if (sidc && sidc !== this.sidc) {
         this.sidc = sidc;
       }
-      this.amplifiers = Object.assign(this.amplifiers, this.$route.query);
+      this.amplifiers = Object.assign(this.$route.query);
       this.standard = this.$route.params.standard || "APP6";
       if (this.sstandard !== this.standard) {
          this.sstandard = this.standard;

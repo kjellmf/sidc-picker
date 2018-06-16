@@ -54,20 +54,28 @@ export const ActionMixins = {
       return this.sidc.substr(4, 2);
     },
 
-    permalink() {
+    filteredAmplifiers() {
       let amps = AMPLIFIERS;
       let afields = AMPLIFIERS_IN_SYMBOLSET[this.symbolset];
       if (afields) {
         amps = AMPLIFIERS.filter(field => afields[field.field])
       }
 
-      let amplifiers = {};
+      let fAmplifiers = {};
       amps.forEach(f => {
         if (this.amplifiers[f.amplifierId]) {
-          amplifiers[f.amplifierId] = this.amplifiers[f.amplifierId]
+          fAmplifiers[f.amplifierId] = this.amplifiers[f.amplifierId]
         }
       });
-      return {name: 'home', params: {standard: this.standard || "APP6", sidc: this.sidc}, query: amplifiers};
+      return fAmplifiers;
+    },
+
+    permalink() {
+      return {
+        name: 'home',
+        params: {standard: this.standard || "APP6", sidc: this.sidc},
+        query: this.filteredAmplifiers
+      };
     }
   },
   methods: {
@@ -115,7 +123,7 @@ export const ActionMixins = {
     },
 
     saveSymbol() {
-      let symbolInfo = {sidc: this.sidc, amplifiers: {...this.amplifiers}, standard: this.standard}
+      let symbolInfo = {sidc: this.sidc, amplifiers: {...this.filteredAmplifiers}, standard: this.standard}
       this.$store.dispatch("saveSymbol", symbolInfo)
         .then(e => this.$store.dispatch("showMessage", "Symbol saved"));
     }

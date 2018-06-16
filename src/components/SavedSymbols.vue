@@ -4,13 +4,9 @@
       <v-btn flat @click="clear">Clear</v-btn>
     </v-toolbar>
     <v-list three-line v-if="savedSymbols.length">
-      <v-list-tile v-for="info in savedSymbols" >
-        <v-list-tile-avatar>
-          <mil-symbol :size="25" :sidc="info.sidc" :amplifiers="info.amplifiers"/>
-        </v-list-tile-avatar>
+      <v-list-tile v-for="(info,index) in savedSymbols" :key="index" :to="permalink(info)">
         <v-list-tile-content>
-          <v-list-tile-title>{{info.sidc}}</v-list-tile-title>
-          <v-list-tile-sub-title>{{info.sidc}}</v-list-tile-sub-title>
+          <mil-symbol :size="25" :sidc="info.sidc" :amplifiers="info.amplifiers"/>
         </v-list-tile-content>
       </v-list-tile>
     </v-list>
@@ -26,11 +22,16 @@ export default {
   computed: {
     savedSymbols() {
       return this.$store.state.savedSymbols || [];
-    }
+    },
+
   },
   methods: {
     clear() {
       this.$store.commit("clearSavedSymbols");
+    },
+
+    permalink(info) {
+      return {name: 'home', params: {standard: info.standard || "APP6", sidc: info.sidc}, query: info.amplifiers};
     }
   }
 }
