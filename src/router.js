@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import PickerView from './views/PickerView.vue'
 import About from './views/About.vue'
 import HelpDialog from './components/HelpDialog.vue';
-import HomeToolbar from './views/HomeToolbar.vue';
+import PickerViewToolbar from './views/PickerViewToolbar.vue';
 import AboutToolbar from './views/AboutToolbar';
-import HomeDrawer from './views/HomeDrawer.vue';
+import PickerViewDrawer from './views/PickerViewDrawer.vue';
 import store from "./store.js"
 
 Vue.use(Router);
@@ -24,9 +24,9 @@ export default new Router({
       path: '/:standard/:sidc(\\d+)?',
       name: 'home',
       components: {
-        default: Home,
-        toolbar: HomeToolbar,
-        drawer: HomeDrawer,
+        default: PickerView,
+        toolbar: PickerViewToolbar,
+        drawer: PickerViewDrawer,
       },
       children: [{
         path: 'help',
