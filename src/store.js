@@ -52,9 +52,9 @@ export default new Vuex.Store({
       state.savedSymbols.push(symbolInfo);
     },
 
-    clearSavedSymbols(state) {
-      state.savedSymbols = [];
-    }
+    setSavedSymbols(state, value) {
+      state.savedSymbols = value;
+    },
 
   },
 
@@ -72,6 +72,10 @@ export default new Vuex.Store({
     saveSymbol({commit, state}, symbolInfo) {
       commit('addSavedSymbol', symbolInfo);
     },
+
+    clearSavedSymbols({commit}) {
+      commit('setSavedSymbols', []);
+    }
 
 
   }
