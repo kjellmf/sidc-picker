@@ -1,5 +1,9 @@
 <template>
   <v-app id="app">
+    <v-navigation-drawer
+      v-model="drawerRight" fixed right clipped app>
+      <saved-symbols/>
+    </v-navigation-drawer>
     <v-navigation-drawer v-model="drawer" fixed app class="mdrawer">
       <v-list dense>
         <v-toolbar prominent flat class="transparent">
@@ -36,6 +40,8 @@
     <v-toolbar dense fixed app class="mtoolbar">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <router-view name="toolbar"></router-view>
+      <v-spacer></v-spacer>
+      <v-toolbar-side-icon @click.stop="drawerRight = !drawerRight"></v-toolbar-side-icon>
     </v-toolbar>
     <v-content>
       <router-view :key="autocomplete"/>
@@ -48,12 +54,14 @@
 
 import SnackMessage from "@/components/SnackMessage.vue";
 import {SettingsMixins} from "./views/mixins";
+import SavedSymbols from "./components/SavedSymbols";
 
 export default {
-  components: {SnackMessage},
+  components: {SavedSymbols, SnackMessage},
   mixins: [SettingsMixins],
   data: () => ({
     drawer: null,
+    drawerRight: null,
   }),
 
   created() {

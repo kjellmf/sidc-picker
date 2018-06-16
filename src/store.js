@@ -7,7 +7,7 @@ import * as ms from 'milsymbol';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  plugins: [createPersistedState({key: "SIDC", paths: ["standard", "simpleStatusModifier"]})],
+  plugins: [createPersistedState({key: "SIDC", paths: ["standard", "simpleStatusModifier", "savedSymbols"]})],
   state: {
     autocomplete: true,
     simpleStatusModifier: false,
@@ -15,7 +15,8 @@ export default new Vuex.Store({
     amplifiers: {},
     snackbarText: "",
     snackbar: false,
-    standard: "APP6"
+    standard: "APP6",
+    savedSymbols: [],
   },
 
   mutations: {
@@ -45,6 +46,14 @@ export default new Vuex.Store({
 
     setStandard(state, value) {
       state.standard = value;
+    },
+
+    addSavedSymbol(state, symbolInfo) {
+      state.savedSymbols.push(symbolInfo);
+    },
+
+    clearSavedSymbols(state) {
+      state.savedSymbols = [];
     }
 
   },
@@ -62,6 +71,9 @@ export default new Vuex.Store({
 
     saveSymbol({commit, state}, symbolInfo) {
       console.log(symbolInfo);
-    }
+      commit('addSavedSymbol', symbolInfo);
+    },
+
+
   }
 })
