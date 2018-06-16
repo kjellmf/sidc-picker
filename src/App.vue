@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <v-navigation-drawer v-model="drawer" fixed app>
+    <v-navigation-drawer v-model="drawer" fixed app class="mdrawer">
       <v-list dense>
         <v-toolbar prominent flat class="transparent">
           <v-toolbar-title>Military symbology picker</v-toolbar-title>
@@ -33,7 +33,7 @@
         <router-view name="drawer"></router-view>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar dense fixed app>
+    <v-toolbar dense fixed app class="mtoolbar">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <router-view name="toolbar"></router-view>
     </v-toolbar>
@@ -75,4 +75,15 @@ export default {
 </script>
 
 <style>
+  .toolbar--fixed.mtoolbar {
+    z-index: 3;
+  }
+
+  .overlay--active {
+    z-index: 4 !important;
+  }
+
+  .mdrawer {
+    z-index: 5 !important;
+  }
 </style>

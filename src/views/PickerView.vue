@@ -170,12 +170,12 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style >
   .symbol-sticky {
     position: sticky;
     top: 50px;
     background: #fafafa;
-    z-index: 1;
+    z-index: 2;
   }
 
   .sidc-field {
