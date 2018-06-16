@@ -17,6 +17,9 @@
     <v-btn class="mx-0 px-0" icon title="Permalink" :to="permalink">
       <v-icon>link</v-icon>
     </v-btn>
+    <v-btn class="mx-0 px-0" icon title="Save symbol" @click="saveSymbol">
+      <v-icon>star</v-icon>
+    </v-btn>
   </div>
 </template>
 

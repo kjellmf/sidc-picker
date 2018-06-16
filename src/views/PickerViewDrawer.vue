@@ -49,6 +49,14 @@
         <v-list-tile-title>Permalink</v-list-tile-title>
       </v-list-tile-content>
     </v-list-tile>
+    <v-list-tile @click="saveSymbol">
+      <v-list-tile-action>
+        <v-icon>star</v-icon>
+      </v-list-tile-action>
+      <v-list-tile-content>
+        <v-list-tile-title>Save symbol</v-list-tile-title>
+      </v-list-tile-content>
+    </v-list-tile>
     <v-subheader>Settings</v-subheader>
     <v-list-tile>
       <v-list-tile-content>

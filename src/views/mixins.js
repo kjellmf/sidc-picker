@@ -30,7 +30,7 @@ export var SettingsMixins = {
 
       set(value) {
         this.$store.dispatch('changeStandard', value);
-        this.$router.push({name:"home", params: {standard:value}});
+        this.$router.push({name: "home", params: {standard: value}});
       }
     }
   }
@@ -67,10 +67,7 @@ export const ActionMixins = {
           amplifiers[f.amplifierId] = this.amplifiers[f.amplifierId]
         }
       });
-      return {name: 'home', params: {standard:this.standard || "APP6", sidc:this.sidc}, query:amplifiers};
-
-      //return this.sidc + "?" + Object.keys(amplifiers).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(amplifiers[k])}`).join('&');
-
+      return {name: 'home', params: {standard: this.standard || "APP6", sidc: this.sidc}, query: amplifiers};
     }
   },
   methods: {
@@ -96,7 +93,7 @@ export const ActionMixins = {
     downloadPNG(ev) {
       let downloadSymbol = new ms.Symbol(this.sidc, this.amplifiers);
       let a;
-      if (ev.currentTarget.tagName == "A") {
+      if (ev.currentTarget.tagName === "A") {
         a = ev.currentTarget;
       } else {
         a = ev.currentTarget.firstChild;
@@ -108,13 +105,19 @@ export const ActionMixins = {
     downloadSVG(ev) {
       let downloadSymbol = new ms.Symbol(this.sidc, this.amplifiers);
       let a;
-      if (ev.currentTarget.tagName == "A") {
+      if (ev.currentTarget.tagName === "A") {
         a = ev.currentTarget;
       } else {
         a = ev.currentTarget.firstChild;
       }
       a.setAttribute("href", downloadSymbol.toDataURL());
       a.setAttribute("download", this.sidc + ".svg");
+    },
+
+    saveSymbol() {
+      let symbolInfo = {sidc: this.sidc, amplifiers: {...this.amplifiers}, standard: this.standard}
+      this.$store.dispatch("saveSymbol", symbolInfo)
+        .then(e => this.$store.dispatch("showMessage", "Symbol saved"));
     }
   }
 };

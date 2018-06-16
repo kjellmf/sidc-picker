@@ -58,6 +58,10 @@ export default new Vuex.Store({
     changeStandard({commit, state}, standard) {
       commit('setStandard', standard);
       ms.setStandard(state.standard);
+    },
+
+    saveSymbol({commit, state}, symbolInfo) {
+      console.log(symbolInfo);
     }
   }
 })
