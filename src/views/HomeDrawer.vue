@@ -52,7 +52,7 @@
     <v-subheader>Settings</v-subheader>
     <v-list-tile>
       <v-list-tile-content>
-        <v-radio-group v-model="standard" row class="pt-0">
+        <v-radio-group v-model="standard" row class="pt-0 standard-group">
           <v-radio label="APP6-D" value="APP6"/>
           <v-radio label="2525-D" value="2525"/>
         </v-radio-group>
@@ -94,4 +94,11 @@ export default {
 </script>
 
 <style>
+  .list--dense .standard-group{
+    margin-top: 6px!important;
+  }
+
+  .list--dense .standard-group label {
+    font-size: 14px;
+  }
 </style>

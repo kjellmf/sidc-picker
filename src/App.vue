@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
     <v-navigation-drawer v-model="drawer" fixed app>
-      <v-list>
+      <v-list dense>
         <v-toolbar prominent flat class="transparent">
           <v-toolbar-title>Military symbology picker</v-toolbar-title>
         </v-toolbar>
@@ -11,7 +11,7 @@
             <v-icon>home</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>Home</v-list-tile-title>
+            <v-list-tile-title>Picker</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
         <v-list-tile to="/about/">
