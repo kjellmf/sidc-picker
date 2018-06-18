@@ -94,8 +94,10 @@ export const ActionMixins = {
       oldSIDC.hqtfd = "0";
       oldSIDC.amplifier = "0";
       oldSIDC.amplifierDescriptor = "0";
-
+      oldSIDC.modifierOne = "00";
+      oldSIDC.modifierTwo = "00";
       this.sidc = oldSIDC.toString();
+      this.$store.commit("setAmplifiers", {});
     },
 
     downloadPNG(ev) {
