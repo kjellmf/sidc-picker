@@ -26,6 +26,7 @@
               :autocomplete="autocomplete"
               :simple-status-modifier="simpleStatusModifier"
               :standard="standard"
+              @iconDescription="updateIconDescription"
             />
           </v-tab-item>
           <v-tab-item id="tab-amplifiers">
@@ -166,7 +167,13 @@ export default {
 
     clearAmplifiers() {
       this.amplifiers = {};
+    },
+
+    updateIconDescription(text) {
+      this.$store.commit('setIconDescription', text);
     }
+
+
   }
 };
 </script>

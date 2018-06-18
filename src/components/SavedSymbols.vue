@@ -10,7 +10,7 @@
     </v-toolbar>
     <v-list three-line v-if="savedSymbols.length">
       <template v-for="(info,index) in savedSymbols">
-        <v-list-tile :to="permalink(info)">
+        <v-list-tile :to="permalink(info)" :title="info.iconDescription">
           <v-list-tile-action @click.prevent="toggle(index)">
             <v-icon
               v-if="selected.indexOf(index) < 0"
@@ -25,9 +25,14 @@
               check_box
             </v-icon>
           </v-list-tile-action>
-          <v-list-tile-content>
+          <v-list-tile-content class="">
             <mil-symbol :size="25" :sidc="info.sidc" :amplifiers="info.amplifiers"/>
           </v-list-tile-content>
+
+          <!--<v-list-tile-content>-->
+          <!--<mil-symbol :size="25" :sidc="info.sidc" :amplifiers="info.amplifiers"/>-->
+          <!--</v-list-tile-content>-->
+
         </v-list-tile>
         <v-divider
           v-if="index + 1 < savedSymbols.length"

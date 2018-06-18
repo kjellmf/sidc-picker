@@ -1,5 +1,5 @@
 <template>
-  <v-select :items="items" :label="label" v-model="myValue" :autocomplete="autocomplete">
+  <v-select :items="items" :label="label" v-model="myValue" :autocomplete="autocomplete" ref="sdata">
     <template slot="item" slot-scope="data">
       <v-list-tile-avatar>
         <mil-symbol :size="20" :sidc="data.item.sidc" :simple-status-modifier="simpleStatusModifier"></mil-symbol>
@@ -33,7 +33,10 @@ export default {
 
   watch: {
     myValue(value) {
+      // console.log({...this.$refs.sdata.selectedItems[0]});
       this.$emit("input", value);
+      // dirty hack
+      this.$emit("selectedItem", this.$refs.sdata.selectedItems[0]);
     },
 
     value(value) {

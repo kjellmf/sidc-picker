@@ -19,7 +19,7 @@
                         :autocomplete="autocomplete"/>
     <sidc-picker-select :items="emtValues" v-model="emtValue" label="Echelon/Mobility/Towed array"
                         :autocomplete="autocomplete"/>
-    <sidc-picker-select :items="icons" label="Main icon" v-model="iconValue" :autocomplete="autocomplete"/>
+    <sidc-picker-select :items="icons" label="Main icon" v-model="iconValue" :autocomplete="autocomplete" @selectedItem="handleIconItem"/>
     <sidc-picker-select :items="modifierOne" label="Modifier 1" :autocomplete="autocomplete" v-model="mod1"/>
     <sidc-picker-select :items="modifierTwo" label="Modifier 2" :autocomplete="autocomplete" v-model="mod2"/>
   </div>
@@ -292,7 +292,11 @@ export default {
     }
   },
 
-  methods: {}
+  methods: {
+    handleIconItem(item) {
+      this.$emit('iconDescription', item.text);
+    }
+  }
 };
 </script>
 

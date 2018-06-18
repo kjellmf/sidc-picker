@@ -125,7 +125,12 @@ export const ActionMixins = {
     },
 
     saveSymbol() {
-      let symbolInfo = {sidc: this.sidc, amplifiers: {...this.filteredAmplifiers}, standard: this.standard}
+      let symbolInfo = {
+        sidc: this.sidc,
+        amplifiers: {...this.filteredAmplifiers},
+        standard: this.standard,
+        iconDescription: this.$store.state.iconDescription
+      };
       this.$store.dispatch("saveSymbol", symbolInfo)
         .then(e => this.$store.dispatch("showMessage", "Symbol saved"));
     }

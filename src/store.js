@@ -17,6 +17,7 @@ export default new Vuex.Store({
     snackbar: false,
     standard: "APP6",
     savedSymbols: [],
+    iconDescription: ""
   },
 
   mutations: {
@@ -55,6 +56,10 @@ export default new Vuex.Store({
     setSavedSymbols(state, value) {
       state.savedSymbols = value;
     },
+
+    setIconDescription(state, value) {
+      state.iconDescription = value;
+    }
 
   },
 
