@@ -1,10 +1,10 @@
 <template>
   <div>
     <v-toolbar class="sticky" dense>
-      <v-btn icon @click="toggleAll" title="Select/unselect all">
+      <v-btn icon @click="toggleAll" title="Select/unselect all" :disabled="savedSymbols.length===0">
         <v-icon>done_all</v-icon>
       </v-btn>
-      <v-btn icon @click="deleteSelected" title="Delete saved symbol">
+      <v-btn icon :disabled="selected.length === 0" @click="deleteSelected" title="Delete saved symbol">
         <v-icon color="grey darken-2">delete</v-icon>
       </v-btn>
     </v-toolbar>
@@ -35,6 +35,12 @@
         ></v-divider>
       </template>
     </v-list>
+    <v-card flat fill-height v-else class="py-5">
+      <v-card-text class="text-xs-center">
+        <span class="grey--text">No symbols saved yet. <br>Use the <v-icon>star</v-icon> button to save the current symbol.</span>
+      </v-card-text>
+    </v-card>
+
   </div>
 </template>
 
@@ -71,7 +77,6 @@ export default {
 
     toggle(index) {
       const i = this.selected.indexOf(index);
-
       if (i > -1) {
         this.selected.splice(i, 1);
       } else {
@@ -80,19 +85,17 @@ export default {
     },
 
     toggleAll() {
-      if (!this.allSelected || this.selected.length == 0) {
+      if (!this.allSelected || this.selected.length === 0) {
         this.selected = [...Array(this.savedSymbols.length).keys()];
         this.allSelected = true;
       } else {
         this.selected = [];
         this.allSelected = false;
       }
-
     },
 
     deleteSelected() {
-      let remaining = this.savedSymbols.filter((v, i) => this.selected.indexOf(i) < 0);
-      this.savedSymbols = remaining;
+      this.savedSymbols = this.savedSymbols.filter((v, i) => this.selected.indexOf(i) < 0);
       this.selected = [];
     }
   }
