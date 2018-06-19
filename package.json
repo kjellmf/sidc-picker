@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "milstd": "^0.1.6",
-    "milsymbol": "^2.0.0-rc2",
+    "milsymbol": "^2.0.0-rc3",
     "vue": "^2.5.16",
     "vue-clipboard2": "^0.1.1",
     "vue-router": "^3.0.1",
