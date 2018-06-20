@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --modern",
     "deploy": "vue-cli-ghpages --CNAME=sidc.milsymb.net"
   },
   "dependencies": {
@@ -19,17 +19,13 @@
     "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
+    "@babel/polyfill": "^7.0.0-beta.51",
     "@vue/cli-plugin-babel": "^3.0.0-rc.3",
     "@vue/cli-service": "^3.0.0-rc.3",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "vue-cli-ghpages": "^1.0.0",
     "vue-template-compiler": "^2.5.13"
-  },
-  "babel": {
-    "presets": [
-      "@vue/app"
-    ]
   },
   "postcss": {
     "plugins": {
@@ -39,6 +35,6 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 8"
+    "IE 11"
   ]
 }
