@@ -5,8 +5,8 @@
         <h1>Military symbol identification code picker</h1>
         <v-divider class="my-3"></v-divider>
         <p>This web application is a simple tool for finding symbols and symbol identification codes from the
-          <a href="http://www.jcs.mil/Portals/36/Documents/Doctrine/Other_Pubs/ms_2525d.pdf">MIL-STD 2525 Rev.D</a>
-          and <a href="http://nso.nato.int/nso/zPublic/ap/PROM/APP-6%20EDD%20V1%20E.pdf">APP-6 Ed. D</a> standards.
+          <a href="http://www.jcs.mil/Portals/36/Documents/Doctrine/Other_Pubs/ms_2525d.pdf">MIL-STD 2525 Rev.D (PDF)</a>
+          and <a href="http://nso.nato.int/nso/zPublic/ap/PROM/APP-6%20EDD%20V1%20E.pdf">APP-6 Ed. D (PDF)</a> standards.
           Built upon the excellent <a
             href="https://spatialillusions.com/milsymbol/index.html">milsymbol</a> and <a
             href="https://github.com/spatialillusions/milstd">milstd</a> libraries.
@@ -26,14 +26,6 @@
             project</a>. Check out my earlier experiment <a
             href="https://github.com/kjellmf/military-symbology-explorer">Joint Military Symbology Explorer</a> based on
           data from JMSML project.</p>
-
-        <h2>Tips and tricks</h2>
-
-        <p>Use the keyboard shortcuts for faster navigation. Press <kbd>?</kbd> to see the available shortcuts.
-
-        <p>The material design theme I've used may feel a bit too spacious, especially on lower resolution screens.
-          A quick solution is to use the zoom functionality of your browser typically <kbd>Ctrl +</kbd> and
-          <kbd>Ctrl -</kbd>.
 
         <h2>Technical details</h2>
 
