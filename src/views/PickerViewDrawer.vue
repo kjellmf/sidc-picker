@@ -2,7 +2,7 @@
   <div>
     <v-list-tile :to="{name:'keyboardShortcuts'}">
       <v-list-tile-action>
-        <v-icon>help_outline</v-icon>
+        <v-icon>keyboard</v-icon>
       </v-list-tile-action>
       <v-list-tile-content>
         <v-list-tile-title>Keyboard shortcuts</v-list-tile-title>
@@ -17,12 +17,12 @@
         <v-list-tile-title>Copy SIDC to clipboard</v-list-tile-title>
       </v-list-tile-content>
     </v-list-tile>
-    <v-list-tile @click="clear">
+    <v-list-tile @click="clear" title="Clear symbol modifiers and amplifiers">
       <v-list-tile-action>
         <v-icon>clear</v-icon>
       </v-list-tile-action>
       <v-list-tile-content>
-        <v-list-tile-title>Clear</v-list-tile-title>
+        <v-list-tile-title>Clear symbol modifiers</v-list-tile-title>
       </v-list-tile-content>
     </v-list-tile>
     <v-list-tile @click="downloadPNG">
@@ -46,7 +46,7 @@
         <v-icon>link</v-icon>
       </v-list-tile-action>
       <v-list-tile-content>
-        <v-list-tile-title>Permalink</v-list-tile-title>
+        <v-list-tile-title>Create link to current symbol</v-list-tile-title>
       </v-list-tile-content>
     </v-list-tile>
     <v-list-tile @click="saveSymbol">
@@ -60,7 +60,7 @@
     <v-subheader>Settings</v-subheader>
     <v-list-tile>
       <v-list-tile-content>
-        <v-radio-group v-model="standard" row class="pt-0 standard-group">
+        <v-radio-group v-model="standard" row class="pt-0 standard-group" title="Select symbology standard: NATO (APP6) or US(2525)">
           <v-radio label="APP6-D" value="APP6"/>
           <v-radio label="2525-D" value="2525"/>
         </v-radio-group>
@@ -74,7 +74,7 @@
         <v-list-tile-title>Use simple status modifier</v-list-tile-title>
       </v-list-tile-content>
     </v-list-tile>
-    <v-list-tile @click="autocomplete=!autocomplete">
+    <v-list-tile @click="autocomplete=!autocomplete" title="Toggle autocomplete for selects">
       <v-list-tile-action>
         <v-switch @click.stop v-model="autocomplete"/>
       </v-list-tile-action>
@@ -102,8 +102,8 @@ export default {
 </script>
 
 <style>
-  .list--dense .standard-group{
-    margin-top: 6px!important;
+  .list--dense .standard-group {
+    margin-top: 6px !important;
   }
 
   .list--dense .standard-group label {
