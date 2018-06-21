@@ -102,12 +102,12 @@ export const ActionMixins = {
     },
 
     downloadPNG(ev) {
-      let downloadSymbol = new ms.Symbol(this.sidc, this.amplifiers);
+      let downloadSymbol = new ms.Symbol(this.sidc, {simpleStatusModifier: this.simpleStatusModifier}, this.amplifiers);
       download(downloadSymbol.asCanvas().toDataURL(), this.sidc+".png");
     },
 
     downloadSVG(ev) {
-      let downloadSymbol = new ms.Symbol(this.sidc, this.amplifiers);
+      let downloadSymbol = new ms.Symbol(this.sidc, {simpleStatusModifier: this.simpleStatusModifier}, this.amplifiers);
 
       download(downloadSymbol.toDataURL(), this.sidc+".svg");
     },
