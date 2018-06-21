@@ -1,6 +1,7 @@
 import * as ms from 'milsymbol';
 import {Sidc} from "../symbology/sidc";
 import {AMPLIFIERS, AMPLIFIERS_IN_SYMBOLSET} from "../symbology/amplifiers";
+import download from 'downloadjs';
 
 export var SettingsMixins = {
   computed: {
@@ -102,26 +103,13 @@ export const ActionMixins = {
 
     downloadPNG(ev) {
       let downloadSymbol = new ms.Symbol(this.sidc, this.amplifiers);
-      let a;
-      if (ev.currentTarget.tagName === "A") {
-        a = ev.currentTarget;
-      } else {
-        a = ev.currentTarget.firstChild;
-      }
-      a.setAttribute("href", downloadSymbol.asCanvas().toDataURL());
-      a.setAttribute("download", this.sidc + ".png");
+      download(downloadSymbol.asCanvas().toDataURL(), this.sidc+".png");
     },
 
     downloadSVG(ev) {
       let downloadSymbol = new ms.Symbol(this.sidc, this.amplifiers);
-      let a;
-      if (ev.currentTarget.tagName === "A") {
-        a = ev.currentTarget;
-      } else {
-        a = ev.currentTarget.firstChild;
-      }
-      a.setAttribute("href", downloadSymbol.toDataURL());
-      a.setAttribute("download", this.sidc + ".svg");
+
+      download(downloadSymbol.toDataURL(), this.sidc+".svg");
     },
 
     saveSymbol() {

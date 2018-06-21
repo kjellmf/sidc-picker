@@ -25,7 +25,7 @@
         <v-list-tile-title>Clear</v-list-tile-title>
       </v-list-tile-content>
     </v-list-tile>
-    <v-list-tile @click="downloadPNG" href="download" download="nn.png">
+    <v-list-tile @click="downloadPNG">
       <v-list-tile-action>
         <v-icon>save_alt</v-icon>
       </v-list-tile-action>
@@ -33,7 +33,7 @@
         <v-list-tile-title>Download symbol as PNG</v-list-tile-title>
       </v-list-tile-content>
     </v-list-tile>
-    <v-list-tile @click="downloadSVG" href="download" download="nn.svg">
+    <v-list-tile @click="downloadSVG">
       <v-list-tile-action>
         <v-icon>save_alt</v-icon>
       </v-list-tile-action>

@@ -8,6 +8,7 @@
     "deploy": "vue-cli-ghpages --CNAME=sidc.milsymb.net"
   },
   "dependencies": {
+    "downloadjs": "^1.4.7",
     "milstd": "^0.1.6",
     "milsymbol": "^2.0.0-rc4",
     "vue": "^2.5.16",
