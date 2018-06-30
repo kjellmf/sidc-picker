@@ -91,11 +91,11 @@ export default {
 </script>
 
 <style>
-  .toolbar--fixed.mtoolbar {
+  .v-toolbar--fixed.mtoolbar {
     z-index: 3;
   }
 
-  .overlay--active {
+  .v-overlay--active {
     z-index: 4 !important;
   }
 
