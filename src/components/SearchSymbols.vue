@@ -1,10 +1,9 @@
 <template>
-  <v-select
+  <v-autocomplete
     autofocus
     accesskey="s"
     :items="allIcons" label="Search" class="mb-3"
     v-model="myValue"
-    autocomplete
     prepend-icon="search" solo
   >
     <template slot="item" slot-scope="data">
@@ -13,7 +12,7 @@
       </v-list-tile-avatar>
       <v-list-tile-content v-text="data.item.text"></v-list-tile-content>
     </template>
-  </v-select>
+  </v-autocomplete>
 </template>
 
 <script>

@@ -1,12 +1,13 @@
 <template>
-  <v-select :items="items" :label="label" v-model="myValue" :autocomplete="autocomplete" ref="sdata">
+  <component :is="autocomplete ? 'v-autocomplete' : 'v-select'" :items="items" :label="label" v-model="myValue"
+             ref="sdata">
     <template slot="item" slot-scope="data">
       <v-list-tile-avatar>
         <mil-symbol :size="20" :sidc="data.item.sidc" :simple-status-modifier="simpleStatusModifier"></mil-symbol>
       </v-list-tile-avatar>
       <v-list-tile-content v-text="data.item.text"></v-list-tile-content>
     </template>
-  </v-select>
+  </component>
 </template>
 
 <script>
