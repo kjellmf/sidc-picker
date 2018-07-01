@@ -8,6 +8,7 @@ import PickerViewToolbar from './views/PickerViewToolbar.vue';
 import AboutToolbar from './views/AboutToolbar.vue';
 import HelpToolbar from './views/HelpToolbar.vue';
 import PickerViewDrawer from './views/PickerViewDrawer.vue';
+import OrbatView from './views/OrbatView.vue';
 
 import store from "./store";
 
@@ -29,6 +30,13 @@ export default new Router({
       components: {
         default: Help,
         toolbar: HelpToolbar,
+      }
+    },
+    {
+      path: '/orbat',
+      name: 'orbat-builder',
+      components: {
+        default: OrbatView,
       }
     },
     {

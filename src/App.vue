@@ -29,6 +29,14 @@
             <v-list-tile-title>Picker</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+        <v-list-tile :to="{name: 'orbat-builder'}">
+          <v-list-tile-action>
+            <v-icon>format_align_center</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>ORBAT builder</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
         <v-list-tile to="/help/">
           <v-list-tile-action>
             <v-icon>help_outline</v-icon>
