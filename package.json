@@ -12,6 +12,7 @@
     "downloadjs": "^1.4.7",
     "milstd": "^0.1.6",
     "milsymbol": "^2.0.0-rc4",
+    "svg-innerhtml": "^1.1.0",
     "vue": "^2.5.16",
     "vue-clipboard2": "^0.1.1",
     "vue-router": "^3.0.1",

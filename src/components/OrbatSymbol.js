@@ -32,8 +32,7 @@ export default {
         this.amplifiers || {}
       );
       this.$el.innerHTML = symb.asSVG();
-      this.$emit('sizes', symb.getSize(), symb.getAnchor(), symb.getOctagonAnchor());
-
+      this.$emit('sizes', {size: symb.getSize(), anchor: symb.getAnchor(), octagonAnchor: symb.getOctagonAnchor()});
     }
   },
 
