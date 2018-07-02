@@ -34,7 +34,7 @@
             <v-icon>format_align_center</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>ORBAT builder</v-list-tile-title>
+            <v-list-tile-title>ORBAT builder <v-icon small>warning</v-icon></v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
         <v-list-tile to="/help/">

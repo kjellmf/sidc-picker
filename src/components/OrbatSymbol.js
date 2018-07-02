@@ -17,6 +17,27 @@ export default {
 
     amplifiers: {
       type: Object
+    },
+
+    x: {
+      type: Number,
+      default: 25
+    },
+    y: {
+      type: Number,
+      default: 25
+    }
+  },
+
+  data: () => ({
+    ax: 0, ay: 0
+  }),
+
+  computed: {
+    transform() {
+      const x = this.x - this.ax;
+      const y = this.y - this.ay;
+      return `translate(${x}, ${y})`;
     }
   },
 
@@ -31,10 +52,15 @@ export default {
         {size: this.size, simpleStatusModifier: this.simpleStatusModifier},
         this.amplifiers || {}
       );
+
+      let a = symb.getOctagonAnchor();
+      this.ax = a.x;
+      this.ay = a.y;
+      this.$emit('sizes', {size: symb.getSize(), anchor: symb.getAnchor(), octagonAnchor: a});
       this.$el.innerHTML = symb.asSVG();
-      this.$emit('sizes', {size: symb.getSize(), anchor: symb.getAnchor(), octagonAnchor: symb.getOctagonAnchor()});
     }
   },
+
 
   watch: {
     sidc: function (v) {
@@ -50,7 +76,8 @@ export default {
     }
   },
 
+
   render(h) {
-    return h("g", {attrs: {class: "milsymbol"}});
+    return h("g", {attrs: {class: "milsymbol", transform: this.transform}});
   }
 };
