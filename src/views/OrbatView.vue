@@ -2,8 +2,8 @@
   <div style="width:100%; height:50%; padding:0; margin:0;" v-resize.quiet="onResize">
     <svg :height="H" :width="W" style="border:1px solid red">
       <g>
-        <orbat-symbol :x="W/2" :y="oy" sidc="10031000161211020000"
-                      :amplifiers="{uniqueDesignation:'', }"
+        <orbat-symbol :x="W/2" :y="oy" :sidc="rootUnit.sidc"
+                      :amplifiers="{uniqueDesignation:rootUnit.name, }"
                       :size="44"
                       @click.native="onClick" ref="ttt" @sizes="getSizes"/>
         <orbat-symbol :x="W/4" :y="h+oy*2" sidc="10031000151211020000"
@@ -29,6 +29,9 @@
 import OrbatSymbol from "../components/OrbatSymbol";
 import 'svg-innerhtml'; // polyfill for IE11
 
+import orbat from '../testorbat.json';
+import {OrbChart} from "../orbchart";
+
 export default {
   name: "OrbatView",
   components: {OrbatSymbol},
@@ -41,8 +44,17 @@ export default {
     h: 0,
     W: 400,
     H: 400,
-    resizeTimeout: null
+    resizeTimeout: null,
+    rootUnit: null,
   }),
+
+  created() {
+    let rootUnit = orbat.rootUnits[0];
+    let orbcart = new OrbChart(rootUnit, {});
+    this.rootUnit = rootUnit;
+    console.log(orbat);
+
+  },
 
   mounted() {
     this.W = this.$el.clientWidth;
