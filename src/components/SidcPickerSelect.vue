@@ -1,11 +1,20 @@
 <template>
-  <component :is="autocomplete ? 'v-autocomplete' : 'v-select'" :items="items" :label="label" v-model="myValue"
-             ref="sdata">
-    <template slot="item" slot-scope="data">
+  <component
+    ref="sdata"
+    :is="autocomplete ? 'v-autocomplete' : 'v-select'"
+    :items="items"
+    :label="label"
+    v-model="myValue">
+    <template
+      slot="item"
+      slot-scope="data">
       <v-list-tile-avatar>
-        <mil-symbol :size="20" :sidc="data.item.sidc" :simple-status-modifier="simpleStatusModifier"></mil-symbol>
+        <mil-symbol
+          :size="20"
+          :sidc="data.item.sidc"
+          :simple-status-modifier="simpleStatusModifier"/>
       </v-list-tile-avatar>
-      <v-list-tile-content v-text="data.item.text"></v-list-tile-content>
+      <v-list-tile-content v-text="data.item.text"/>
     </template>
   </component>
 </template>
@@ -28,10 +37,6 @@ export default {
     myValue: null
   }),
 
-  created() {
-    this.myValue = this.value;
-  },
-
   watch: {
     myValue(value) {
       // console.log({...this.$refs.sdata.selectedItems[0]});
@@ -43,7 +48,11 @@ export default {
     value(value) {
       this.myValue = value;
     }
-  }
+  },
+
+  created() {
+    this.myValue = this.value;
+  },
 };
 </script>
 

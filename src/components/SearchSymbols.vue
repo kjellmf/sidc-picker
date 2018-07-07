@@ -1,16 +1,23 @@
 <template>
   <v-autocomplete
+    :items="allIcons"
+    v-model="myValue"
     autofocus
     accesskey="s"
-    :items="allIcons" label="Search" class="mb-3"
-    v-model="myValue"
-    prepend-icon="search" solo
+    label="Search"
+    class="mb-3"
+    prepend-icon="search"
+    solo
   >
-    <template slot="item" slot-scope="data">
+    <template
+      slot="item"
+      slot-scope="data">
       <v-list-tile-avatar>
-        <mil-symbol :size="20" :sidc="data.item.value"></mil-symbol>
+        <mil-symbol
+          :size="20"
+          :sidc="data.item.value"/>
       </v-list-tile-avatar>
-      <v-list-tile-content v-text="data.item.text"></v-list-tile-content>
+      <v-list-tile-content v-text="data.item.text"/>
     </template>
   </v-autocomplete>
 </template>
@@ -44,16 +51,16 @@ export default {
     },
 
     allIcons() {
-      let tmp = [];
-      this.ssv.forEach(ssValue => {
-        let ss = this.cstandard[ssValue]["main icon"] || [];
-        let mm = ss.map(mi => {
+      const tmp = [];
+      this.ssv.forEach((ssValue) => {
+        const ss = this.cstandard[ssValue]["main icon"] || [];
+        const mm = ss.map((mi) => {
           let text = mi.entity;
-          if (mi["entity type"]) text += " - " + mi["entity type"];
-          if (mi["entity subtype"]) text += " - " + mi["entity subtype"];
+          if (mi["entity type"]) text += ` - ${mi["entity type"]}`;
+          if (mi["entity subtype"]) text += ` - ${mi["entity subtype"]}`;
           return {
             text,
-            value: "1003" + ssValue + "0000" + mi.code + "0000"
+            value: `1003${ssValue}0000${mi.code}0000`
           };
         });
         tmp.push(...mm);

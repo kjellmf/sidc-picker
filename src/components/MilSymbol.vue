@@ -1,5 +1,4 @@
-<template>
-</template>
+<template/>
 
 <script>
 import ms from "milsymbol";
@@ -25,32 +24,32 @@ export default {
     }
   },
 
+  watch: {
+    sidc(v) {
+      this.setSymbol();
+    },
+
+    size(v) {
+      this.setSymbol();
+    },
+
+    amplifiers(v) {
+      this.setSymbol();
+    }
+  },
+
   mounted() {
     this.setSymbol();
   },
 
   methods: {
     setSymbol() {
-      let symb = new ms.Symbol(
+      const symb = new ms.Symbol(
         this.sidc,
         {size: this.size, simpleStatusModifier: this.simpleStatusModifier},
         this.amplifiers || {}
       );
       this.$el.innerHTML = symb.asSVG();
-    }
-  },
-
-  watch: {
-    sidc: function (v) {
-      this.setSymbol();
-    },
-
-    size: function (v) {
-      this.setSymbol();
-    },
-
-    amplifiers: function (v) {
-      this.setSymbol();
     }
   },
 

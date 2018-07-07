@@ -1,16 +1,30 @@
 <template>
   <div>
-    <v-toolbar class="sticky" dense>
-      <v-btn icon @click="toggleAll" title="Select/unselect all" :disabled="savedSymbols.length===0">
+    <v-toolbar
+      class="sticky"
+      dense>
+      <v-btn
+        :disabled="savedSymbols.length===0"
+        icon
+        title="Select/unselect all"
+        @click="toggleAll">
         <v-icon>done_all</v-icon>
       </v-btn>
-      <v-btn icon :disabled="selected.length === 0" @click="deleteSelected" title="Delete saved symbol">
+      <v-btn
+        :disabled="selected.length === 0"
+        icon
+        title="Delete saved symbol"
+        @click="deleteSelected">
         <v-icon color="grey darken-2">delete</v-icon>
       </v-btn>
     </v-toolbar>
-    <v-list three-line v-if="savedSymbols.length">
+    <v-list
+      v-if="savedSymbols.length"
+      three-line>
       <template v-for="(info,index) in savedSymbols">
-        <v-list-tile :to="permalink(info)" :title="info.iconDescription">
+        <v-list-tile
+          :to="permalink(info)"
+          :title="info.iconDescription">
           <v-list-tile-action @click.prevent="toggle(index)">
             <v-icon
               v-if="selected.indexOf(index) < 0"
@@ -26,7 +40,10 @@
             </v-icon>
           </v-list-tile-action>
           <v-list-tile-content class="">
-            <mil-symbol :size="25" :sidc="info.sidc" :amplifiers="info.amplifiers"/>
+            <mil-symbol
+              :size="25"
+              :sidc="info.sidc"
+              :amplifiers="info.amplifiers"/>
           </v-list-tile-content>
 
           <!--<v-list-tile-content>-->
@@ -37,10 +54,14 @@
         <v-divider
           v-if="index + 1 < savedSymbols.length"
           :key="index"
-        ></v-divider>
+        />
       </template>
     </v-list>
-    <v-card flat fill-height v-else class="py-5">
+    <v-card
+      v-else
+      flat
+      fill-height
+      class="py-5">
       <v-card-text class="text-xs-center">
         <span class="grey--text">No symbols saved yet. <br>Use the <v-icon>star</v-icon> button to save the current symbol.</span>
       </v-card-text>
@@ -104,7 +125,7 @@ export default {
       this.selected = [];
     }
   }
-}
+};
 </script>
 
 <style scoped>

@@ -1,5 +1,8 @@
 <template>
-  <v-dialog v-model="isOpen" max-width="500px" @keydown.esc="close">
+  <v-dialog
+    v-model="isOpen"
+    max-width="500px"
+    @keydown.esc="close">
     <v-card>
       <v-card-title class="headline">Keyboard shortcuts</v-card-title>
       <v-card-text>
@@ -22,8 +25,11 @@
         <kbd>?</kbd> Show help
       </v-card-text>
       <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="green darken-1" flat @click.native="close">Close</v-btn>
+        <v-spacer/>
+        <v-btn
+          color="green darken-1"
+          flat
+          @click.native="close">Close</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -31,21 +37,21 @@
 
 <script>
 export default {
-  name: "help-dialog",
+  name: "HelpDialog",
   data() {
     return {isOpen: false};
   },
-  mounted() {
-    this.isOpen = true;
-  },
   watch: {
     isOpen(newValue) {
-      if (newValue == false) {
+      if (newValue === false) {
         setTimeout(() => {
           this.$router.go(-1);
         }, 300);
       }
     }
+  },
+  mounted() {
+    this.isOpen = true;
   },
   methods: {
     close() {

@@ -1,12 +1,23 @@
 <template>
   <v-app id="app">
     <v-navigation-drawer
-      v-model="drawerRight" fixed right clipped app>
+      v-model="drawerRight"
+      fixed
+      right
+      clipped
+      app>
       <saved-symbols/>
     </v-navigation-drawer>
-    <v-navigation-drawer v-model="drawer" fixed app class="mdrawer">
+    <v-navigation-drawer
+      v-model="drawer"
+      fixed
+      app
+      class="mdrawer">
       <v-list dense>
-        <v-toolbar prominent flat class="transparent">
+        <v-toolbar
+          prominent
+          flat
+          class="transparent">
           <v-toolbar-title>Military symbology picker</v-toolbar-title>
         </v-toolbar>
         <v-subheader>Navigation</v-subheader>
@@ -42,14 +53,18 @@
             <v-list-tile-title>GitHub repo</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <router-view name="drawer"></router-view>
+        <router-view name="drawer"/>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar dense fixed app class="mtoolbar">
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <router-view name="toolbar"></router-view>
-      <v-spacer></v-spacer>
-      <v-toolbar-side-icon @click.stop="drawerRight = !drawerRight"></v-toolbar-side-icon>
+    <v-toolbar
+      dense
+      fixed
+      app
+      class="mtoolbar">
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"/>
+      <router-view name="toolbar"/>
+      <v-spacer/>
+      <v-toolbar-side-icon @click.stop="drawerRight = !drawerRight"/>
     </v-toolbar>
     <v-content>
       <router-view :key="autocomplete"/>
@@ -62,7 +77,7 @@
 
 import SnackMessage from "@/components/SnackMessage.vue";
 import {SettingsMixins} from "./views/mixins";
-import SavedSymbols from "./components/SavedSymbols";
+import SavedSymbols from "./components/SavedSymbols.vue";
 
 export default {
   components: {SavedSymbols, SnackMessage},
@@ -72,6 +87,12 @@ export default {
     drawerRight: null,
   }),
 
+  computed: {
+    homelocation() {
+      return {name: "home", params: {standard: this.$store.state.standard}};
+    }
+  },
+
   created() {
     this.$store.dispatch('changeStandard', this.$store.state.standard);
   },
@@ -79,12 +100,6 @@ export default {
   mounted() {
     if (this.$vuetify.breakpoint.smAndDown) {
       this.autocomplete = false;
-    }
-  },
-
-  computed: {
-    homelocation() {
-      return {name: "home", params: {standard: this.$store.state.standard}}
     }
   },
 };

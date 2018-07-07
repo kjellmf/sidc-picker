@@ -1,13 +1,19 @@
 <template>
-  <v-snackbar :timeout="timeout" bottom left v-model="snackbar">{{snackbarText}}
-    <v-btn dark flat @click.native="snackbar = false">Close</v-btn>
+  <v-snackbar
+    :timeout="timeout"
+    v-model="snackbar"
+    bottom
+    left>{{ snackbarText }}
+    <v-btn
+      dark
+      flat
+      @click.native="snackbar = false">Close</v-btn>
   </v-snackbar>
 </template>
 
 <script>
 export default {
   name: "SnackMessage",
-  data: () => ({}),
 
   props: {
     timeout: {
@@ -15,6 +21,7 @@ export default {
       default: 3000
     }
   },
+  data: () => ({}),
 
   computed: {
     snackbarText() {

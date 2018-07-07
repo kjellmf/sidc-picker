@@ -2,6 +2,10 @@ import '@babel/polyfill';
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import * as ms from 'milsymbol';
+import 'vuetify/dist/vuetify.min.css';
+import VueClipboard from 'vue-clipboard2';
+import vshortkey from 'vue-shortkey';
+
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -17,12 +21,6 @@ Move fonts folder to css/fonts
 */
 // import 'material-design-icons/iconfont/material-icons.css';
 // import 'typeface-roboto/index.css';
-
-
-import 'vuetify/dist/vuetify.min.css';
-import VueClipboard from 'vue-clipboard2';
-import vshortkey from 'vue-shortkey';
-
 
 Vue.use(VueClipboard);
 Vue.use(Vuetify);

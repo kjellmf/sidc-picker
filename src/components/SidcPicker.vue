@@ -10,23 +10,59 @@
       </v-flex>
     </v-layout>
     -->
-    <sidc-picker-select :items="contextValues" label="Context" v-model="contextValue" :autocomplete="autocomplete"/>
-    <sidc-picker-select :items="sidValues" label="Standard identity" v-model="sidValue" :autocomplete="autocomplete"/>
-    <sidc-picker-select :items="symbolSets" label="Symbol set" v-model="symbolSetValue" :autocomplete="autocomplete"/>
-    <sidc-picker-select :items="statusValues" label="Status" v-model="statusValue" :autocomplete="autocomplete"
-                        :simple-status-modifier="simpleStatusModifier" :key="simpleStatusModifier"/>
-    <sidc-picker-select :items="hqTfDummy" v-model="hqTfDummyValue" label="Headquarters/Task force/Dummy"
-                        :autocomplete="autocomplete"/>
-    <sidc-picker-select :items="emtValues" v-model="emtValue" label="Echelon/Mobility/Towed array"
-                        :autocomplete="autocomplete"/>
-    <sidc-picker-select :items="icons" label="Main icon" v-model="iconValue" :autocomplete="autocomplete" @selectedItem="handleIconItem"/>
-    <sidc-picker-select :items="modifierOne" label="Modifier 1" :autocomplete="autocomplete" v-model="mod1"/>
-    <sidc-picker-select :items="modifierTwo" label="Modifier 2" :autocomplete="autocomplete" v-model="mod2"/>
+    <sidc-picker-select
+      :items="contextValues"
+      v-model="contextValue"
+      :autocomplete="autocomplete"
+      label="Context"/>
+    <sidc-picker-select
+      :items="sidValues"
+      v-model="sidValue"
+      :autocomplete="autocomplete"
+      label="Standard identity"/>
+    <sidc-picker-select
+      :items="symbolSets"
+      v-model="symbolSetValue"
+      :autocomplete="autocomplete"
+      label="Symbol set"/>
+    <sidc-picker-select
+      :items="statusValues"
+      v-model="statusValue"
+      :autocomplete="autocomplete"
+      :simple-status-modifier="simpleStatusModifier"
+      :key="simpleStatusModifier"
+      label="Status"/>
+    <sidc-picker-select
+      :items="hqTfDummy"
+      v-model="hqTfDummyValue"
+      :autocomplete="autocomplete"
+      label="Headquarters/Task force/Dummy"/>
+    <sidc-picker-select
+      :items="emtValues"
+      v-model="emtValue"
+      :autocomplete="autocomplete"
+      label="Echelon/Mobility/Towed array"/>
+    <sidc-picker-select
+      :items="icons"
+      v-model="iconValue"
+      :autocomplete="autocomplete"
+      label="Main icon"
+      @selectedItem="handleIconItem"/>
+    <sidc-picker-select
+      :items="modifierOne"
+      :autocomplete="autocomplete"
+      v-model="mod1"
+      label="Modifier 1"/>
+    <sidc-picker-select
+      :items="modifierTwo"
+      :autocomplete="autocomplete"
+      v-model="mod2"
+      label="Modifier 2"/>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
+
 import {app6d, ms2525d} from "milstd";
 import MilSymbol from "./MilSymbol.vue";
 import {Sidc} from "../symbology/sidc";
@@ -59,7 +95,7 @@ export default {
     rules: {type: Array},
     autocomplete: {type: Boolean, default: true},
     simpleStatusModifier: {type: Boolean, default: false},
-    standard: {type:String, default: "APP6"}
+    standard: {type: String, default: "APP6"}
   },
 
   data() {
@@ -78,38 +114,22 @@ export default {
     };
   },
 
-  created() {
-    this.sidc = this.value;
-  },
-
-  watch: {
-    value(v) {
-      this.sidc = v;
-    },
-
-    sidc(value) {
-      this.$emit("input", value);
-    }
-  },
-
   computed: {
     cstandard() {
       if (this.standard === "APP6") {
         return app6d;
-      } else {
-        return ms2525d;
       }
+      return ms2525d;
     },
 
     symbolSets() {
-      let ssets = [];
-      let standard = this.cstandard;
-      for (let key in standard) {
+      const ssets = [];
+      const standard = this.cstandard;
+      for (const key in standard) {
         ssets.push({
           value: key,
           text: standard[key].name,
-          sidc:
-          "10" + this.contextValue + this.sidValue + key + "00000000000000"
+          sidc: `10${this.contextValue}${this.sidValue}${key}00000000000000`
         });
       }
       ssets.sort((a, b) => a.value - b.value);
@@ -119,24 +139,14 @@ export default {
     contextValues() {
       return contextValues.map(e => ({
         ...e,
-        sidc:
-        "10" +
-        e.value +
-        this.sidValue +
-        this.symbolSetValue +
-        "00000000000000"
+        sidc: `10${e.value}${this.sidValue}${this.symbolSetValue}00000000000000`
       }));
     },
 
     sidValues() {
       return sidValues.map(e => ({
         ...e,
-        sidc:
-        "10" +
-        this.contextValue +
-        e.value +
-        this.symbolSetValue +
-        "00000000000000"
+        sidc: `10${this.contextValue}${e.value}${this.symbolSetValue}00000000000000`
       }));
     },
 
@@ -147,27 +157,14 @@ export default {
     statusValues() {
       return statusValues.map(e => ({
         ...e,
-        sidc:
-        "10" +
-        this.contextValue +
-        this.sidValue +
-        this.symbolSetValue +
-        e.value +
-        "0000000000000"
+        sidc: `10${this.contextValue}${this.sidValue}${this.symbolSetValue}${e.value}0000000000000`
       }));
     },
 
     hqTfDummy() {
       return HQTFDummyValues.map(e => ({
         ...e,
-        sidc:
-        "10" +
-        this.contextValue +
-        this.sidValue +
-        this.symbolSetValue +
-        "0" +
-        e.value +
-        "000000000000"
+        sidc: `10${this.contextValue}${this.sidValue}${this.symbolSetValue}0${e.value}000000000000`
       }));
     },
 
@@ -193,66 +190,45 @@ export default {
       return values.map(e => ({
         ...e,
         sidc:
-        "10" +
-        this.contextValue +
-        this.sidValue +
-        this.symbolSetValue +
-        "00" +
-        e.value +
-        "0000000000"
+        `10${
+          this.contextValue
+        }${this.sidValue
+        }${this.symbolSetValue
+        }00${
+          e.value
+        }0000000000`
       }));
     },
 
     icons() {
-      let mis = this.symbolSet;
-      return mis.map(mi => {
+      const mis = this.symbolSet;
+      return mis.map((mi) => {
         let text = mi.entity;
-        if (mi["entity type"]) text += " - " + mi["entity type"];
-        if (mi["entity subtype"]) text += " - " + mi["entity subtype"];
+        if (mi["entity type"]) text += ` - ${mi["entity type"]}`;
+        if (mi["entity subtype"]) text += ` - ${mi["entity subtype"]}`;
         return {
           value: mi.code,
           text,
-          sidc:
-          "10" +
-          this.contextValue +
-          this.sidValue +
-          this.symbolSetValue +
-          "0000" +
-          mi.code +
-          "0000"
+          sidc: `10${this.contextValue}${this.sidValue}${this.symbolSetValue}0000${mi.code}0000`
         };
       });
     },
 
     modifierOne() {
-      let mod1s = this.cstandard[this.symbolSetValue]["modifier 1"] || [];
+      const mod1s = this.cstandard[this.symbolSetValue]["modifier 1"] || [];
       return mod1s.map(mod1 => ({
         value: mod1.code,
         text: mod1.modifier,
-        sidc:
-        "10" +
-        this.contextValue +
-        this.sidValue +
-        this.symbolSetValue +
-        "0000000000" +
-        mod1.code +
-        "00"
+        sidc: `10${this.contextValue}${this.sidValue}${this.symbolSetValue}0000000000${mod1.code}00`
       }));
     },
 
     modifierTwo() {
-      let mod2s = this.cstandard[this.symbolSetValue]["modifier 2"] || [];
+      const mod2s = this.cstandard[this.symbolSetValue]["modifier 2"] || [];
       return mod2s.map(mod2 => ({
         value: mod2.code,
         text: mod2.modifier,
-        sidc:
-        "10" +
-        this.contextValue +
-        this.sidValue +
-        this.symbolSetValue +
-        "0000000000" +
-        "00" +
-        mod2.code
+        sidc: `10${this.contextValue}${this.sidValue}${this.symbolSetValue}000000000000${mod2.code}`
       }));
     },
 
@@ -260,7 +236,7 @@ export default {
       get() {
         if (!this.myValue) return;
 
-        let sidc = new Sidc(this.myValue);
+        const sidc = new Sidc(this.myValue);
         sidc.context = this.contextValue;
         sidc.standardIdentity = this.sidValue;
         sidc.symbolSet = this.symbolSetValue;
@@ -278,7 +254,7 @@ export default {
 
       set(value) {
         this.myValue = value;
-        let sidc = new Sidc(value);
+        const sidc = new Sidc(value);
         this.contextValue = sidc.context;
         this.sidValue = sidc.standardIdentity;
         this.symbolSetValue = sidc.symbolSet;
@@ -290,6 +266,20 @@ export default {
         this.mod2 = sidc.modifierTwo;
       }
     }
+  },
+
+  watch: {
+    value(v) {
+      this.sidc = v;
+    },
+
+    sidc(value) {
+      this.$emit("input", value);
+    }
+  },
+
+  created() {
+    this.sidc = this.value;
   },
 
   methods: {
