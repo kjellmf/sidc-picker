@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --modern",
+    "lint": "vue-cli-service lint --no-fix",
     "deploy": "vue-cli-ghpages --CNAME=sidc.milsymb.net"
   },
   "dependencies": {
@@ -22,7 +23,9 @@
   "devDependencies": {
     "@babel/polyfill": "^7.0.0-beta.51",
     "@vue/cli-plugin-babel": "^3.0.0-rc.3",
+    "@vue/cli-plugin-eslint": "^3.0.0-rc.3",
     "@vue/cli-service": "^3.0.0-rc.3",
+    "@vue/eslint-config-airbnb": "^3.0.0-rc.3",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "vue-cli-ghpages": "^1.0.0",
