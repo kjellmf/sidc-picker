@@ -13,7 +13,8 @@ module.exports = {
     quotes: 0,
     'object-curly-spacing': [1, "never"],
     "comma-dangle": 0,
-    "max-len": [1, 150]
+    "max-len": [1, 150],
+    "no-underscore-dangle": 0,
   },
   parserOptions: {
     parser: 'babel-eslint'

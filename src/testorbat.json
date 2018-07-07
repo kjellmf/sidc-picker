@@ -1,0 +1,55 @@
+{
+  "type": "ORBAT",
+  "rootUnits": [
+    {
+      "name": "3 Cdo Bde",
+      "sidc": "10031000181211004600",
+      "subUnits": [
+        {
+          "name": "40 Cdo",
+          "sidc": "10031000161211004600",
+          "id": "u0xGEGuOLzIcIirsioK0h"
+        },
+        {
+          "name": "42 Cdo",
+          "sidc": "10031000161211004600",
+          "id": "xcEG3htG0iZEuisD9IhGY"
+        },
+        {
+          "name": "45 Cdo",
+          "sidc": "10031000161211004600",
+          "id": "0fm4O5tSvrVwjnv9~6ECy"
+        },
+        {
+          "name": "29 Cdo RA",
+          "sidc": "10031000161303000000",
+          "id": "qF9mX0pKVgtu7cVHjsXy5"
+        },
+        {
+          "name": "2 Para",
+          "sidc": "10031000161211000001",
+          "subUnits": [
+            {
+              "name": "29 FB",
+              "sidc": "10031000151303000000",
+              "id": "vydX8pjg7sB1t37a5pBN1"
+            },
+            {
+              "name": "43 AD",
+              "sidc": "10031000141301020000",
+              "id": "peqkxwOqZXYkpSsx4KRCj"
+            }
+          ],
+          "id": "QyZAnvqo5EXsjcNis_GSE"
+        },
+        {
+          "name": "3 Para",
+          "sidc": "10031000161211000001",
+          "subUnits": [],
+          "id": "UlbrqVz6kysuUCzz7hSTu"
+        }
+      ],
+      "id": "yeyNm2QTCh_yivrfpnv0N"
+    }
+  ]
+}

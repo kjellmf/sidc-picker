@@ -1,4 +1,4 @@
 import {OrbChart} from "./orbchart";
 
-export {OrbChart}
+export {OrbChart};
 export default OrbChart;

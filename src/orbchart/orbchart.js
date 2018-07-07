@@ -1,8 +1,9 @@
+/* eslint-disable import/prefer-default-export */
 const DEFAULT_OPTIONS = {};
 
 class OrbChart {
   constructor(rootNode, options = {}) {
-    this.options = Object.assign(DEFAULT_OPTIONS, options);
+    this._options = Object.assign(DEFAULT_OPTIONS, options);
   }
 }
 
