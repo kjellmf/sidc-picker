@@ -2,7 +2,7 @@
 
 <script>
 import ms from "milsymbol";
-import Vue from "vue";
+import escape from "lodash.escape";
 
 export default {
   name: "MilSymbol",
@@ -34,11 +34,13 @@ export default {
     },
 
     amplifiers(v) {
+      this.escapeAmplifiers(v);
       this.setSymbol();
     }
   },
 
   mounted() {
+    this.escapeAmplifiers(this.amplifiers);
     this.setSymbol();
   },
 
@@ -47,9 +49,19 @@ export default {
       const symb = new ms.Symbol(
         this.sidc,
         {size: this.size, simpleStatusModifier: this.simpleStatusModifier},
-        this.amplifiers || {}
+        this.escapedAmplifiers || {}
       );
       this.$el.innerHTML = symb.asSVG();
+    },
+
+    escapeAmplifiers(amps) {
+      const escapedAmplifiers = {};
+      if (amps !== null && typeof amps === 'object') {
+        Object.keys(amps).forEach((key) => {
+          escapedAmplifiers[key] = escape(amps[key]);
+        });
+      }
+      this.escapedAmplifiers = escapedAmplifiers;
     }
   },
 

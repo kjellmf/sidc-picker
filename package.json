@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "downloadjs": "^1.4.7",
+    "lodash.escape": "^4.0.1",
     "milstd": "^0.1.6",
     "milsymbol": "^2.0.0-rc4",
     "svg-innerhtml": "^1.1.0",
