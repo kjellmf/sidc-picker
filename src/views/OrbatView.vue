@@ -1,46 +1,7 @@
 <template>
   <div
     v-resize="onResize"
-    style="width:100%; height:50%; padding:0; margin:0;">
-    <svg
-      :height="H"
-      :width="W"
-      style="border:1px solid red">
-      <g>
-        <orbat-symbol
-          ref="ttt"
-          :x="W/2"
-          :y="oy"
-          :sidc="rootUnit.sidc"
-          :amplifiers="{uniqueDesignation:rootUnit.name, }"
-          :size="44"
-          @click.native="onClick"
-          @sizes="getSizes"/>
-        <orbat-symbol
-          :x="W/4"
-          :y="h+oy*2"
-          :amplifiers="{uniqueDesignation:'A', }"
-          :size="34"
-          sidc="10031000151211020000"
-        />
-        <orbat-symbol
-          :x="2*W/4"
-          :y="h+oy*2"
-          :amplifiers="{uniqueDesignation:'B', }"
-          :size="34"
-          sidc="10031000151211020000"
-        />
-        <orbat-symbol
-          :x="3*W/4"
-          :y="h+oy*2"
-          :amplifiers="{uniqueDesignation:'C', }"
-          :size="34"
-          sidc="10031000151211020000"
-        />
-      </g>
-
-    </svg>
-  </div>
+    style="width:100%; height:80%; padding:0; margin:0;"/>
 </template>
 
 
@@ -55,52 +16,40 @@ export default {
   name: "OrbatView",
   components: {OrbatSymbol},
   data: () => ({
-    ox: 0,
-    oy: 0,
-    ax: 0,
-    ay: 0,
-    w: 0,
-    h: 0,
-    W: 400,
-    H: 400,
     resizeTimeout: null,
-    rootUnit: null,
   }),
 
   created() {
     const rootUnit = orbat.rootUnits[0];
-    const orbcart = new OrbChart(rootUnit, {});
+    this.orbcart = new OrbChart(rootUnit, {});
     this.rootUnit = rootUnit;
     console.log(orbat);
   },
 
   mounted() {
-    this.W = this.$el.clientWidth;
-    this.H = this.$el.clientHeight;
+    this.drawChart();
   },
-  methods: {
-    onClick(e) {
-      console.log("click", e, this.$refs.ttt);
-    },
 
+  methods: {
     onResize() {
       clearTimeout(this.resizeTimeout);
       this.resizeTimeout = setTimeout(() => {
-        this.W = this.$el.clientWidth;
-        this.H = this.$el.clientHeight;
+        this.drawChart();
       }, 200);
     },
 
-    getSizes(sizes) {
-      const {size, anchor, octagonAnchor} = sizes;
-      this.ox = octagonAnchor.x;
-      this.oy = octagonAnchor.y;
-      this.ax = anchor.x;
-      this.ay = anchor.y;
-      this.w = size.width;
-      this.h = size.height;
-    }
+    drawChart() {
+      const width = this.$el.clientWidth;
+      const height = this.$el.clientHeight;
+      this.$el.innerHTML = this.orbcart.toSVG({width, height});
+    },
   }
 };
 </script>
+
+<style>
+  .orbat-node:hover {
+    opacity: 0.5;
+  }
+</style>
 
