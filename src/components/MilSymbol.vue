@@ -1,8 +1,20 @@
-<template/>
-
 <script>
+/* eslint-disable vue/require-default-prop */
+
 import ms from "milsymbol";
 import escape from "lodash.escape";
+
+// Temporary solution until the next version of milsymbol is released
+function escapeAmplifiers(amps) {
+  const escapedAmplifiers = {};
+  if (amps !== null && typeof amps === 'object') {
+    Object.keys(amps)
+      .forEach((key) => {
+        escapedAmplifiers[key] = escape(amps[key]);
+      });
+  }
+  return escapedAmplifiers;
+}
 
 export default {
   name: "MilSymbol",
@@ -24,49 +36,19 @@ export default {
     }
   },
 
-  watch: {
-    sidc(v) {
-      this.setSymbol();
-    },
-
-    size(v) {
-      this.setSymbol();
-    },
-
-    amplifiers(v) {
-      this.escapeAmplifiers(v);
-      this.setSymbol();
-    }
-  },
-
-  mounted() {
-    this.escapeAmplifiers(this.amplifiers);
-    this.setSymbol();
-  },
-
-  methods: {
-    setSymbol() {
-      const symb = new ms.Symbol(
-        this.sidc,
-        {size: this.size, simpleStatusModifier: this.simpleStatusModifier},
-        this.escapedAmplifiers || {}
-      );
-      this.$el.innerHTML = symb.asSVG();
-    },
-
-    escapeAmplifiers(amps) {
-      const escapedAmplifiers = {};
-      if (amps !== null && typeof amps === 'object') {
-        Object.keys(amps).forEach((key) => {
-          escapedAmplifiers[key] = escape(amps[key]);
-        });
-      }
-      this.escapedAmplifiers = escapedAmplifiers;
-    }
-  },
-
   render(h) {
-    return h("span", {attrs: {class: "milsymbol"}});
+    const symb = new ms.Symbol(
+      this.sidc,
+      {
+        size: this.size,
+        simpleStatusModifier: this.simpleStatusModifier
+      },
+      escapeAmplifiers(this.amplifiers) || {} // no XSS please :-)
+    );
+    return h("span", {
+      attrs: {class: "milsymbol"},
+      domProps: {innerHTML: symb.asSVG()}
+    });
   }
 };
 
