@@ -43,7 +43,7 @@
           <v-tab
             href="#tab-amplifiers"
             ripple>Text amplifiers</v-tab>
-          <v-tab-item id="tab-symbol">
+          <v-tab-item value="tab-symbol">
             <sidc-picker
               v-model="sidc"
               :autocomplete="autocomplete"
@@ -52,7 +52,7 @@
               @iconDescription="updateIconDescription"
             />
           </v-tab-item>
-          <v-tab-item id="tab-amplifiers">
+          <v-tab-item value="tab-amplifiers">
             <text-amplifiers
               :symbolset="symbolset"
               v-model="amplifiers"/>

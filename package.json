@@ -12,25 +12,25 @@
     "downloadjs": "^1.4.7",
     "lodash.escape": "^4.0.1",
     "milstd": "^0.1.6",
-    "milsymbol": "^2.0.0-rc4",
-    "vue": "^2.5.16",
+    "milsymbol": "^2.0.0",
+    "vue": "^2.6.10",
     "vue-clipboard2": "^0.1.1",
-    "vue-router": "^3.0.1",
-    "vue-shortkey": "^3.1.4",
-    "vuetify": "^1.1.7",
-    "vuex": "^3.0.1",
+    "vue-router": "^3.0.7",
+    "vue-shortkey": "^3.1.7",
+    "vuetify": "^1.5.16",
+    "vuex": "^3.1.1",
     "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
-    "@babel/polyfill": "^7.0.0-beta.51",
-    "@vue/cli-plugin-babel": "^3.0.0-rc.3",
-    "@vue/cli-plugin-eslint": "^3.0.0-rc.3",
-    "@vue/cli-service": "^3.0.0-rc.3",
-    "@vue/eslint-config-airbnb": "^3.0.0-rc.3",
+    "@babel/polyfill": "^7.4.4",
+    "@vue/cli-plugin-babel": "^3.9.2",
+    "@vue/cli-plugin-eslint": "^3.9.2",
+    "@vue/cli-service": "^3.9.2",
+    "@vue/eslint-config-airbnb": "^3.0.5",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "vue-cli-ghpages": "^1.0.0",
-    "vue-template-compiler": "^2.5.13"
+    "vue-template-compiler": "^2.6.10"
   },
   "postcss": {
     "plugins": {
