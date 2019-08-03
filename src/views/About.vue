@@ -45,7 +45,7 @@
         </ul>
         <p/>
 
-        <p>Written by <a href="https://github.com/kjellmf">Kjell Magne Fauske</a>. The <a
+        <p>The <a
           href="https://github.com/kjellmf/sidc-picker">source code</a> is available under the MIT license. Check out
           the project's <a href="https://github.com/kjellmf/sidc-picker/blob/master/README.md">README</a> for
           download and build instructions.</p>
