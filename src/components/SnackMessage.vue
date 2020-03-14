@@ -1,13 +1,7 @@
 <template>
-  <v-snackbar
-    :timeout="timeout"
-    v-model="snackbar"
-    bottom
-    left>{{ snackbarText }}
-    <v-btn
-      dark
-      flat
-      @click.native="snackbar = false">Close</v-btn>
+  <v-snackbar :timeout="timeout" v-model="snackbar" bottom left
+    >{{ snackbarText }}
+    <v-btn dark flat @click.native="snackbar = false">Close</v-btn>
   </v-snackbar>
 </template>
 
@@ -40,5 +34,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

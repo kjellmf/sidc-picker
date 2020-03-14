@@ -5,10 +5,7 @@
 </template>
 
 <script>
-
 export default {
-  name: "HelpToolbar",
-
+  name: "HelpToolbar"
 };
 </script>
-

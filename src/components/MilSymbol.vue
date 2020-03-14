@@ -7,11 +7,10 @@ import escape from "lodash.escape";
 // Temporary solution until the next version of milsymbol is released
 function escapeAmplifiers(amps) {
   const escapedAmplifiers = {};
-  if (amps !== null && typeof amps === 'object') {
-    Object.keys(amps)
-      .forEach((key) => {
-        escapedAmplifiers[key] = escape(amps[key]);
-      });
+  if (amps !== null && typeof amps === "object") {
+    Object.keys(amps).forEach(key => {
+      escapedAmplifiers[key] = escape(amps[key]);
+    });
   }
   return escapedAmplifiers;
 }
@@ -46,8 +45,8 @@ export default {
       escapeAmplifiers(this.amplifiers) || {} // no XSS please :-)
     );
     return h("span", {
-      attrs: {class: "milsymbol"},
-      domProps: {innerHTML: symb.asSVG()}
+      attrs: { class: "milsymbol" },
+      domProps: { innerHTML: symb.asSVG() }
     });
   }
 };
@@ -58,4 +57,3 @@ export default {
 // var symb = new ms.Symbol(sidc, {colorMode:cm});
 // symb.setOptions({fillColor: "rgb(255,0,0)"})
 </script>
-

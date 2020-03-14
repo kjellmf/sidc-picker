@@ -1,41 +1,31 @@
 <template>
   <div>
-    <v-toolbar
-      class="sticky"
-      dense>
+    <v-toolbar class="sticky" dense>
       <v-btn
-        :disabled="savedSymbols.length===0"
+        :disabled="savedSymbols.length === 0"
         icon
         title="Select/unselect all"
-        @click="toggleAll">
+        @click="toggleAll"
+      >
         <v-icon>done_all</v-icon>
       </v-btn>
       <v-btn
         :disabled="selected.length === 0"
         icon
         title="Delete saved symbol"
-        @click="deleteSelected">
+        @click="deleteSelected"
+      >
         <v-icon color="grey darken-2">delete</v-icon>
       </v-btn>
     </v-toolbar>
-    <v-list
-      v-if="savedSymbols.length"
-      three-line>
-      <template v-for="(info,index) in savedSymbols">
-        <v-list-tile
-          :to="permalink(info)"
-          :title="info.iconDescription">
+    <v-list v-if="savedSymbols.length" three-line>
+      <template v-for="(info, index) in savedSymbols">
+        <v-list-tile :to="permalink(info)" :title="info.iconDescription">
           <v-list-tile-action @click.prevent="toggle(index)">
-            <v-icon
-              v-if="selected.indexOf(index) < 0"
-              color="grey lighten-1"
-            >
+            <v-icon v-if="selected.indexOf(index) < 0" color="grey lighten-1">
               check_box_outline_blank
             </v-icon>
-            <v-icon
-              v-else
-              color="grey darken-2"
-            >
+            <v-icon v-else color="grey darken-2">
               check_box
             </v-icon>
           </v-list-tile-action>
@@ -43,30 +33,25 @@
             <mil-symbol
               :size="25"
               :sidc="info.sidc"
-              :amplifiers="info.amplifiers"/>
+              :amplifiers="info.amplifiers"
+            />
           </v-list-tile-content>
 
           <!--<v-list-tile-content>-->
           <!--<mil-symbol :size="25" :sidc="info.sidc" :amplifiers="info.amplifiers"/>-->
           <!--</v-list-tile-content>-->
-
         </v-list-tile>
-        <v-divider
-          v-if="index + 1 < savedSymbols.length"
-          :key="index"
-        />
+        <v-divider v-if="index + 1 < savedSymbols.length" :key="index" />
       </template>
     </v-list>
-    <v-card
-      v-else
-      flat
-      fill-height
-      class="py-5">
+    <v-card v-else flat fill-height class="py-5">
       <v-card-text class="text-xs-center">
-        <span class="grey--text">No symbols saved yet. <br>Use the <v-icon>star</v-icon> button to save the current symbol.</span>
+        <span class="grey--text"
+          >No symbols saved yet. <br />Use the <v-icon>star</v-icon> button to
+          save the current symbol.</span
+        >
       </v-card-text>
     </v-card>
-
   </div>
 </template>
 
@@ -75,7 +60,7 @@ import MilSymbol from "./MilSymbol.vue";
 
 export default {
   name: "SavedSymbols",
-  components: {MilSymbol},
+  components: { MilSymbol },
   data: () => ({
     selected: [],
     allSelected: false
@@ -87,10 +72,9 @@ export default {
         return this.$store.state.savedSymbols;
       },
       set(value) {
-        this.$store.commit('setSavedSymbols', value);
+        this.$store.commit("setSavedSymbols", value);
       }
-    },
-
+    }
   },
   methods: {
     clear() {
@@ -98,7 +82,11 @@ export default {
     },
 
     permalink(info) {
-      return {name: 'home', params: {standard: info.standard || "APP6", sidc: info.sidc}, query: info.amplifiers};
+      return {
+        name: "home",
+        params: { standard: info.standard || "APP6", sidc: info.sidc },
+        query: info.amplifiers
+      };
     },
 
     toggle(index) {
@@ -121,7 +109,9 @@ export default {
     },
 
     deleteSelected() {
-      this.savedSymbols = this.savedSymbols.filter((v, i) => this.selected.indexOf(i) < 0);
+      this.savedSymbols = this.savedSymbols.filter(
+        (v, i) => this.selected.indexOf(i) < 0
+      );
       this.selected = [];
     }
   }
@@ -129,9 +119,9 @@ export default {
 </script>
 
 <style scoped>
-  .sticky {
-    position: sticky;
-    top: 0px;
-    z-index: 1
-  }
+.sticky {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
 </style>

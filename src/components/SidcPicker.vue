@@ -14,58 +14,66 @@
       :items="contextValues"
       v-model="contextValue"
       :autocomplete="autocomplete"
-      label="Context"/>
+      label="Context"
+    />
     <sidc-picker-select
       :items="sidValues"
       v-model="sidValue"
       :autocomplete="autocomplete"
-      label="Standard identity"/>
+      label="Standard identity"
+    />
     <sidc-picker-select
       :items="symbolSets"
       v-model="symbolSetValue"
       :autocomplete="autocomplete"
-      label="Symbol set"/>
+      label="Symbol set"
+    />
     <sidc-picker-select
       :items="statusValues"
       v-model="statusValue"
       :autocomplete="autocomplete"
       :simple-status-modifier="simpleStatusModifier"
       :key="simpleStatusModifier"
-      label="Status"/>
+      label="Status"
+    />
     <sidc-picker-select
       :items="hqTfDummy"
       v-model="hqTfDummyValue"
       :autocomplete="autocomplete"
-      label="Headquarters/Task force/Dummy"/>
+      label="Headquarters/Task force/Dummy"
+    />
     <sidc-picker-select
       :items="emtValues"
       v-model="emtValue"
       :autocomplete="autocomplete"
-      label="Echelon/Mobility/Towed array"/>
+      label="Echelon/Mobility/Towed array"
+    />
     <sidc-picker-select
       :items="icons"
       v-model="iconValue"
       :autocomplete="autocomplete"
       label="Main icon"
-      @selectedItem="handleIconItem"/>
+      @selectedItem="handleIconItem"
+    />
     <sidc-picker-select
       :items="modifierOne"
       :autocomplete="autocomplete"
       v-model="mod1"
-      label="Modifier 1"/>
+      label="Modifier 1"
+    />
     <sidc-picker-select
       :items="modifierTwo"
       :autocomplete="autocomplete"
       v-model="mod2"
-      label="Modifier 2"/>
+      label="Modifier 2"
+    />
   </div>
 </template>
 
 <script>
-
-import {app6d, ms2525d} from "milstd";
+import { app6d, ms2525d } from "milstd";
 import MilSymbol from "./MilSymbol.vue";
-import {Sidc} from "../symbology/sidc";
+import { Sidc } from "../symbology/sidc";
 import SidcPickerSelect from "./SidcPickerSelect.vue";
 import {
   DISMOUNTED_SYMBOLSET_VALUE,
@@ -89,13 +97,13 @@ export default {
 
   props: {
     value: String,
-    required: {type: Boolean, default: false},
-    label: {type: String, default: "SIDC"},
-    hint: {type: String, default: "Symbol identification code"},
-    rules: {type: Array},
-    autocomplete: {type: Boolean, default: true},
-    simpleStatusModifier: {type: Boolean, default: false},
-    standard: {type: String, default: "APP6"}
+    required: { type: Boolean, default: false },
+    label: { type: String, default: "SIDC" },
+    hint: { type: String, default: "Symbol identification code" },
+    rules: { type: Array },
+    autocomplete: { type: Boolean, default: true },
+    simpleStatusModifier: { type: Boolean, default: false },
+    standard: { type: String, default: "APP6" }
   },
 
   data() {
@@ -185,24 +193,17 @@ export default {
           values = symbValues.towedArrayValues;
           break;
         default:
-          values = [{value: "00", text: "Unspecified"}];
+          values = [{ value: "00", text: "Unspecified" }];
       }
       return values.map(e => ({
         ...e,
-        sidc:
-        `10${
-          this.contextValue
-        }${this.sidValue
-        }${this.symbolSetValue
-        }00${
-          e.value
-        }0000000000`
+        sidc: `10${this.contextValue}${this.sidValue}${this.symbolSetValue}00${e.value}0000000000`
       }));
     },
 
     icons() {
       const mis = this.symbolSet;
-      return mis.map((mi) => {
+      return mis.map(mi => {
         let text = mi.entity;
         if (mi["entity type"]) text += ` - ${mi["entity type"]}`;
         if (mi["entity subtype"]) text += ` - ${mi["entity subtype"]}`;
@@ -284,11 +285,10 @@ export default {
 
   methods: {
     handleIconItem(item) {
-      this.$emit('iconDescription', item.text);
+      this.$emit("iconDescription", item.text);
     }
   }
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

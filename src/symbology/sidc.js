@@ -4,7 +4,7 @@
  */
 
 export class Sidc {
-  constructor(sic = '10000000000000000000') {
+  constructor(sic = "10000000000000000000") {
     this.sic = sic;
     this.version = sic.substr(0, 2);
     this.context = sic.substr(2, 1);
@@ -22,9 +22,21 @@ export class Sidc {
   }
 
   toString() {
-    return this.version + this.context + this.standardIdentity + this.symbolSet + this.status +
-      this.hqtfd + this.amplifier + this.amplifierDescriptor + this.entity + this.entityType +
-      this.entitySubType + this.modifierOne + this.modifierTwo;
+    return (
+      this.version +
+      this.context +
+      this.standardIdentity +
+      this.symbolSet +
+      this.status +
+      this.hqtfd +
+      this.amplifier +
+      this.amplifierDescriptor +
+      this.entity +
+      this.entityType +
+      this.entitySubType +
+      this.modifierOne +
+      this.modifierTwo
+    );
   }
 }
 

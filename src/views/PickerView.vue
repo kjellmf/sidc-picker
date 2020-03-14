@@ -1,8 +1,6 @@
 <template>
   <v-container>
-    <v-flex
-      xs12
-      md7>
+    <v-flex xs12 md7>
       <v-form v-model="valid">
         <v-text-field
           v-model="inputSidc"
@@ -10,39 +8,31 @@
           class="sidc-field"
           label="SIDC"
           mask="##-#-#-##-#-#-##-######-##-##"
-          permament/>
+          permament
+        />
       </v-form>
     </v-flex>
     <v-layout v-bind="binding">
-      <v-flex
-        text-xs-center
-        xs12
-        md5
-        order-md2
-        class="symbol-sticky">
+      <v-flex text-xs-center xs12 md5 order-md2 class="symbol-sticky">
         <mil-symbol
           :key="standard ^ simpleStatusModifier"
           :sidc="sidc"
           :size="50"
           :amplifiers="amplifiers"
           :simple-status-modifier="simpleStatusModifier"
-          class="symbol-sticky"/>
+          class="symbol-sticky"
+        />
       </v-flex>
       <v-flex xs12>
-        <search-symbols
-          :standard="standard"
-          @input="updateFromSearch"/>
+        <search-symbols :standard="standard" @input="updateFromSearch" />
         <v-tabs
           v-shortkey="['alt', 't']"
           v-model="activeTab"
           fixed-tabs
-          @shortkey.native="toggleTab">
-          <v-tab
-            href="#tab-symbol"
-            ripple>Symbol</v-tab>
-          <v-tab
-            href="#tab-amplifiers"
-            ripple>Text amplifiers</v-tab>
+          @shortkey.native="toggleTab"
+        >
+          <v-tab href="#tab-symbol" ripple>Symbol</v-tab>
+          <v-tab href="#tab-amplifiers" ripple>Text amplifiers</v-tab>
           <v-tab-item value="tab-symbol">
             <sidc-picker
               v-model="sidc"
@@ -53,17 +43,14 @@
             />
           </v-tab-item>
           <v-tab-item value="tab-amplifiers">
-            <text-amplifiers
-              :symbolset="symbolset"
-              v-model="amplifiers"/>
+            <text-amplifiers :symbolset="symbolset" v-model="amplifiers" />
             <v-btn @click="clearAmplifiers">clear</v-btn>
           </v-tab-item>
         </v-tabs>
       </v-flex>
     </v-layout>
-    <router-view name="dialogs"/>
+    <router-view name="dialogs" />
   </v-container>
-
 </template>
 
 <script>
@@ -72,12 +59,15 @@ import SidcPicker from "@/components/SidcPicker.vue";
 import SearchSymbols from "@/components/SearchSymbols.vue";
 import TextAmplifiers from "@/components/TextAmplifiers.vue";
 
-import {Sidc} from "../symbology/sidc";
+import { Sidc } from "../symbology/sidc";
 
 export default {
   name: "SymbolPicker",
   components: {
-    MilSymbol, SidcPicker, SearchSymbols, TextAmplifiers
+    MilSymbol,
+    SidcPicker,
+    SearchSymbols,
+    TextAmplifiers
   },
 
   data: () => ({
@@ -133,7 +123,7 @@ export default {
       },
 
       set(value) {
-        this.$store.dispatch('changeStandard', value);
+        this.$store.dispatch("changeStandard", value);
       }
     },
 
@@ -197,22 +187,20 @@ export default {
     },
 
     updateIconDescription(text) {
-      this.$store.commit('setIconDescription', text);
+      this.$store.commit("setIconDescription", text);
     }
-
-
   }
 };
 </script>
-<style >
-  .symbol-sticky {
-    position: sticky;
-    top: 50px;
-    background: #fafafa;
-    z-index: 2;
-  }
+<style>
+.symbol-sticky {
+  position: sticky;
+  top: 50px;
+  background: #fafafa;
+  z-index: 2;
+}
 
-  .sidc-field {
-    font-weight: bolder;
-  }
+.sidc-field {
+  font-weight: bolder;
+}
 </style>
