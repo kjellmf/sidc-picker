@@ -1,13 +1,13 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import PickerView from './views/PickerView.vue';
-import About from './views/About.vue';
-import Help from './views/Help.vue';
-import HelpDialog from './components/HelpDialog.vue';
-import PickerViewToolbar from './views/PickerViewToolbar.vue';
-import AboutToolbar from './views/AboutToolbar.vue';
-import HelpToolbar from './views/HelpToolbar.vue';
-import PickerViewDrawer from './views/PickerViewDrawer.vue';
+import Vue from "vue";
+import Router from "vue-router";
+import PickerView from "./views/PickerView.vue";
+import About from "./views/About.vue";
+import Help from "./views/Help.vue";
+import HelpDialog from "./components/HelpDialog.vue";
+import PickerViewToolbar from "./views/PickerViewToolbar.vue";
+import AboutToolbar from "./views/AboutToolbar.vue";
+import HelpToolbar from "./views/HelpToolbar.vue";
+import PickerViewDrawer from "./views/PickerViewDrawer.vue";
 
 import store from "./store";
 
@@ -16,40 +16,42 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: '/about',
-      name: 'about',
+      path: "/about",
+      name: "about",
       components: {
         default: About,
-        toolbar: AboutToolbar,
+        toolbar: AboutToolbar
       }
     },
     {
-      path: '/help',
-      name: 'help',
+      path: "/help",
+      name: "help",
       components: {
         default: Help,
-        toolbar: HelpToolbar,
+        toolbar: HelpToolbar
       }
     },
     {
-      path: '/:standard/:sidc(\\d+)?',
-      name: 'home',
+      path: "/:standard/:sidc(\\d+)?",
+      name: "home",
       components: {
         default: PickerView,
         toolbar: PickerViewToolbar,
-        drawer: PickerViewDrawer,
+        drawer: PickerViewDrawer
       },
-      children: [{
-        path: 'help',
-        name: 'keyboardShortcuts',
-        components: {
-          dialogs: HelpDialog,
-        },
-      },]
+      children: [
+        {
+          path: "help",
+          name: "keyboardShortcuts",
+          components: {
+            dialogs: HelpDialog
+          }
+        }
+      ]
     },
     {
-      path: '/', redirect: {name: 'home', params: {standard: store.state.standard}}
+      path: "/",
+      redirect: { name: "home", params: { standard: store.state.standard } }
     }
-
   ]
 });

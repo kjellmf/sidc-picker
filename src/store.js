@@ -1,14 +1,19 @@
 /* eslint-disable no-param-reassign */
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from "vue";
+import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 
-import * as ms from 'milsymbol';
+import * as ms from "milsymbol";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  plugins: [createPersistedState({key: "SIDC", paths: ["standard", "simpleStatusModifier", "savedSymbols"]})],
+  plugins: [
+    createPersistedState({
+      key: "SIDC",
+      paths: ["standard", "simpleStatusModifier", "savedSymbols"]
+    })
+  ],
   state: {
     autocomplete: true,
     simpleStatusModifier: false,
@@ -61,28 +66,25 @@ export default new Vuex.Store({
     setIconDescription(state, value) {
       state.iconDescription = value;
     }
-
   },
 
   actions: {
-    showMessage({commit, state}, message) {
-      commit('setSnackbarText', message);
-      commit('setSnackbar', true);
+    showMessage({ commit, state }, message) {
+      commit("setSnackbarText", message);
+      commit("setSnackbar", true);
     },
 
-    changeStandard({commit, state}, standard) {
-      commit('setStandard', standard);
+    changeStandard({ commit, state }, standard) {
+      commit("setStandard", standard);
       ms.setStandard(state.standard);
     },
 
-    saveSymbol({commit, state}, symbolInfo) {
-      commit('addSavedSymbol', symbolInfo);
+    saveSymbol({ commit, state }, symbolInfo) {
+      commit("addSavedSymbol", symbolInfo);
     },
 
-    clearSavedSymbols({commit}) {
-      commit('setSavedSymbols', []);
+    clearSavedSymbols({ commit }) {
+      commit("setSavedSymbols", []);
     }
-
-
   }
-})
+});

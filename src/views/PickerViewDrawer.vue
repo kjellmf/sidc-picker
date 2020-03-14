@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-list-tile :to="{name:'keyboardShortcuts'}">
+    <v-list-tile :to="{ name: 'keyboardShortcuts' }">
       <v-list-tile-action>
         <v-icon>keyboard</v-icon>
       </v-list-tile-action>
@@ -17,9 +17,7 @@
         <v-list-tile-title>Copy SIDC to clipboard</v-list-tile-title>
       </v-list-tile-content>
     </v-list-tile>
-    <v-list-tile
-      title="Clear symbol modifiers and amplifiers"
-      @click="clear">
+    <v-list-tile title="Clear symbol modifiers and amplifiers" @click="clear">
       <v-list-tile-action>
         <v-icon>clear</v-icon>
       </v-list-tile-action>
@@ -66,21 +64,16 @@
           v-model="standard"
           row
           class="pt-0 standard-group"
-          title="Select symbology standard: NATO (APP6) or US(2525)">
-          <v-radio
-            label="APP6-D"
-            value="APP6"/>
-          <v-radio
-            label="2525-D"
-            value="2525"/>
+          title="Select symbology standard: NATO (APP6) or US(2525)"
+        >
+          <v-radio label="APP6-D" value="APP6" />
+          <v-radio label="2525-D" value="2525" />
         </v-radio-group>
       </v-list-tile-content>
     </v-list-tile>
-    <v-list-tile @click="simpleStatusModifier=!simpleStatusModifier">
+    <v-list-tile @click="simpleStatusModifier = !simpleStatusModifier">
       <v-list-tile-action>
-        <v-switch
-          v-model="simpleStatusModifier"
-          @click.stop/>
+        <v-switch v-model="simpleStatusModifier" @click.stop />
       </v-list-tile-action>
       <v-list-tile-content>
         <v-list-tile-title>Use simple status modifier</v-list-tile-title>
@@ -88,43 +81,40 @@
     </v-list-tile>
     <v-list-tile
       title="Toggle autocomplete for selects"
-      @click="autocomplete=!autocomplete">
+      @click="autocomplete = !autocomplete"
+    >
       <v-list-tile-action>
-        <v-switch
-          v-model="autocomplete"
-          @click.stop/>
+        <v-switch v-model="autocomplete" @click.stop />
       </v-list-tile-action>
       <v-list-tile-content>
         <v-list-tile-title>Autocomplete</v-list-tile-title>
       </v-list-tile-content>
     </v-list-tile>
     <div style="display:none">
-      <a
-        v-shortkey="{a: ['shift', '?'], b: ['?']}"
-        @shortkey="showHelp"/>
+      <a v-shortkey="{ a: ['shift', '?'], b: ['?'] }" @shortkey="showHelp" />
     </div>
   </div>
 </template>
 
 <script>
-import {ActionMixins, SettingsMixins} from "./mixins";
+import { ActionMixins, SettingsMixins } from "./mixins";
 
 export default {
   mixins: [SettingsMixins, ActionMixins],
   methods: {
     showHelp() {
-      this.$router.push({name: "keyboardShortcuts"});
+      this.$router.push({ name: "keyboardShortcuts" });
     }
   }
 };
 </script>
 
 <style>
-  .list--dense .standard-group {
-    margin-top: 6px !important;
-  }
+.list--dense .standard-group {
+  margin-top: 6px !important;
+}
 
-  .list--dense .standard-group label {
-    font-size: 14px;
-  }
+.list--dense .standard-group label {
+  font-size: 14px;
+}
 </style>

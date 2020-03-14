@@ -1,14 +1,14 @@
-import '@babel/polyfill';
-import Vue from 'vue';
-import Vuetify from 'vuetify';
-import * as ms from 'milsymbol';
-import 'vuetify/dist/vuetify.min.css';
-import VueClipboard from 'vue-clipboard2';
-import vshortkey from 'vue-shortkey';
+import "@babel/polyfill";
+import Vue from "vue";
+import Vuetify from "vuetify";
+import * as ms from "milsymbol";
+import "vuetify/dist/vuetify.min.css";
+import VueClipboard from "vue-clipboard2";
+import vshortkey from "vue-shortkey";
 
-import App from './App.vue';
-import router from './router';
-import store from './store';
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
 
 /*
 For offline fonts you can install
@@ -26,10 +26,10 @@ Vue.use(VueClipboard);
 Vue.use(Vuetify);
 Vue.use(vshortkey);
 Vue.config.productionTip = false;
-ms.setStandard('APP6');
+ms.setStandard("APP6");
 
 new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app');
+}).$mount("#app");

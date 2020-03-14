@@ -1,7 +1,7 @@
-import * as ms from 'milsymbol';
-import download from 'downloadjs';
-import {Sidc} from "../symbology/sidc";
-import {AMPLIFIERS, AMPLIFIERS_IN_SYMBOLSET} from "../symbology/amplifiers";
+import * as ms from "milsymbol";
+import download from "downloadjs";
+import { Sidc } from "../symbology/sidc";
+import { AMPLIFIERS, AMPLIFIERS_IN_SYMBOLSET } from "../symbology/amplifiers";
 
 export const SettingsMixins = {
   computed: {
@@ -30,8 +30,8 @@ export const SettingsMixins = {
       },
 
       set(value) {
-        this.$store.dispatch('changeStandard', value);
-        this.$router.push({name: "home", params: {standard: value}});
+        this.$store.dispatch("changeStandard", value);
+        this.$router.push({ name: "home", params: { standard: value } });
       }
     }
   }
@@ -63,7 +63,7 @@ export const ActionMixins = {
       }
 
       const fAmplifiers = {};
-      amps.forEach((f) => {
+      amps.forEach(f => {
         if (this.amplifiers[f.amplifierId]) {
           fAmplifiers[f.amplifierId] = this.amplifiers[f.amplifierId];
         }
@@ -73,8 +73,8 @@ export const ActionMixins = {
 
     permalink() {
       return {
-        name: 'home',
-        params: {standard: this.standard || "APP6", sidc: this.sidc},
+        name: "home",
+        params: { standard: this.standard || "APP6", sidc: this.sidc },
         query: this.filteredAmplifiers
       };
     }
@@ -82,10 +82,10 @@ export const ActionMixins = {
   methods: {
     doCopy() {
       this.$copyText(this.sidc)
-        .then((e) => {
+        .then(e => {
           this.$store.dispatch("showMessage", "SIDC copied to clipboard");
         })
-        .catch((e) => {
+        .catch(e => {
           console.warning("Failed to copy SIDC to clipboard");
         });
     },
@@ -102,12 +102,20 @@ export const ActionMixins = {
     },
 
     downloadPNG(ev) {
-      const downloadSymbol = new ms.Symbol(this.sidc, {simpleStatusModifier: this.simpleStatusModifier}, this.amplifiers);
+      const downloadSymbol = new ms.Symbol(
+        this.sidc,
+        { simpleStatusModifier: this.simpleStatusModifier },
+        this.amplifiers
+      );
       download(downloadSymbol.asCanvas().toDataURL(), `${this.sidc}.png`);
     },
 
     downloadSVG(ev) {
-      const downloadSymbol = new ms.Symbol(this.sidc, {simpleStatusModifier: this.simpleStatusModifier}, this.amplifiers);
+      const downloadSymbol = new ms.Symbol(
+        this.sidc,
+        { simpleStatusModifier: this.simpleStatusModifier },
+        this.amplifiers
+      );
 
       download(downloadSymbol.toDataURL(), `${this.sidc}.svg`);
     },
@@ -115,11 +123,12 @@ export const ActionMixins = {
     saveSymbol() {
       const symbolInfo = {
         sidc: this.sidc,
-        amplifiers: {...this.filteredAmplifiers},
+        amplifiers: { ...this.filteredAmplifiers },
         standard: this.standard,
         iconDescription: this.$store.state.iconDescription
       };
-      this.$store.dispatch("saveSymbol", symbolInfo)
+      this.$store
+        .dispatch("saveSymbol", symbolInfo)
         .then(e => this.$store.dispatch("showMessage", "Symbol saved"));
     }
   }

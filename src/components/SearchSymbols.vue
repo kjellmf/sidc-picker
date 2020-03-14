@@ -9,21 +9,17 @@
     prepend-icon="search"
     solo
   >
-    <template
-      slot="item"
-      slot-scope="data">
+    <template slot="item" slot-scope="data">
       <v-list-tile-avatar>
-        <mil-symbol
-          :size="20"
-          :sidc="data.item.value"/>
+        <mil-symbol :size="20" :sidc="data.item.value" />
       </v-list-tile-avatar>
-      <v-list-tile-content v-text="data.item.text"/>
+      <v-list-tile-content v-text="data.item.text" />
     </template>
   </v-autocomplete>
 </template>
 
 <script>
-import {app6d, ms2525d} from "milstd";
+import { app6d, ms2525d } from "milstd";
 import MilSymbol from "./MilSymbol.vue";
 
 export default {
@@ -32,7 +28,7 @@ export default {
     MilSymbol
   },
   props: {
-    standard: {type: String, default: "APP6"}
+    standard: { type: String, default: "APP6" }
   },
   data: () => ({
     myValue: null
@@ -52,9 +48,9 @@ export default {
 
     allIcons() {
       const tmp = [];
-      this.ssv.forEach((ssValue) => {
+      this.ssv.forEach(ssValue => {
         const ss = this.cstandard[ssValue]["main icon"] || [];
-        const mm = ss.map((mi) => {
+        const mm = ss.map(mi => {
           let text = mi.entity;
           if (mi["entity type"]) text += ` - ${mi["entity type"]}`;
           if (mi["entity subtype"]) text += ` - ${mi["entity subtype"]}`;
@@ -81,5 +77,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
