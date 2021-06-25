@@ -13,25 +13,25 @@
     "lodash.escape": "^4.0.1",
     "milstd": "^0.1.6",
     "milsymbol": "^2.0.0",
-    "vue": "^2.6.10",
+    "vue": "^2.6.14",
     "vue-clipboard2": "^0.1.1",
-    "vue-router": "^3.0.7",
+    "vue-router": "^3.5.2",
     "vue-shortkey": "^3.1.7",
-    "vuetify": "^1.5.16",
-    "vuex": "^3.1.1",
-    "vuex-persistedstate": "^2.5.4"
+    "vuetify": "^1.5.24",
+    "vuex": "^3.6.2",
+    "vuex-persistedstate": "^2.7.1"
   },
   "devDependencies": {
-    "@babel/polyfill": "^7.4.4",
-    "@vue/cli-plugin-babel": "^3.9.2",
-    "@vue/cli-plugin-eslint": "^3.9.2",
-    "@vue/cli-service": "^3.9.2",
+    "@babel/polyfill": "^7.12.1",
+    "@vue/cli-plugin-babel": "^3.12.1",
+    "@vue/cli-plugin-eslint": "^3.12.1",
+    "@vue/cli-service": "^3.12.1",
     "@vue/eslint-config-airbnb": "^3.0.5",
     "prettier": "^1.19.1",
-    "stylus": "^0.54.5",
+    "stylus": "^0.54.8",
     "stylus-loader": "^3.0.1",
     "vue-cli-ghpages": "^1.0.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.14"
   },
   "postcss": {
     "plugins": {
